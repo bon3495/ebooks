@@ -25,19 +25,25 @@ export default function IndexPage({ params: { locale } }: Props) {
 
   return (
     <PageLayout>
-      <div className="container">
+      <div className="container px-4">
         <div className="flex flex-col items-center justify-center">
           <h3
-            className={cn('w-2/3 text-center text-9xl font-bold', {
-              'w-[75%] leading-tight': locale === LOCALE_TYPES.vi,
-            })}
+            className={cn(
+              'text-center text-2xl font-bold md:text-4xl lg:w-2/3 lg:text-6xl',
+              {
+                'leading-tight lg:w-[75%]': locale === LOCALE_TYPES.vi,
+              },
+            )}
           >
             {t('title')}
           </h3>
           <p
-            className={cn('mt-4 w-1/2 text-center text-lg', {
-              'w-[52%]': locale === LOCALE_TYPES.vi,
-            })}
+            className={cn(
+              'mt-4 text-center text-sm md:w-4/5 md:text-base lg:w-1/2 lg:text-lg',
+              {
+                'lg:w-[52%]': locale === LOCALE_TYPES.vi,
+              },
+            )}
           >
             {t('description')}
           </p>
@@ -50,21 +56,36 @@ export default function IndexPage({ params: { locale } }: Props) {
               return (
                 <li
                   key={ebook.slug}
-                  className="flex gap-x-4 rounded-2xl bg-pink-pastel/30 p-4 shadow-pink-layer backdrop-blur-md"
+                  className="flex flex-col rounded-2xl bg-pink-pastel/30 p-4 shadow-pink-layer backdrop-blur-md"
                 >
-                  <div className="flex">
-                    <Image
-                      src={ebook.cover}
-                      alt={ebook.title}
-                      width={120}
-                      height={120}
-                      className="rounded-sm object-cover"
-                    />
+                  <div className="flex gap-x-4">
+                    <div className="flex">
+                      <Image
+                        src={ebook.cover}
+                        alt={ebook.title}
+                        width={120}
+                        height={120}
+                        className="w-20 rounded-sm object-cover lg:w-[120px]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col">
+                      <h4 className="text-base font-bold md:text-xl">
+                        {ebook.title}
+                      </h4>
+                      <p className="mt-2 text-base">{ebook.author}</p>
+                      <Button
+                        asChild
+                        className="ml-auto mt-auto hidden w-fit items-center sm:flex"
+                      >
+                        <Link href={`${locale}/${ebook.permalink}`}>
+                          <span>Read Now</span>
+                          <MoveRight />
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
-                  <div className="flex flex-1 flex-col">
-                    <h4 className="text-xl font-bold">{ebook.title}</h4>
-                    <p className="mt-2 text-base">{ebook.author}</p>
-                    <Button asChild className="ml-auto mt-auto w-fit">
+                  <div className="mt-4 block w-full sm:hidden">
+                    <Button asChild className="ml-auto mt-auto w-full">
                       <Link href={`${locale}/${ebook.permalink}`}>
                         <span>Read Now</span>
                         <MoveRight />

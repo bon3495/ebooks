@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { LocaleSwitcher } from '@/components/locale-switcher';
@@ -15,9 +16,16 @@ function SiteHeader({ locale }: SiteHeaderProps) {
         <h1>
           <Link
             href={formatPathname(ROUTES.HOME, locale)}
-            className="text-4xl font-bold"
+            className="flex items-center text-4xl font-bold"
           >
-            Bonrizon
+            <span className="hidden lg:inline-block">Bonrizon</span>
+            <Image
+              src={'/assets/images/only-logo.png'}
+              alt="Logo Bonrizon"
+              width={40}
+              height={40}
+              className="lg:hidden"
+            />
           </Link>
         </h1>
 

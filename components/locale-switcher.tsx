@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 
-import { LocaleSwitcherSelect } from '@/components/locale-swithcer-select';
+import { LocaleSwitcherSelect } from '@/components/locale-switcher-select';
 import { SelectGroup, SelectItem, SelectLabel } from '@/components/ui/select';
 import { routing } from '@/i18n/routing';
 
@@ -11,7 +11,7 @@ export function LocaleSwitcher() {
   return (
     <LocaleSwitcherSelect defaultValue={locale}>
       <SelectGroup>
-        <SelectLabel>{t('label')}</SelectLabel>
+        <SelectLabel className="hidden xl:block">{t('label')}</SelectLabel>
         {routing.locales.map((cur) => {
           return (
             <SelectItem key={cur} value={cur}>
