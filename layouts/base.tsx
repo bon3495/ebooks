@@ -39,7 +39,7 @@ export default async function BaseLayout({
             disableTransitionOnChange
           > */}
           <div className={cn('relative flex min-h-dvh flex-col', className)}>
-            <SiteHeader />
+            <SiteHeader locale={locale} />
             {children}
           </div>
           <Analytics />

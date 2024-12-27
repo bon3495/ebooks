@@ -65,7 +65,7 @@ export default function IndexPage({ params: { locale } }: Props) {
                     <h4 className="text-xl font-bold">{ebook.title}</h4>
                     <p className="mt-2 text-base">{ebook.author}</p>
                     <Button asChild className="ml-auto mt-auto w-fit">
-                      <Link href={ebook.permalink}>
+                      <Link href={`${locale}/${ebook.permalink}`}>
                         <span>Read Now</span>
                         <MoveRight />
                       </Link>

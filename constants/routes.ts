@@ -1,9 +1,9 @@
 export const ROUTES = {
   HOME: '/',
-  EBOOK: '/ebooks',
+  EBOOKS: '/ebooks',
 } as const;
 
 export const MAIN_NAV = {
   // home: ROUTES.HOME,
-  ebooks: ROUTES.EBOOK,
+  ebooks: ROUTES.EBOOKS,
 } as const;

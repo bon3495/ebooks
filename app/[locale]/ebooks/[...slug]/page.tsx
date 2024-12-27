@@ -1,11 +1,15 @@
 import { notFound } from 'next/navigation';
 import { ebooks } from '#site/content';
+import { setRequestLocale } from 'next-intl/server';
 
 import { MDXContent } from '@/components/mdx-content';
 import { DashboardTableOfContents } from '@/components/toc';
 import { EbookParams } from '@/types/ebooks.type';
 
 async function getEbookFromParams(params: EbookParams['params']) {
+  // Enable static rendering
+  setRequestLocale(params.locale);
+
   const ebook = ebooks.find((book) => {
     return (
       book.locale === params.locale &&

@@ -20,3 +20,6 @@ export function isKey<T extends object>(x: T, k: PropertyKey): k is keyof T {
 export const objectKeys = <T extends object>(obj: T) => {
   return Object.keys(obj) as Array<keyof T>;
 };
+
+export const formatPathname = (pathname: string, locale = 'en') =>
+  `/${locale}${pathname}`;
