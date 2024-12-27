@@ -1,0 +1,58 @@
+{
+  "Error": {
+    "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>",
+    "title": "Etwas ist schief gelaufen!"
+  },
+  "IndexPage": {
+    "title": "Thư Viện Sách Ở Đây",
+    "description": "Chúng ta có một người bạn chân thành trong cuộc sống và đó chính là sách. Sách có sức mạnh thay đổi bản thân và làm cho bạn trở nên giá trị hơn."
+  },
+  "LocaleLayout": {
+    "title": "Bonrizon Ebooks"
+  },
+  "LocaleSwitcher": {
+    "label": "Chọn ngôn ngữ",
+    "locale": "{locale, select, vi {🇻🇳 Tiếng Việt} en {🇺🇸 English} other {Không biết}}"
+  },
+  "Manifest": {
+    "name": ""
+  },
+  "SiteHeader": {
+    "home": "Home",
+    "pathnames": "Pathnames",
+    "MainNav": {
+      "home": {
+        "title": "Home"
+      },
+      "ebooks": {
+        "title": "Ebooks"
+      }
+    }
+  },
+  "NotFoundPage": {
+    "description": "Bitte überprüfe die Addressleiste deines Browsers oder verwende die Navigation um zu einer bekannten Seite zu wechseln.",
+    "title": "Seite nicht gefunden",
+    "backToHome": "Zurück zur Startseite"
+  },
+  "PageLayout": {
+    "links": {
+      "docs": {
+        "description": "Erfahre mehr über next-intl in der offiziellen Dokumentation.",
+        "href": "https://next-intl.dev",
+        "title": "Dokumentation"
+      },
+      "source": {
+        "description": "Sieh dir den Quellcode dieses Beispiels auf GitHub an.",
+        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+        "title": "Quellcode"
+      }
+    }
+  },
+  "PathnamesPage": {
+    "description": "<p>Auch die Pfadnamen sind internationalisiert.</p><p>Wenn du die Standardsprache Englisch verwendest, siehst du <code>/en/pathnames</code> in der Adressleiste des Browsers auf dieser Seite.</p><p>Wenn du die Sprache auf Deutsch änderst, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>",
+    "title": "Pfadnamen"
+  },
+  "DashboardTableOfContents": {
+    "title": "Trên trang này"
+  }
+}
