@@ -14,8 +14,8 @@ const computedFields = <T extends { slug: string; locale: LocaleKey }>(
   const slugItem = data.slug.split('/').filter((i) => i !== data.locale);
   return {
     ...data,
-    permalink: `${slugItem.join('/')}`,
-    slugAsParams: data.slug.split('/').slice(1).join('/'),
+    permalink: `ebooks/${slugItem.join('/')}`,
+    slugAsParams: data.slug.split('/').join('/'),
   };
 };
 
@@ -27,7 +27,7 @@ const ebooks = defineCollection({
   schema: s
     .object({
       locale: s.enum(LOCALE_ARRAY).default('en'),
-      slug: s.path(),
+      slug: s.string(),
       title: s.string().max(99),
       description: s.string().max(199),
       author: s.string().max(99),
@@ -36,6 +36,7 @@ const ebooks = defineCollection({
       content: s.mdx(),
       toc: s.toc(),
       cover: s.string().max(99),
+      type: s.enum(['parent', 'child']).default('child'),
     })
     .transform(computedFields),
 });

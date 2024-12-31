@@ -34,9 +34,5 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  return (
-    <BaseLayout locale={locale} className="bg-custom-gradient">
-      {children}
-    </BaseLayout>
-  );
+  return <BaseLayout locale={locale}>{children}</BaseLayout>;
 }

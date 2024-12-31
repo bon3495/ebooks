@@ -1,12 +1,8 @@
 import * as runtime from 'react/jsx-runtime';
-import Image from 'next/image';
 
-import { Callout } from '@/components/callout';
 import { MdxBasicItems } from '@/components/mdx-basic-items';
 
 const sharedComponents = {
-  Callout,
-  Image,
   ...MdxBasicItems,
 };
 

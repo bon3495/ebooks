@@ -1,3 +1,7 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
 import { cn } from '@/lib/utils';
 
@@ -112,15 +116,15 @@ const MdxBasicItems = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
+      className={cn('leading-5 [&:not(:first-child)]:mt-3', className)}
       {...props}
     />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className={cn('my-6 ml-6 list-disc', className)} {...props} />
+    <ul className={cn('my-3 ml-10 list-disc', className)} {...props} />
   ),
   ol: ({ className, ...props }: React.OlHTMLAttributes<HTMLOListElement>) => (
-    <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
+    <ol className={cn('my-3 ml-10 list-decimal', className)} {...props} />
   ),
   li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
     <li className={cn('mt-2', className)} {...props} />
@@ -175,6 +179,23 @@ const MdxBasicItems = {
       {...props}
     />
   ),
+  Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
+    <Link
+      className={cn('font-medium underline underline-offset-4', className)}
+      {...props}
+    />
+  ),
+  LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
+    <Link
+      className={cn(
+        'flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10',
+        className,
+      )}
+      {...props}
+    />
+  ),
+  Callout,
+  Image,
 };
 
 export { MdxBasicItems };

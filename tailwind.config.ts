@@ -98,6 +98,7 @@ const config: Config = {
       boxShadow: {
         'pink-layer':
           '0 1px 2px hsl(350deg 100% 78% / 0.075), 0 2px 4px hsl(350deg 100% 78% / 0.075), 0 4px 8px hsl(350deg 100% 78% / 0.075), 0 8px 16px hsl(350deg 100% 78% / 0.075), 0 16px 32px hsl(350deg 100% 78% / 0.075)',
+        'side-header': '0 2px 6px hsl(0deg 0% 0% / 0.1)',
       },
     },
   },

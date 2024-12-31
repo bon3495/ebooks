@@ -20,7 +20,7 @@ const useBoundedScroll = (bounds: number) => {
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious();
     const diff = latest - Number(previous);
-    const newScrollYBounded = scrollYBounded.get() - diff;
+    const newScrollYBounded = scrollYBounded.get() + diff;
 
     scrollYBounded.set(clamp(newScrollYBounded, 0, bounds));
   });

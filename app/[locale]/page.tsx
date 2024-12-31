@@ -20,7 +20,10 @@ export default function IndexPage({ params: { locale } }: Props) {
   const t = useTranslations('IndexPage');
 
   const sortedEbooks = sortEbooks(
-    ebooks.filter((ebook) => ebook.published && ebook.locale === locale),
+    ebooks.filter(
+      (ebook) =>
+        ebook.published && ebook.locale === locale && ebook.type === 'parent',
+    ),
   );
 
   return (
