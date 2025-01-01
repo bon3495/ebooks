@@ -67,6 +67,9 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      width: {
+        inherit: 'inherit',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -99,6 +102,8 @@ const config: Config = {
         'pink-layer':
           '0 1px 2px hsl(350deg 100% 78% / 0.075), 0 2px 4px hsl(350deg 100% 78% / 0.075), 0 4px 8px hsl(350deg 100% 78% / 0.075), 0 8px 16px hsl(350deg 100% 78% / 0.075), 0 16px 32px hsl(350deg 100% 78% / 0.075)',
         'side-header': '0 2px 6px hsl(0deg 0% 0% / 0.1)',
+        tooltip:
+          '0px 3.4px 1.3px rgba(0, 0, 0, 0.083), 0px 5px 6.1px rgba(0, 0, 0, 0.093), 0px 6.8px 19.5px rgba(0, 0, 0, 0.098), 0px 10px 139px rgba(0, 0, 0, 0.1);',
       },
     },
   },

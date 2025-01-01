@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { SiteHeaderMotion } from '@/components/animations/site-header';
+import { SiteHeaderMotion } from '@/components/animations/site-header-motion';
 import { LocaleSwitcher } from '@/components/locale-switcher';
 import { ROUTES } from '@/constants/routes';
 import { formatPathname } from '@/lib/utils';

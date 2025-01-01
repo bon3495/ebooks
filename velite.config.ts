@@ -14,7 +14,7 @@ const computedFields = <T extends { slug: string; locale: LocaleKey }>(
   const slugItem = data.slug.split('/').filter((i) => i !== data.locale);
   return {
     ...data,
-    permalink: `ebooks/${slugItem.join('/')}`,
+    permalink: `/ebooks/${slugItem.join('/')}`,
     slugAsParams: data.slug.split('/').join('/'),
   };
 };
