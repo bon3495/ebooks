@@ -13,7 +13,7 @@ const LogoIcon = ({ hasIcon = true, ...props }: LogoProps) => {
     <span className="flex items-center">
       {hasIcon && (
         <Image
-          src="/assets/images/only-logo.png"
+          src="/assets/images/book.png"
           width={40}
           height={40}
           alt="logo"

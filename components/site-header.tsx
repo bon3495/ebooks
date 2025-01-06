@@ -20,7 +20,7 @@ function SiteHeader({ locale }: SiteHeaderProps) {
         >
           <span className="hidden lg:inline-block">Bonrizon</span>
           <Image
-            src={'/assets/images/only-logo.png'}
+            src={'/assets/images/book.png'}
             alt="Logo Bonrizon"
             width={40}
             height={40}

@@ -9,4 +9,119 @@ author: Michael Feathers
 type: parent
 ---
 
-Trần Lê Bảo Lộc
+## Lời Nói Đầu
+
+"...rồi nó bắt đầu..."
+
+Trong phần giới thiệu của cuốn sách này, Michael Feathers đã dùng cụm từ đó để mô tả khởi đầu niềm đam mê phần mềm của ông.
+
+"...rồi nó bắt đầu..."
+
+Bạn có biết cảm giác đó không? Bạn có thể chỉ ra một khoảnh khắc trong đời và nói rằng: "...rồi nó bắt đầu..."? Có phải đã có một sự kiện duy nhất nào đó thay đổi hoàn toàn cuộc đời bạn và cuối cùng dẫn bạn đến việc cầm cuốn sách này lên và bắt đầu đọc lời tựa này?
+
+Tôi đang học lớp sáu khi điều đó xảy ra với tôi. Tôi đã rất thích khoa học, vũ trụ và tất cả những thứ mang tính kỹ thuật. Mẹ tôi tìm thấy một chiếc máy tính bằng nhựa trong một cuốn danh mục và đặt mua nó cho tôi. Nó có tên là *Digi-Comp I*. Bốn mươi năm sau, chiếc máy tính nhựa nhỏ bé đó vẫn giữ một vị trí danh dự trên kệ sách của tôi. Nó là chất xúc tác đã thắp lên niềm đam mê bền bỉ của tôi với phần mềm. Nó cho tôi cảm nhận đầu tiên về niềm vui khi viết những chương trình giải quyết vấn đề cho mọi người. Nó chỉ có ba flip-flop S-R bằng nhựa và sáu cổng and bằng nhựa, nhưng thế là đủ—nó đã phục vụ được mục đích. Rồi... đối với tôi... nó đã bắt đầu...
+
+Nhưng niềm vui đó sớm bị lu mờ bởi nhận thức rằng các hệ thống phần mềm hầu như luôn xuống cấp thành một mớ hỗn độn. Những gì bắt đầu như một thiết kế trong sáng như pha lê trong tâm trí của các lập trình viên dần thối rữa theo thời gian, như một miếng thịt ôi. Hệ thống nhỏ gọn đẹp đẽ mà chúng ta xây dựng năm ngoái biến thành một đầm lầy khủng khiếp của những hàm và biến rối rắm vào năm sau.
+
+Tại sao điều này lại xảy ra? Tại sao các hệ thống lại thối rữa? Tại sao chúng không thể giữ được sự sạch sẽ?
+
+Đôi khi chúng ta đổ lỗi cho khách hàng. Đôi khi chúng ta buộc tội họ vì thay đổi yêu cầu. Chúng ta tự an ủi mình với niềm tin rằng nếu khách hàng chỉ cần hài lòng với những gì họ nói họ cần, thiết kế đã hoàn hảo rồi. Đó là lỗi của khách hàng vì đã thay đổi yêu cầu với chúng ta.
+
+Này, đây là tin mới: *Yêu cầu luôn thay đổi*. Những thiết kế không thể chịu đựng được sự thay đổi yêu cầu ngay từ đầu đã là những thiết kế kém. Mục tiêu của mọi nhà phát triển phần mềm có năng lực là tạo ra những thiết kế có thể chịu đựng được sự thay đổi.
+
+Đây dường như là một vấn đề khó giải quyết. Thực tế là nó khó đến mức gần như mọi hệ thống từng được tạo ra đều phải chịu sự thối rữa chậm chạp, suy yếu dần. Sự thối rữa lan tràn đến mức chúng ta đã phải đặt một cái tên đặc biệt cho những chương trình bị thối rữa. Chúng ta gọi chúng là: **Legacy Code**.
+
+Legacy Code. Cụm từ này gây nên sự ghê tởm trong trái tim của các lập trình viên. Nó gợi lên hình ảnh lội qua một đầm lầy đục ngầu của những cây cối rậm rạp chằng chịt với đỉa bên dưới và ruồi đốt bên trên. Nó gợi lên mùi của sự đục ngầu, nhớt nhát, tù đọng và thối rữa. Mặc dù niềm vui đầu tiên của chúng ta với lập trình có thể đã rất mãnh liệt, nhưng nỗi khổ khi đối phó với legacy code thường đủ để dập tắt ngọn lửa đó.
+
+Nhiều người trong chúng ta đã cố gắng tìm ra cách để *ngăn chặn* code không trở thành di sản. Chúng ta đã viết sách về các nguyên tắc, mẫu thiết kế và thực hành có thể giúp lập trình viên giữ cho hệ thống của họ sạch sẽ. Nhưng Michael Feathers đã có một cái nhìn sâu sắc mà nhiều người trong chúng ta đã bỏ lỡ. Phòng ngừa không phải là hoàn hảo. Ngay cả đội phát triển có kỷ luật nhất, biết những nguyên tắc tốt nhất, sử dụng những mẫu thiết kế tốt nhất và tuân theo những thực hành tốt nhất vẫn sẽ tạo ra những mớ hỗn độn theo thời gian. Sự thối rữa vẫn tích tụ. Không đủ khi chỉ cố gắng ngăn chặn sự thối rữa—bạn phải có khả năng *đảo ngược* nó.
+
+Đó chính là điều cuốn sách này muốn nói đến. Nó xoay quanh việc đảo ngược sự thối rữa. Làm thế nào để biến một hệ thống rối rắm, mù mờ, phức tạp thành một hệ thống đơn giản, có cấu trúc gọn gàng và được thiết kế tốt, từng chút một, từng bước một. Đây là về việc đảo ngược sự hỗn loạn và đưa mọi thứ trở lại trật tự.
+
+Trước khi bạn quá phấn khích, tôi cảnh báo bạn; đảo ngược sự thối rữa không dễ dàng, và không nhanh chóng. Các kỹ thuật, mẫu thiết kế và công cụ mà Michael trình bày trong cuốn sách này rất hiệu quả, nhưng chúng đòi hỏi công sức, thời gian, sức bền và *sự quan tâm*. Cuốn sách này không phải là viên đạn bạc. Nó sẽ không cho bạn biết cách loại bỏ tất cả sự thối rữa tích lũy trong hệ thống của bạn qua một đêm. Thay vào đó, cuốn sách này mô tả một tập hợp các nguyên tắc, khái niệm và thái độ mà bạn sẽ mang theo suốt phần còn lại của sự nghiệp và *sẽ giúp bạn biến những hệ thống xuống cấp dần dần thành những hệ thống cải thiện dần dần.*
+
+***Robert C. Martin***<br />
+***29 June, 2004***
+
+## Lời Nói Đầu Của Tác Giả
+
+Bạn có nhớ chương trình đầu tiên bạn viết không? Tôi nhớ chương trình của mình. Đó là một chương trình đồ họa nhỏ tôi viết trên một chiếc PC đời đầu. Tôi bắt đầu lập trình muộn hơn hầu hết bạn bè của mình. Tất nhiên, tôi đã từng thấy máy tính khi còn nhỏ. Tôi nhớ đã rất ấn tượng với một chiếc máy tính mini mà tôi từng thấy trong một văn phòng, nhưng trong nhiều năm tôi chưa từng có cơ hội ngồi trước một chiếc máy tính. Sau đó, khi tôi là thiếu niên, một số người bạn của tôi đã mua vài chiếc TRS-80 đầu tiên. Tôi rất thích thú, nhưng thực ra tôi cũng hơi lo lắng. Tôi biết rằng nếu tôi bắt đầu nghịch máy tính, tôi sẽ bị cuốn vào nó. Nó trông quá tuyệt vời. Tôi không biết tại sao tôi hiểu rõ bản thân mình đến vậy, nhưng tôi đã kìm lại. Sau này, khi học đại học, một người bạn cùng phòng của tôi có một chiếc máy tính, và tôi đã mua một trình biên dịch C để có thể tự học lập trình. Rồi nó bắt đầu. Tôi thức đêm này qua đêm khác để thử nghiệm, đắm chìm trong mã nguồn của trình soạn thảo emacs đi kèm với trình biên dịch. Nó gây nghiện, nó đầy thách thức, và tôi yêu nó.
+
+Tôi hy vọng bạn đã có những trải nghiệm như thế này—niềm vui thuần túy khi làm cho mọi thứ hoạt động trên máy tính. Gần như mọi lập trình viên tôi hỏi đều có. Niềm vui đó là một phần của những gì đưa chúng ta vào công việc này, nhưng nó ở đâu trong cuộc sống hàng ngày?
+
+Vài năm trước, tôi đã gọi cho người bạn Erik Meade sau khi kết thúc công việc vào một buổi tối. Tôi biết Erik vừa mới bắt đầu một công việc tư vấn với một đội nhóm mới, nên tôi hỏi anh ấy, "Họ làm việc thế nào?" Anh ấy nói, "Họ đang viết legacy code, bạn à." Đó là một trong số ít những lần trong đời tôi bị sốc bởi câu nói của một đồng nghiệp. Tôi cảm nhận nó ngay trong lòng mình. Erik đã diễn tả chính xác cảm giác mà tôi thường có khi lần đầu tiên thăm các đội nhóm. Họ đang rất nỗ lực, nhưng cuối cùng, vì áp lực về thời gian, gánh nặng từ quá khứ, hoặc thiếu những code tốt hơn để so sánh, nhiều người vẫn đang viết legacy code.
+
+Legacy code là gì? Tôi đã sử dụng thuật ngữ này mà không định nghĩa nó. Hãy xem xét định nghĩa chặt chẽ: Legacy code là code chúng ta nhận được từ người khác. Có thể công ty chúng ta mua code từ một công ty khác; có thể những người trong đội ban đầu đã chuyển sang các dự án khác. Legacy code là code của người khác. Nhưng trong ngôn ngữ của lập trình viên, thuật ngữ này có ý nghĩa nhiều hơn thế. Qua thời gian, *legacy code* đã dần mang nhiều sắc thái và ý nghĩa nặng nề hơn.
+
+Bạn nghĩ gì khi nghe thuật ngữ *legacy code*? Nếu bạn giống như tôi, bạn sẽ nghĩ đến một cấu trúc rối rắm, khó hiểu, những đoạn code mà bạn phải thay đổi nhưng không thực sự hiểu. Bạn nghĩ đến những đêm không ngủ cố gắng thêm vào những tính năng đáng lẽ phải dễ thêm vào, và bạn nghĩ đến sự chán nản, cảm giác rằng mọi người trong đội đều đã quá chán ngán một mã nguồn đến mức dường như không thể cứu vãn, loại code mà bạn chỉ ước nó biến mất. Một phần trong bạn cảm thấy tồi tệ chỉ vì nghĩ đến việc cải thiện nó. Nó dường như không xứng đáng với nỗ lực của bạn. Định nghĩa về *legacy code* đó không liên quan gì đến việc ai đã viết nó. Code có thể xuống cấp theo nhiều cách, và nhiều cách trong số đó không liên quan gì đến việc code có đến từ một đội khác hay không.
+
+Trong ngành, *legacy code* thường được dùng như một thuật ngữ lóng để chỉ code khó thay đổi mà chúng ta không hiểu. Nhưng qua nhiều năm làm việc với các đội nhóm, giúp họ vượt qua những vấn đề nghiêm trọng về code, tôi đã đi đến một định nghĩa khác.
+
+Đối với tôi, *legacy code* đơn giản là code không có kiểm thử. Tôi đã nhận được một số phản đối về định nghĩa này. Kiểm thử có liên quan gì đến việc code có tồi hay không? Đối với tôi, câu trả lời rất đơn giản, và đó là điểm mà tôi sẽ giải thích chi tiết trong suốt cuốn sách:
+
+<Callout>
+  Code không có kiểm thử là code tồi. Không quan trọng nó được viết tốt đến đâu; không quan trọng nó đẹp hay hướng đối tượng hay được đóng gói tốt như thế nào. Với kiểm thử, chúng ta có thể thay đổi hành vi của code một cách nhanh chóng và có thể kiểm chứng được. Không có chúng, chúng ta thực sự không biết liệu code của mình đang trở nên tốt hơn hay tệ hơn.
+</Callout>
+
+Bạn có thể nghĩ rằng điều này quá khắt khe. Còn clean code thì sao? Nếu một mã nguồn rất sạch và có cấu trúc tốt, điều đó không đủ sao? Đừng hiểu nhầm. Tôi yêu clean code. Tôi yêu nó hơn hầu hết những người tôi biết, nhưng dù clean code là tốt, nó vẫn chưa đủ. Các đội nhóm phải đối mặt với rủi ro nghiêm trọng khi cố gắng thực hiện những thay đổi lớn mà không có kiểm thử. Đó giống như việc biểu diễn nhào lộn trên không mà không có lưới an toàn. Nó đòi hỏi kỹ năng phi thường và sự hiểu biết rõ ràng về những gì có thể xảy ra ở từng bước. Biết chính xác điều gì sẽ xảy ra nếu bạn thay đổi vài biến thường giống như việc biết liệu một người đồng đội sẽ kịp bắt lấy cánh tay bạn sau khi bạn hoàn thành một cú lộn nhào hay không. Nếu bạn đang ở trong một đội có code rõ ràng như vậy, bạn đang ở vị trí tốt hơn hầu hết các lập trình viên khác. Tuy nhiên, trong công việc của tôi, tôi nhận ra rằng những đội nhóm có mức độ rõ ràng như vậy trên toàn bộ code của họ là rất hiếm. Họ giống như một hiện tượng ngoại lệ về mặt thống kê. Và, bạn biết gì không? Nếu họ không có kiểm thử hỗ trợ, những thay đổi code của họ vẫn có vẻ chậm hơn so với các đội có kiểm thử.
+
+Đúng vậy, các đội có thể trở nên tốt hơn và bắt đầu viết code rõ ràng hơn, nhưng phải mất một thời gian dài để code cũ trở nên rõ ràng hơn. Trong nhiều trường hợp, điều này sẽ không bao giờ xảy ra hoàn toàn. Vì vậy, tôi không có vấn đề gì khi định nghĩa legacy code là code không có kiểm thử. Đó là một định nghĩa thực tế tốt, và nó chỉ ra một giải pháp.
+
+Tôi đã nói khá nhiều về kiểm thử cho đến giờ, nhưng cuốn sách này không phải về kiểm thử. Cuốn sách này là về khả năng tự tin thực hiện thay đổi trong bất kỳ mã nguồn nào. Trong các chương tiếp theo, tôi mô tả các kỹ thuật mà bạn có thể sử dụng để hiểu code, đưa nó vào kiểm thử, tái cấu trúc nó, và thêm tính năng.
+
+Một điều mà bạn sẽ nhận thấy khi đọc cuốn sách này là nó không phải là một cuốn sách về code đẹp. Các ví dụ tôi sử dụng trong cuốn sách đều là giả lập vì tôi làm việc dưới các thỏa thuận bảo mật với khách hàng. Tuy nhiên, trong nhiều ví dụ, tôi đã cố gắng bảo tồn tinh thần của code mà tôi đã thấy trong thực tế. Tôi không nói rằng các ví dụ luôn mang tính đại diện.  Chắc chắn có những ốc đảo với code chất lượng tuyệt vời ở ngoài kia, nhưng thẳng thắn mà nói, cũng có những đoạn code còn tệ hơn nhiều so với bất cứ thứ gì tôi có thể dùng làm ví dụ trong cuốn sách này. Ngoài vấn đề về bảo mật, tôi không thể đưa những đoạn code như vậy vào cuốn sách này mà không khiến bạn chán ngắt và chôn vùi những điểm quan trọng trong một mớ chi tiết rối rắm. Kết quả là, nhiều ví dụ tương đối ngắn gọn. Nếu bạn nhìn vào một trong số chúng và nghĩ "Không, anh ta không hiểu—các phương thức của tôi lớn hơn nhiều và tệ hơn nhiều", hãy xem xét lời khuyên tôi đưa ra theo đúng nghĩa đen và xem liệu nó có áp dụng được không, ngay cả khi ví dụ có vẻ đơn giản hơn.
+
+Các kỹ thuật ở đây đã được thử nghiệm trên những đoạn code có quy mô lớn đáng kể. Chỉ là do giới hạn của định dạng sách mà các ví dụ phải nhỏ hơn. Đặc biệt, khi bạn thấy dấu ba chấm (...) trong một đoạn code như thế này, bạn có thể hiểu nó là "chèn 500 dòng code xấu xí vào đây":
+
+```java
+m_pDispatcher->register(listener);
+...
+m_nMargins++;
+```
+
+Nếu cuốn sách này không phải về code đẹp, thì nó càng không phải về thiết kế đẹp. Thiết kế tốt nên là mục tiêu của tất cả chúng ta, nhưng trong legacy code, nó là thứ mà chúng ta đạt được qua từng bước rời rạc. Trong một số chương, tôi mô tả các cách thêm code mới vào các mã nguồn hiện có và chỉ ra cách thêm nó với các nguyên tắc thiết kế tốt trong đầu. Bạn có thể bắt đầu phát triển những khu vực code chất lượng cao trong các legacy mã nguồn, nhưng đừng ngạc nhiên nếu một số bước bạn thực hiện để tạo thay đổi lại khiến một số code trở nên xấu xí hơn một chút. Công việc này giống như phẫu thuật. Chúng ta phải rạch những đường mổ, và chúng ta phải di chuyển qua các nội tạng và tạm gác lại một số đánh giá về tính thẩm mỹ. Liệu các cơ quan nội tạng chính của bệnh nhân này có thể tốt hơn hiện tại không? Có. Vậy chúng ta có nên quên đi vấn đề cấp bách của anh ta, khâu anh ta lại và bảo anh ta ăn uống đúng cách và tập luyện cho một cuộc marathon không? Chúng ta có thể, nhưng điều chúng ta thực sự cần làm là chấp nhận bệnh nhân như hiện tại, sửa chữa những gì sai và đưa anh ta đến trạng thái khỏe mạnh hơn. Anh ta có thể không bao giờ trở thành vận động viên Olympic, nhưng chúng ta không thể để "hoàn hảo nhất" trở thành kẻ thù của "tốt hơn". Các mã nguồn có thể trở nên lành mạnh hơn và dễ làm việc hơn. Khi một bệnh nhân cảm thấy khá hơn một chút, đó thường là lúc bạn có thể giúp anh ta cam kết với một lối sống lành mạnh hơn. Đó là điều chúng ta đang hướng tới với legacy code. Chúng ta đang cố gắng đạt đến điểm mà chúng ta quen với sự dễ dàng; chúng ta mong đợi nó và chủ động cố gắng làm cho việc thay đổi code dễ dàng hơn. Khi chúng ta có thể duy trì cảm giác đó trong một đội, thiết kế sẽ trở nên tốt hơn.
+
+Những kỹ thuật tôi mô tả là những kỹ thuật mà tôi đã khám phá và học hỏi cùng các đồng nghiệp và khách hàng trong suốt nhiều năm làm việc với khách hàng để cố gắng thiết lập kiểm soát đối với các mã nguồn hỗn loạn. Tôi đã tập trung vào legacy code một cách tình cờ. Khi tôi mới bắt đầu làm việc với Object Mentor, phần lớn công việc của tôi là giúp các đội nhóm giải quyết các vấn đề nghiêm trọng, phát triển kỹ năng và sự tương tác của họ đến mức có thể thường xuyên cung cấp code chất lượng. Chúng tôi thường sử dụng các phương pháp Extreme Programming để giúp các đội kiểm soát công việc của họ, hợp tác chặt chẽ và hoàn thành công việc. Tôi thường cảm thấy rằng Extreme Programming không phải là một cách phát triển phần mềm mà là một cách xây dựng một đội ngũ làm việc hiệu quả, đội ngũ này chỉ tình cờ cung cấp phần mềm tuyệt vời mỗi hai tuần.
+
+Tuy nhiên, ngay từ đầu đã có một vấn đề. Nhiều dự án XP đầu tiên là các dự án "greenfield" (dự án bắt đầu từ con số 0). Các khách hàng mà tôi gặp có các mã nguồn rất lớn và họ đang gặp rắc rối. Họ cần một cách để kiểm soát công việc của mình và bắt đầu cung cấp sản phẩm. Theo thời gian, tôi nhận ra rằng tôi đang làm đi làm lại những công việc giống nhau với các khách hàng. Cảm giác này lên đến đỉnh điểm trong công việc tôi đang làm với một đội nhóm trong ngành tài chính. Trước khi tôi đến, họ đã nhận ra rằng kiểm thử đơn vị là một điều tuyệt vời, nhưng các bài kiểm thử mà họ đang thực hiện lại là các bài kiểm thử toàn cảnh, yêu cầu nhiều lần truy cập cơ sở dữ liệu và chạy qua các phần code lớn. Các bài kiểm thử khó viết, và đội không chạy chúng thường xuyên vì chúng mất quá nhiều thời gian. Khi tôi ngồi xuống cùng họ để phá vỡ các phụ thuộc và đưa các đoạn code nhỏ vào kiểm thử, tôi có một cảm giác khủng khiếp của déjà vu. Có vẻ như tôi đang làm công việc này với mọi đội nhóm tôi gặp, và đó là loại công việc mà không ai thực sự muốn nghĩ đến. Đó chỉ là công việc vất vả mà bạn phải làm khi muốn bắt đầu làm việc với code của mình một cách có kiểm soát, nếu bạn biết cách làm. Lúc đó tôi quyết định rằng mình nên thực sự suy nghĩ về cách chúng tôi đang giải quyết những vấn đề này và ghi chép lại để các đội nhóm có thể bước đầu cải thiện và làm cho mã nguồn của họ dễ sử dụng hơn.
+
+Chú ý về các ví dụ: Tôi đã sử dụng các ví dụ trong vài ngôn ngữ lập trình khác nhau. Phần lớn các ví dụ được viết bằng Java, C++, và C. Tôi chọn Java vì đây là một ngôn ngữ rất phổ biến, và tôi đưa C++ vào vì nó có một số thử thách đặc biệt trong môi trường legacy code. Tôi chọn C vì nó làm nổi bật nhiều vấn đề xuất hiện trong legacy code theo kiểu thủ tục. Trong số đó, những ngôn ngữ này bao phủ phần lớn các mối quan tâm nảy sinh trong legacy code. Tuy nhiên, nếu các ngôn ngữ bạn sử dụng không có trong các ví dụ, hãy xem chúng dù sao đi nữa. Nhiều kỹ thuật mà tôi đề cập có thể được áp dụng trong các ngôn ngữ khác, chẳng hạn như Delphi, Visual Basic, COBOL, và FORTRAN.
+
+Tôi hy vọng rằng bạn thấy các kỹ thuật trong cuốn sách này hữu ích và chúng cho phép bạn quay trở lại những điều thú vị về lập trình. Lập trình có thể là công việc rất bổ ích và thú vị. Nếu bạn không cảm thấy điều đó trong công việc hàng ngày của mình, tôi hy vọng rằng các kỹ thuật tôi cung cấp cho bạn trong cuốn sách này giúp bạn tìm thấy và phát triển nó trong đội của bạn.
+
+## Lời Cảm Ơn
+
+Trước tiên, tôi muốn bày tỏ lòng biết ơn sâu sắc đến vợ tôi, Ann, và các con của tôi, Deborah và Ryan. Tình yêu và sự ủng hộ của họ đã giúp cuốn sách này ra đời và tạo nên tất cả những kiến thức mà tôi đã học trước đó. Tôi cũng muốn gửi lời cảm ơn đến "Uncle Bob" Martin, chủ tịch và nhà sáng lập Object Mentor. Phương pháp tiếp cận phát triển và thiết kế đầy thực tiễn và nghiêm túc của ông, với sự phân biệt rõ ràng giữa điều quan trọng và điều không đáng kể, đã trở thành điểm tựa cho tôi khoảng 10 năm trước, khi tôi tưởng chừng như sắp bị nhấn chìm trong một làn sóng những lời khuyên phi thực tế. Và cảm ơn ông, Bob, vì đã cho tôi cơ hội được xem nhiều đoạn code hơn và làm việc với nhiều người hơn trong năm năm qua, vượt xa những gì tôi từng tưởng tượng.
+
+Tôi cũng muốn gửi lời cảm ơn đến Kent Beck, Martin Fowler, Ron Jeffries, và Ward Cunningham vì đã đưa ra những lời khuyên quý báu cho tôi và dạy tôi rất nhiều về làm việc nhóm, thiết kế, và lập trình. Đặc biệt cảm ơn tất cả những người đã tham gia đánh giá các bản thảo. Các nhà đánh giá chính thức bao gồm Sven Gorts, Robert C. Martin, Erik Meade, và Bill Wake; các nhà đánh giá không chính thức gồm có Tiến sĩ Robert Koss, James Grenning, Lowell Lindstrom, Micah Martin, Russ Rufer và nhóm Silicon Valley Patterns Group, cùng James Newkirk.
+
+Cảm ơn các nhà đánh giá đã góp ý cho những bản thảo đầu tiên mà tôi đăng tải trên Internet. Phản hồi của họ đã ảnh hưởng đáng kể đến hướng đi của cuốn sách sau khi tôi tổ chức lại cấu trúc của nó. Tôi xin lỗi trước nếu có ai đó mà tôi vô tình bỏ sót. Các nhà đánh giá đầu tiên bao gồm: Darren Hobbs, Martin Lippert, Keith Nicholas, Phlip Plumlee, C. Keith Ray, Robert Blum, Bill Burris, William Caputo, Brian Marick, Steve Freeman, David Putman, Emily Bache, Dave Astels, Russel Hill, Christian Sepulveda, và Brian Christopher Robinson.
+
+Cảm ơn Joshua Kerievsky, người đã thực hiện một đánh giá quan trọng từ sớm, và Jeff Langr, người đã giúp tôi với những lời khuyên và đánh giá từng phần trong suốt quá trình.
+
+Các nhà đánh giá đã giúp tôi hoàn thiện bản thảo đáng kể, nhưng nếu vẫn còn lỗi sót lại, thì đó hoàn toàn là trách nhiệm của tôi.
+
+Cảm ơn Martin Fowler, Ralph Johnson, Bill Opdyke, Don Roberts, và John Brant vì những đóng góp của họ trong lĩnh vực tái cấu trúc code. Công việc của họ đã là nguồn cảm hứng lớn lao cho tôi.
+
+Tôi cũng muốn bày tỏ lòng biết ơn đặc biệt đến Jay Packlick, Jacques Morel, và Kelly Mower của Sabre Holdings, cũng như Graham Wright của Workshare Technology, vì sự hỗ trợ và phản hồi quý giá của họ.
+
+Đặc biệt cảm ơn Paul Petralia, Michelle Vincenti, Lori Lyons, Krista Hansing, và toàn bộ đội ngũ tại Prentice-Hall. Cảm ơn Paul vì tất cả sự hỗ trợ và động viên mà một tác giả lần đầu như tôi rất cần.
+
+Đặc biệt cảm ơn Gary và Joan Feathers, April Roberts, Tiến sĩ Raimund Ege, David Lopez de Quintana, Carlos Perez, Carlos M. Rodriguez, và cố Tiến sĩ John C. Comfort vì sự giúp đỡ và động viên trong suốt những năm qua. Tôi cũng muốn gửi lời cảm ơn đến Brian Button vì ví dụ trong Chương 21, *I'm Changing the Same Code All Over the Place*. Anh ấy đã viết đoạn code đó trong khoảng một giờ khi chúng tôi cùng phát triển một khóa học về tái cấu trúc, và nó đã trở thành đoạn code giảng dạy yêu thích của tôi.
+
+Cũng xin cảm ơn Janik Top, người có bản nhạc không lời *De Futura* đã trở thành nhạc nền cho vài tuần làm việc cuối cùng của tôi với cuốn sách này.
+
+Cuối cùng, tôi muốn cảm ơn tất cả những người mà tôi đã làm việc cùng trong vài năm qua, những người mà những hiểu biết và thách thức của họ đã giúp củng cố nội dung của cuốn sách này.
+
+***Michael Feathers***
+
+## Introduction
+
+## How to Use This Book
+
+Tôi đã thử một số định dạng khác nhau trước khi quyết định chọn định dạng hiện tại cho cuốn sách này. Nhiều kỹ thuật và thực hành hữu ích khi làm việc với legacy code rất khó giải thích một cách riêng lẽ. Những thay đổi đơn giản nhất thường trở nên dễ dàng hơn nếu bạn có thể tìm được các "đường nối" (seams), tạo các đối tượng giả (fake objects), và phá vỡ các phụ thuộc bằng một vài kỹ thuật phá vỡ phụ thuộc. Tôi quyết định rằng cách dễ dàng nhất để làm cho cuốn sách trở nên dễ tiếp cận và hữu ích là tổ chức phần lớn nội dung của nó (*Part II, Changing Software*) theo định dạng FAQ (câu hỏi thường gặp). Vì các kỹ thuật cụ thể thường yêu cầu sử dụng các kỹ thuật khác, các chương FAQ được liên kết chặt chẽ với nhau. Trong hầu hết các chương, bạn sẽ tìm thấy các tham chiếu, cùng với số trang, đến các chương và phần khác mô tả các kỹ thuật và các phương pháp tái cấu trúc cụ thể. Tôi xin lỗi nếu điều này khiến bạn phải lật sách liên tục khi cố gắng tìm câu trả lời cho các câu hỏi của mình, nhưng tôi giả định rằng bạn sẽ thích cách này hơn là đọc cuốn sách từ đầu đến cuối để cố gắng hiểu cách hoạt động của tất cả các kỹ thuật.
+
+Trong phần *Changing Software*, tôi đã cố gắng giải quyết những câu hỏi rất phổ biến nảy sinh trong công việc với legacy code. Mỗi chương được đặt tên theo một vấn đề cụ thể. Điều này làm cho tiêu đề các chương khá dài, nhưng hy vọng, chúng sẽ cho phép bạn nhanh chóng tìm thấy phần giúp bạn với những vấn đề cụ thể mà bạn đang gặp phải.
+
+*Changing Software* được bao bọc bởi một tập hợp các chương giới thiệu (*Part I, The Mechanics of Change*) và một danh mục các tái cấu trúc, rất hữu ích trong công việc với mã di sản (*Part III, Dependency-Breaking Techniques*). Vui lòng đọc các chương giới thiệu, đặc biệt là Chương 4, *The Seam Model*. Những chương này cung cấp bối cảnh và thuật ngữ cho tất cả các kỹ thuật tiếp theo. Ngoài ra, nếu bạn tìm thấy một thuật ngữ không được mô tả trong ngữ cảnh, hãy tìm nó trong Bảng Chú Giải.
+
+Các tái cấu trúc trong *Dependency-Breaking Techniques* đặc biệt ở chỗ chúng được thiết kế để thực hiện mà không cần kiểm thử, với mục đích đưa các kiểm thử vào vị trí. Tôi khuyến khích bạn đọc từng kỹ thuật để có thể thấy nhiều khả năng hơn khi bạn bắt đầu thuần hóa mã di sản của mình.

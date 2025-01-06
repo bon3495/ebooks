@@ -27,18 +27,18 @@ function SiteHeaderMotion({ children, ...props }: SiteHeaderMotionProps) {
     [0, 0, 1],
   );
 
-  const heightSpring = useSpring(
-    useTransform(scrollYBoundedProgressThrottled, [0, 1], [96, 56]),
-    springConfig,
-  );
+  // const heightSpring = useSpring(
+  //   useTransform(scrollYBoundedProgressThrottled, [0, 1], [96, 56]),
+  //   springConfig,
+  // );
 
   const bgColor = useMotionTemplate`hsl(var(--background) / ${useSpring(useTransform(scrollYBoundedProgressThrottled, [0, 1], [0.9, 0.1]), springConfig)})`;
 
   return (
     <motion.header
       initial
-      className="shadow-side-header fixed inset-x-0 top-0 z-50 flex w-dvw bg-background backdrop-blur-md"
-      style={{ height: heightSpring, backgroundColor: bgColor }}
+      className="fixed inset-x-0 top-0 z-50 flex w-dvw bg-background shadow-side-header backdrop-blur-md"
+      style={{ height: 64, backgroundColor: bgColor }}
       {...props}
     >
       {children}

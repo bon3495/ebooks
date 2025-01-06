@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ebooks } from '#site/content';
 import { setRequestLocale } from 'next-intl/server';
@@ -34,11 +35,29 @@ export default async function EbookDetails({ params }: EbookParams) {
     <>
       <ContentsNav ebooks={ebooksChildren} params={params} />
       <main className="mt-8 flex flex-1">
-        <div className="flex-1 gap-4 border border-teal-700 xl:grid xl:grid-cols-[1fr_300px]">
-          <div className="mx-auto h-[2000px] w-full min-w-0 flex-1 border border-red-600 px-4">
-            <MDXContent code={ebook.content} suppressHydrationWarning />
+        <div className="flex-1 gap-4 xl:grid xl:grid-cols-[1fr_300px]">
+          <div className="mx-auto w-full min-w-0 flex-1 px-4 text-justify">
+            <div className="mb-8">
+              {/* <Image
+                src="/assets/images/ebooks/cover-1.jpg"
+                alt="image"
+                width={300}
+                height={300}
+              /> */}
+              <div className="">
+                <h1 className="font-dancing flex text-left text-7xl font-bold leading-tight">
+                  {ebook.title}
+                </h1>
+                <p className="mt-4 text-right text-lg italic text-muted-foreground">
+                  by <span className="font-semibold">{ebook.author}</span>
+                </p>
+              </div>
+            </div>
+            <div>
+              <MDXContent code={ebook.content} suppressHydrationWarning />
+            </div>
           </div>
-          <aside className="hidden border border-blue-900 px-4 text-sm xl:block">
+          <aside className="hidden px-4 text-sm xl:block">
             <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-10">
               <DashboardTableOfContents toc={ebook.toc} />
             </div>

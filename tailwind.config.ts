@@ -19,8 +19,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        montserrat: ['var(--font-montserrat)', ...fontFamily.sans],
-        podkova: ['var(--font-podkova)', ...fontFamily.sans],
+        openSans: ['var(--font-openSans)', ...fontFamily.sans],
+        dancing: ['var(--font-dancing)', ...fontFamily.sans],
       },
       colors: {
         background: 'hsl(var(--background))',

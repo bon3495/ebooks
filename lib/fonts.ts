@@ -1,15 +1,19 @@
-import { Montserrat, Podkova } from 'next/font/google';
+import {
+  Dancing_Script as DancingScript,
+  Fredericka_the_Great as FrederickaTheGreat,
+  Open_Sans as OpenSans,
+} from 'next/font/google';
 
-const fontMontserrat = Montserrat({
+const fontOpenSans = OpenSans({
   subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: '--font-openSans',
   display: 'swap',
 });
 
-const fontPodkova = Podkova({
+const fontDancing = DancingScript({
   subsets: ['latin'],
-  variable: '--font-podkova',
+  variable: '--font-dancing',
   display: 'swap',
 });
 
-export { fontMontserrat, fontPodkova };
+export { fontOpenSans, fontDancing };

@@ -6,7 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 // import { ThemeProvider } from '@/components/theme-provider';
-import { fontMontserrat, fontPodkova } from '@/lib/fonts';
+import { fontDancing, fontOpenSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -26,9 +26,9 @@ export default async function BaseLayout({
     <html className="h-full" lang={locale} suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-dvh w-screen overflow-y-auto overflow-x-hidden bg-background font-montserrat text-foreground antialiased',
-          fontMontserrat.variable,
-          fontPodkova.variable,
+          'min-h-dvh w-screen overflow-y-auto overflow-x-hidden bg-background font-openSans text-foreground antialiased',
+          fontOpenSans.variable,
+          fontDancing.variable,
         )}
       >
         <NextIntlClientProvider messages={messages}>

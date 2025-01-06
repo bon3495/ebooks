@@ -58,13 +58,15 @@ const ContentsNavItem = ({ url, ebook }: NavItemProps) => {
       <Link
         href={ebook.permalink}
         className={cn(
-          'flex-1 rounded-md px-3 py-2.5 transition-all duration-200 ease-in-out hover:bg-accent',
+          'flex-1 rounded-md px-3 py-2 text-base transition-all duration-200 ease-in-out hover:bg-accent',
           {
             'bg-accent font-semibold': ebook.slugAsParams === url,
           },
         )}
       >
-        <span ref={itemRef}>{ebook.title}</span>
+        <span ref={itemRef} className="line-clamp-1">
+          {ebook.title}
+        </span>
       </Link>
       {/* )} */}
     </li>
