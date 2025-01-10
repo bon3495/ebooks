@@ -1,3 +1,4 @@
+import { px } from 'framer-motion';
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
@@ -9,6 +10,7 @@ const config: Config = {
     './layouts/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+
   theme: {
     container: {
       center: true,
@@ -66,6 +68,42 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        texture: {
+          DEFAULT: 'hsl(var(--bg-txt))',
+        },
+        'blackest-berry': {
+          DEFAULT: 'hsl(var(--blackest-berry))',
+        },
+        monochromatic: {
+          'dark-taupe': 'hsl(var(--dark-taupe))',
+          'warm-brown-gray': 'hsl(var(--warm-brown-gray))',
+          'cream-white': 'hsl(var(--cream-white))',
+          'subtle-ivory': 'hsl(var(--subtle-ivory))',
+        },
+        analogous: {
+          'pale-peach-tan': 'hsl(var(--pale-peach-tan))',
+          'warm-terra-cotta': 'hsl(var(--warm-terra-cotta))',
+          'taupe-brown': 'hsl(var(--taupe-brown))',
+          'dusty-brown': 'hsl(var(--dusty-brown))',
+        },
+        complementary: {
+          'soft-pastel-teal': 'hsl(var(--soft-pastel-teal))',
+          'muted-teal-blue': 'hsl(var(--muted-teal-blue))',
+          'slate-green-gray': 'hsl(var(--slate-green-gray))',
+          'deep-teal-gray': 'hsl(var(--deep-teal-gray))',
+        },
+        triadic: {
+          'muted-blue-gray': 'hsl(var(--muted-blue-gray))',
+          'soft-green': 'hsl(var(--soft-green))',
+          'aqua-blue': 'hsl(var(--aqua-blue))',
+          'mint-green': 'hsl(var(--mint-green))',
+        },
+        neutral: {
+          'deep-charcoal': 'hsl(var(--deep-charcoal))',
+          'medium-gray': 'hsl(var(--medium-gray))',
+          'pure-white': 'hsl(var(--pure-white))',
+          'off-white': 'hsl(var(--off-white))',
+        },
       },
       width: {
         inherit: 'inherit',
@@ -101,9 +139,12 @@ const config: Config = {
       boxShadow: {
         'pink-layer':
           '0 1px 2px hsl(350deg 100% 78% / 0.075), 0 2px 4px hsl(350deg 100% 78% / 0.075), 0 4px 8px hsl(350deg 100% 78% / 0.075), 0 8px 16px hsl(350deg 100% 78% / 0.075), 0 16px 32px hsl(350deg 100% 78% / 0.075)',
-        'side-header': '0 2px 6px hsl(0deg 0% 0% / 0.1)',
+        terracotta:
+          '1px 2px 2px hsl(28 49% 65% / 0.3), 2px 4px 4px hsl(28 49% 65% / 0.2), 3px 6px 6px hsl(28 49% 65% / 0.1);',
         tooltip:
           '0px 3.4px 1.3px rgba(0, 0, 0, 0.083), 0px 5px 6.1px rgba(0, 0, 0, 0.093), 0px 6.8px 19.5px rgba(0, 0, 0, 0.098), 0px 10px 139px rgba(0, 0, 0, 0.1);',
+        'deep-terracotta':
+          '1px 2px 2px hsl(28 49% 55% / 0.4), 2px 4px 4px hsl(28 49% 55% / 0.3), 3px 6px 6px hsl(28 49% 55% / 0.2);',
       },
     },
   },

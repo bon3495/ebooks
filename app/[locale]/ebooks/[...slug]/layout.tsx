@@ -32,7 +32,5 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
 
-  return (
-    <div className="container relative my-24 flex gap-x-4 px-4">{children}</div>
-  );
+  return children;
 }

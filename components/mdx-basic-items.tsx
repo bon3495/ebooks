@@ -3,7 +3,10 @@ import Link from 'next/link';
 
 import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
+import { Icons } from '@/components/icons';
+import { ImageWrapper } from '@/components/image-wrapper';
 import { AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { HeadingExtraLarge, HeadingLarge } from '@/components/ui/heading';
 import { cn } from '@/lib/utils';
 
 interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
@@ -54,21 +57,22 @@ const MdxBasicItems = {
   AlertDescription,
   Callout,
   Image,
+  HeadingLarge,
+  HeadingExtraLarge,
+  ImageWrapper,
+  Icons,
   code: Code,
   pre: Pre,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        'font-heading mt-2 scroll-m-20 text-4xl font-bold',
-        className,
-      )}
+      className={cn('mt-2 scroll-m-20 text-4xl font-bold', className)}
       {...props}
     />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'font-heading mt-12 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+        'mt-12 scroll-m-20 pb-2 font-dancing text-4xl font-bold leading-tight first:mt-0',
         className,
       )}
       {...props}
@@ -77,7 +81,7 @@ const MdxBasicItems = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
+        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
         className,
       )}
       {...props}
@@ -86,7 +90,7 @@ const MdxBasicItems = {
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
       className={cn(
-        'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
+        'mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
         className,
       )}
       {...props}

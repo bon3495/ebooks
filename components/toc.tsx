@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { useTranslations } from 'next-intl';
 
+import { HeadingMedium } from '@/components/ui/heading';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/utils';
 
@@ -34,9 +36,14 @@ export function DashboardTableOfContents({ toc }: TocProps) {
   const mounted = useMounted();
 
   return mounted ? (
-    <div className="space-y-2">
-      <p className="font-medium">{t('title')}</p>
-      <Tree tree={toc} activeItem={activeHeading} />
+    <div
+      className="w-inherit overflow-hidden"
+      onWheel={(e) => e.stopPropagation()}
+    >
+      <HeadingMedium className="my-4">{t('title')}</HeadingMedium>
+      <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto pr-4">
+        <Tree tree={toc} activeItem={activeHeading} />
+      </ScrollArea>
     </div>
   ) : null;
 }
@@ -53,7 +60,7 @@ function useActiveItem(itemIds: (string | undefined)[]) {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` },
+      { rootMargin: `0% 0% -40% 0%` },
     );
 
     itemIds?.forEach((id) => {
@@ -95,14 +102,14 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
     <ul className={cn('m-0 list-none', { 'pl-4': level !== 1 })}>
       {tree.map((item, index) => {
         return (
-          <li key={index} className={cn('mt-0 pt-2')}>
+          <li key={index} className={cn('mt-0')}>
             <a
               href={item.url}
               className={cn(
-                'inline-block no-underline',
+                'inline-block px-3 py-2 text-base no-underline',
                 item.url === `#${activeItem}`
-                  ? 'font-medium text-primary'
-                  : 'text-sm text-muted-foreground',
+                  ? 'font-semibold text-primary'
+                  : 'text-muted-foreground hover:text-primary/90',
               )}
             >
               {item.title}

@@ -1,3 +1,4 @@
+import 'locomotive-scroll/dist/locomotive-scroll.css';
 import '@/styles/globals.css';
 
 type Props = {

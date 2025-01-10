@@ -40,7 +40,7 @@ const LocaleSwitcherSelect = ({ children, defaultValue }: Props) => {
       disabled={isPending}
       onValueChange={onSelectChange}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-40">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>{children}</SelectContent>

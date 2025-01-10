@@ -1,5 +1,7 @@
 import { Slot } from '@radix-ui/react-slot';
 
+import { cn } from '@/lib/utils';
+
 const Callout = ({
   type = 'default',
   asChild,
@@ -13,7 +15,13 @@ const Callout = ({
 
   return (
     <Comp
-      className={`my-6 flex items-start rounded-md border border-l-4 p-4${type === 'danger' ? 'border-red-900 bg-red-50' : type === 'warning' ? 'border-yellow-900 bg-yellow-50' : ''}`}
+      className={cn(
+        'my-6 flex items-start rounded-md border border-l-[6px] p-4 shadow-deep-terracotta',
+        {
+          'border-yellow-900 bg-yellow-50': type === 'warning',
+          'border-red-900 bg-red-50': type === 'danger',
+        },
+      )}
       {...props}
     />
   );

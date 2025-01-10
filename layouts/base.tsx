@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server';
 
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
+import { LayoutWrapper } from '@/layouts/wrapper';
 // import { ThemeProvider } from '@/components/theme-provider';
 import { fontDancing, fontOpenSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
@@ -23,10 +24,10 @@ export default async function BaseLayout({
   const messages = await getMessages();
 
   return (
-    <html className="h-full" lang={locale} suppressHydrationWarning>
+    <html className="bg-texture h-full" lang={locale} suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-dvh w-screen overflow-y-auto overflow-x-hidden bg-background font-openSans text-foreground antialiased',
+          'min-h-dvh w-screen overflow-y-auto overflow-x-hidden font-openSans text-foreground antialiased',
           fontOpenSans.variable,
           fontDancing.variable,
         )}
@@ -38,10 +39,10 @@ export default async function BaseLayout({
             enableSystem
             disableTransitionOnChange
           > */}
-          <div className={cn('relative flex min-h-dvh flex-col', className)}>
+          <LayoutWrapper className={className}>
             <SiteHeader locale={locale} />
             {children}
-          </div>
+          </LayoutWrapper>
           <Analytics />
           <TailwindIndicator />
           {/* </ThemeProvider> */}

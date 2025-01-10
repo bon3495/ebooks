@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  HTMLMotionProps,
-  motion,
-  SpringOptions,
-  useMotionTemplate,
-  useSpring,
-  useTransform,
-} from 'framer-motion';
+import { motion, SpringOptions, useSpring, useTransform } from 'framer-motion';
 
 import useBoundedScroll from '@/hooks/use-bounded-scroll';
 
@@ -15,33 +8,46 @@ export const springConfig: SpringOptions = {
   bounce: 0.1,
 };
 
-interface SiteHeaderMotionProps
-  extends Omit<HTMLMotionProps<'header'>, 'ref'> {}
+type SiteHeaderMotionType = {
+  children: React.ReactNode;
+};
 
-function SiteHeaderMotion({ children, ...props }: SiteHeaderMotionProps) {
-  const { scrollYBoundedProgress } = useBoundedScroll(96);
+function SiteHeaderMotion({ children }: SiteHeaderMotionType) {
+  const { scrollYBoundedProgress } = useBoundedScroll(1);
 
   const scrollYBoundedProgressThrottled = useTransform(
     scrollYBoundedProgress,
-    [0, 0.75, 1],
-    [0, 0, 1],
+    [1, 0],
+    [0, 1],
   );
 
-  // const heightSpring = useSpring(
-  //   useTransform(scrollYBoundedProgressThrottled, [0, 1], [96, 56]),
-  //   springConfig,
-  // );
+  const opacity = useSpring(
+    useTransform(scrollYBoundedProgressThrottled, [0, 0.1], [1, 0]),
+    springConfig,
+  );
 
-  const bgColor = useMotionTemplate`hsl(var(--background) / ${useSpring(useTransform(scrollYBoundedProgressThrottled, [0, 1], [0.9, 0.1]), springConfig)})`;
+  const translateY = useSpring(
+    useTransform(scrollYBoundedProgressThrottled, [0, 0.1], [8, -50]),
+    springConfig,
+  );
 
   return (
     <motion.header
-      initial
-      className="fixed inset-x-0 top-0 z-50 flex w-dvw bg-background shadow-side-header backdrop-blur-md"
-      style={{ height: 64, backgroundColor: bgColor }}
-      {...props}
+      initial={false}
+      className="fixed inset-x-0 z-50 flex w-dvw bg-transparent px-4"
+      style={{
+        height: 72,
+        top: translateY,
+        opacity,
+      }}
+      whileHover={{
+        top: 8,
+        opacity: 1,
+      }}
     >
-      {children}
+      <motion.div className="shadow-terracotta container flex items-center justify-between rounded-3xl bg-monochromatic-cream-white/50 px-4 backdrop-blur-md">
+        {children}
+      </motion.div>
     </motion.header>
   );
 }

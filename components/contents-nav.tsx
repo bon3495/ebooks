@@ -1,4 +1,8 @@
+'use client';
+
 import { ContentsNavItem } from '@/components/contents-nav-item';
+import { HeadingMedium } from '@/components/ui/heading';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { EbookParams } from '@/types/ebooks.type';
 
 type EbookType = {
@@ -13,12 +17,13 @@ interface ContentsNavProps extends EbookParams {
 
 const ContentsNav = ({ ebooks, params }: ContentsNavProps) => {
   return (
-    <aside className="hidden w-[300px] shrink-0 text-sm xl:block">
-      <div className="fixed bottom-0 top-24 h-[calc(100vh-160px)] w-inherit overflow-y-auto overflow-x-hidden">
-        <div className="flex flex-col py-10">
-          <h3 className="font-dancing mb-6 text-4xl font-bold leading-tight">
-            Contents
-          </h3>
+    <aside className="sticky top-16 hidden h-[calc(100vh-128px)] w-[300px] shrink-0 overflow-hidden text-sm xl:block">
+      <div
+        className="w-inherit overflow-hidden"
+        onWheel={(e) => e.stopPropagation()}
+      >
+        <HeadingMedium className="my-4">Contents</HeadingMedium>
+        <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto pr-4">
           <ul className="grid grid-cols-1">
             {ebooks.map((ebook) => {
               return (
@@ -30,7 +35,7 @@ const ContentsNav = ({ ebooks, params }: ContentsNavProps) => {
               );
             })}
           </ul>
-        </div>
+        </ScrollArea>
       </div>
     </aside>
   );
