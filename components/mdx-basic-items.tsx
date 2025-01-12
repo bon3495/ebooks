@@ -22,20 +22,17 @@ const Pre = (props: PreProps) => {
   } = props;
 
   return (
-    <pre
-      className="shadow-smooth relative overflow-hidden rounded-xl bg-slate-950 p-[0.5rem]"
-      {...props}
-    >
-      <p className="absolute bottom-0 right-0 rounded-tl-lg bg-slate-700 p-1 text-xs font-medium text-white">
-        {dataLanguage.toLowerCase()}
-      </p>
-      <CopyButton
-        text={__rawstring__}
-        className="shadow-smooth absolute right-1 top-1"
-      />
-
-      {children}
-    </pre>
+    <div className="bg-one-dark-pro-mix-bg my-4 flex rounded-xl p-2">
+      <pre className="bg-one-dark-pro-mix-bg relative flex-1" {...props}>
+        {children}
+      </pre>
+      <div className="bg-one-dark-pro-mix-bg flex flex-col justify-between">
+        <CopyButton text={__rawstring__} className="" />
+        {/* <p className="rounded-tl-lg bg-slate-700 p-1 text-xs font-medium text-white">
+          {dataLanguage.toLowerCase()}
+        </p> */}
+      </div>
+    </div>
   );
 };
 
@@ -44,7 +41,7 @@ const Code = (props: React.HTMLAttributes<HTMLElement>) => {
   return (
     <code
       className={cn(
-        'text-pretty rounded-sm bg-slate-950 px-[0.5rem] py-1 font-mono text-sm leading-relaxed text-foreground text-white',
+        'bg-one-dark-pro-mix-bg text-pretty font-mono text-sm',
         className,
       )}
       {...rest}

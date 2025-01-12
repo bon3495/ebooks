@@ -22,8 +22,14 @@ export const CopyButton = ({ text, ...props }: CopyButtonProps) => {
   };
 
   return (
-    <Button {...props} disabled={isCopied || props.disabled} onClick={copy}>
-      {isCopied ? <Check /> : <Copy />}
+    <Button
+      {...props}
+      size="icon"
+      disabled={isCopied || props.disabled}
+      onClick={copy}
+      className="hover:bg-blue-gray bg-transparent"
+    >
+      {isCopied ? <Check size={24} /> : <Copy />}
     </Button>
   );
 };

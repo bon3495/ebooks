@@ -60,7 +60,8 @@ const ContentsNavItem = ({ url, ebook }: NavItemProps) => {
         className={cn(
           'flex-1 rounded-md px-3 py-2 text-base transition-all duration-200 ease-in-out hover:bg-accent',
           {
-            'bg-accent font-semibold': ebook.slugAsParams === url,
+            'font-semibold text-analogous-dusty-brown':
+              ebook.slugAsParams === url,
           },
         )}
       >

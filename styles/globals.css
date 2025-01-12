@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -53,9 +47,9 @@
 
     /* Analogous Scheme */
     --pale-peach-tan: 33 48% 75%; /* #E7C7A1 */
-    --warm-terra-cotta: 28 49% 65%; /* #D5A378 */
+    --warm-terra-cotta: 28 49% 55%; /* #D5A378 */
     --taupe-brown: 27 20% 57%; /* #A68E7C */
-    --dusty-brown: 27 23% 49%; /* #967B63 */
+    --dusty-brown: 27 87% 16%; /* #715a47 */
 
     /* Complementary Scheme */
     --soft-pastel-teal: 180 28% 85%; /* #CFE7E7 */
@@ -74,6 +68,11 @@
     --medium-gray: 0 0% 44%; /* #707070 */
     --pure-white: 0 0% 100%; /* #FFFFFF */
     --off-white: 36 45% 97%; /* #FAF8F5 */
+
+    --one-dark-pro-mix-bg: 220 13% 18%;
+    --one-dark-pro-mix-foreground: 220 13% 18%;
+
+    --blue-gray: 220 9% 28%; /* color hex: #4A4A5E, name of color: blue-gray */
   }
 
   .dark {
@@ -106,11 +105,27 @@
 }
 
 [data-rehype-pretty-code-figure] pre {
-  @apply my-4 overflow-x-auto rounded-md px-0 py-4;
+  @apply overflow-x-auto px-0 py-3;
+}
+
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb {
+  background: hsl(var(--blue-gray));
+  border-radius: 8px;
+}
+
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--slate-green-gray));
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply text-sm !leading-loose md:text-base;
+  @apply whitespace-pre text-sm md:text-base;
 }
 
 [data-rehype-pretty-code-figure] code[data-line-numbers] {
@@ -124,7 +139,7 @@
 }
 
 [data-rehype-pretty-code-figure] [data-line] {
-  @apply border-l-2 border-l-transparent px-4;
+  @apply px-4;
 }
 
 [data-rehype-pretty-code-figure] [data-highlighted-line] {
@@ -149,46 +164,27 @@
     @apply scroll-smooth;
   }
   body {
-    @apply overscroll-none bg-background text-foreground;
+    @apply overscroll-none;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+    background: var(--bg-txt-img) repeat;
+    background-size: 40rem auto;
   }
-
-  @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-    [data-wrapper] {
-      @apply min-[1800px]:border-t;
-    }
-  }
-
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--blackest-berry));
-    border-radius: 5px;
-  }
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--blackest-berry)) transparent;
-  }
-}
-
-body {
-  background: var(--bg-txt-img) repeat;
-  background-size: 40rem auto;
 }
 
 ::-webkit-scrollbar {
-  @apply h-2.5 w-2.5;
+  width: 8px;
+  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--blue-gray));
+  border-radius: 8px;
+  border: 1[x];
 }
 
-::-webkit-scrollbar-thumb {
-  @apply rounded-full border-[1px] border-solid border-transparent bg-border bg-clip-padding;
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--slate-green-gray));
 }

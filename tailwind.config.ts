@@ -104,6 +104,11 @@ const config: Config = {
           'pure-white': 'hsl(var(--pure-white))',
           'off-white': 'hsl(var(--off-white))',
         },
+        'one-dark-pro-mix': {
+          bg: 'hsl(var(--one-dark-pro-mix-bg))',
+          foreground: 'hsl(var(--one-dark-pro-mix-foreground))',
+        },
+        'blue-gray': 'hsl(var(--blue-gray))',
       },
       width: {
         inherit: 'inherit',
