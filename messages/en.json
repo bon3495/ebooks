@@ -5,7 +5,9 @@
   },
   "IndexPage": {
     "title": "Book Library Is Here",
-    "description": "We have true friend in our life and the books is that. Book has power to change yourself and make you more valuable."
+    "description": "We have true friend in our life and the books is that. Book has power to change yourself and make you more valuable.",
+    "listTitle": "Popular Information Technology Books",
+    "buttonRead": "Read Now"
   },
   "LocaleLayout": {
     "title": "Bonrizon Ebooks"
@@ -33,6 +35,12 @@
     "title": "Page not found",
     "description": "The page you're looking for doesn't exist or has been moved.",
     "backToHome": "Back to home"
+  },
+  "ContentsNav": {
+    "title": "Contents"
+  },
+  "EbooksPage": {
+    "breadcrumbHome": "Home"
   },
   "PageLayout": {
     "links": {

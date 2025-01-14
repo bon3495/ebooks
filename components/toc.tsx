@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+// import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 import { HeadingMedium } from '@/components/ui/heading';
@@ -33,6 +34,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
     [toc],
   );
   const activeHeading = useActiveItem(itemIds);
+
   const mounted = useMounted();
 
   return mounted ? (
@@ -98,6 +100,12 @@ interface TreeProps {
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // React.useEffect(() => {
+  //   router.push(`${pathname}#${activeItem}`);
+  // }, [pathname, activeItem]);
+
   return tree.length && level < 3 ? (
     <ul className={cn('m-0 list-none', { 'pl-4': level !== 1 })}>
       {tree.map((item, index) => {

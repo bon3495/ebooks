@@ -17,12 +17,16 @@ const ImageWrapper = ({
   imageClassName,
 }: ImageWrapperProps) => {
   return (
-    <div className={cn('relative h-40', className)}>
+    <div className={cn('relative mx-auto h-40 w-52', className)}>
       <Image
         src={src}
         alt={alt}
         fill
-        className={cn('object-contain', imageClassName)}
+        className={cn(imageClassName)}
+        style={{
+          objectFit: 'contain',
+        }}
+        sizes="100vw"
       />
     </div>
   );

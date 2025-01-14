@@ -5,7 +5,9 @@
   },
   "IndexPage": {
     "title": "Thư Viện Sách Ở Đây",
-    "description": "Chúng ta có một người bạn chân thành trong cuộc sống và đó chính là sách. Sách có sức mạnh thay đổi bản thân và làm cho bạn trở nên giá trị hơn."
+    "description": "Chúng ta có một người bạn chân thành trong cuộc sống và đó chính là sách. Sách có sức mạnh thay đổi bản thân và làm cho bạn trở nên giá trị hơn.",
+    "listTitle": "Sách Công Nghệ Thông Tin Phổ Biến",
+    "buttonRead": "Đọc Ngay"
   },
   "LocaleLayout": {
     "title": "Bonrizon Ebooks"
@@ -28,6 +30,12 @@
         "title": "Ebooks"
       }
     }
+  },
+  "ContentsNav": {
+    "title": "Nội dung"
+  },
+  "EbooksPage": {
+    "breadcrumbHome": "Trang Chủ"
   },
   "NotFoundPage": {
     "description": "Bitte überprüfe die Addressleiste deines Browsers oder verwende die Navigation um zu einer bekannten Seite zu wechseln.",

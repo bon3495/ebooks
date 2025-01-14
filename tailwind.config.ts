@@ -150,6 +150,8 @@ const config: Config = {
           '0px 3.4px 1.3px rgba(0, 0, 0, 0.083), 0px 5px 6.1px rgba(0, 0, 0, 0.093), 0px 6.8px 19.5px rgba(0, 0, 0, 0.098), 0px 10px 139px rgba(0, 0, 0, 0.1);',
         'deep-terracotta':
           '1px 2px 2px hsl(28 49% 55% / 0.4), 2px 4px 4px hsl(28 49% 55% / 0.3), 3px 6px 6px hsl(28 49% 55% / 0.2);',
+        'pale-peach-tan':
+          '1px 2px 2px hsl(28 49% 55% / 0.4), 2px 4px 4px hsl(28 49% 55% / 0.3), 3px 6px 6px hsl(28 49% 55% / 0.2);',
       },
     },
   },

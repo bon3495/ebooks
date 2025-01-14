@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ebooks } from '#site/content';
+import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
 import { ContentsNav } from '@/components/contents-nav';
@@ -35,6 +35,8 @@ export default async function EbookDetails({ params }: EbookParams) {
     (e) => e.type === 'child' && e.locale === params.locale,
   );
 
+  console.log('parms', params);
+
   if (!ebook) {
     notFound();
   }
@@ -45,39 +47,26 @@ export default async function EbookDetails({ params }: EbookParams) {
       <main className="flex flex-1">
         <div className="flex-1 gap-4 xl:grid xl:grid-cols-[1fr_300px]">
           <div className="mx-auto w-full min-w-0 flex-1 px-4 text-justify">
-            <div>
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{ebook.title}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
-            </div>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{ebook.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
             <div className="my-12">
-              <div className="">
-                <h1 className="flex text-left font-dancing text-7xl font-bold leading-tight">
-                  {ebook.title}
-                </h1>
+              <h1 className="flex text-left font-dancing text-7xl font-bold leading-tight">
+                {ebook.title}
+              </h1>
+              {ebook.type === 'parent' && (
                 <p className="mt-4 text-right font-dancing text-2xl italic text-muted-foreground underline underline-offset-4">
                   by <span>{ebook.author}</span>
                 </p>
-              </div>
-
-              <div className="relative">
-                <Image
-                  src="/assets/images/ebooks/working-effectively-with-legacy-code.jpg"
-                  alt={ebook.title}
-                  // width={600}
-                  // height={400}
-                  fill
-                  className="absolute"
-                />
-              </div>
+              )}
             </div>
             <div>
               <MDXContent code={ebook.content} suppressHydrationWarning />

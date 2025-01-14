@@ -31,7 +31,7 @@ const HeadingExtraLarge = ({ className, ...props }: HeadingMediumProps) => {
     <h2
       {...props}
       className={cn(
-        'mt-16 scroll-m-20 font-dancing text-7xl font-bold leading-tight underline underline-offset-[15px]',
+        'mt-16 scroll-m-20 text-left font-dancing text-7xl font-bold leading-tight underline underline-offset-[15px]',
         className,
       )}
     />
