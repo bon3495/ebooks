@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import { Analytics } from '@vercel/analytics/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
+import { Footer } from '@/components/footer';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
@@ -45,19 +45,7 @@ export default async function BaseLayout({
           <LayoutWrapper className={className}>
             <SiteHeader locale={locale} />
             {children}
-
-            <footer className="mt-auto flex justify-center border border-t p-4">
-              <p className="text-sm">
-                Built by{' '}
-                <Link
-                  href="/"
-                  className="font-semibold underline"
-                  target="_blank"
-                >
-                  Bon Tran
-                </Link>
-              </p>
-            </footer>
+            <Footer />
           </LayoutWrapper>
           <Analytics />
           <TailwindIndicator />

@@ -69,7 +69,7 @@ export default async function EbookDetails({ params }: EbookParams) {
           </div>
         </div>
       </main>
-      <aside className="sticky top-24 hidden h-[calc(100vh-128px)] w-[300px] overflow-hidden text-sm xl:block">
+      <aside className="sticky top-24 hidden h-[calc(100vh-320px)] w-[300px] overflow-hidden text-sm xl:block">
         <DashboardTableOfContents toc={ebook.toc} />
       </aside>
     </div>
