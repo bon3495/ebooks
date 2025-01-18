@@ -5,7 +5,7 @@ chapter: Chapter 1 - Changing Software
 slug: working-effectively-with-legacy-code/chapter-1
 date: 2024-12-21
 locale: en
-cover: /assets/images/ebooks/working-effectively-with-legacy-code.jpg
+cover: /assets/images/ebooks/working-effectively-with-legacy-code/working-effectively-with-legacy-code.jpg
 author: Michael Feathers
 type: child
 ---
@@ -24,7 +24,7 @@ For simplicity’s sake, let’s look at four primary reasons to change software
 4. Optimizing resource usage
 
 <ImageWrapper
-  src="/assets/images/open-book2.png"
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/open-book2.png"
   alt="Four Reasons to Change Software"
 />
 
@@ -84,6 +84,11 @@ Let’s make another code change. Let’s put a new button on the user interface
 
 ## Improving Design
 
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/open-book3.png"
+  alt="How to Use This Book"
+/>
+
 Design improvement is a different kind of software change. When we want to alter software’s structure to make it more maintainable, generally we want to keep its behavior intact also. When we drop behavior in that process, we often call that a bug. One of the main reasons why many programmers don’t attempt to improve design often is because it is relatively easy to lose behavior or create bad behavior in the process of doing it.
 
 The act of improving design without changing its behavior is called refactor- ing. The idea behind refactoring is that we can make software more maintain- able without changing behavior if we write tests to make sure that existing behavior doesn’t change and take small steps to verify that all along the pro- cess. People have been cleaning up code in systems for years, but only in the last few years has refactoring taken off. Refactoring differs from general cleanup in that we aren’t just doing low-risk things such as reformatting source code, or invasive and risky things such as rewriting chunks of it. Instead, we are making a series of small structural modifications, supported by tests to make the code easier to change. The key thing about refactoring from a change point of view is that there aren’t supposed to be any functional changes when you refactor (although behavior can change somewhat because the structural changes that you make can alter performance, for better or worse).
@@ -95,7 +100,7 @@ Optimization is like refactoring, but when we do it, we have a different goal. W
 ## Putting It All Together
 
 <ImageWrapper
-  src="/assets/images/books.png"
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/books.png"
   alt="Putting It All Together"
 />
 
@@ -188,7 +193,7 @@ Adding features, refactoring, and optimizing all hold existing functionality inv
 
 Feature addition and bug fixing are very much like refactoring and optimiza- tion. In all four cases, we want to change some functionality, some behavior, but we want to preserve much more (see Figure 1.1).
 
-<IllustrationImage src="/assets/images/preserving-behavior.png" alt="Preserving Behavior" label="Figure 1.1">Preserving behavior.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/preserving-behavior.png" alt="Preserving Behavior" label="Figure 1.1">Preserving behavior.</IllustrationImage>
 
 That’s a nice view of what is supposed to happen when we make changes, but what does it mean for us practically? On the positive side, it seems to tell us what we have to concentrate on. We have to make sure that the small number of things that we change are changed correctly. On the negative side, well, that isn’t the only thing we have to concentrate on. We have to figure out how to preserve the rest of the behavior. Unfortunately, preserving it involves more than just leaving the code alone. We have to know that the behavior isn’t changing, and that can be tough. The amount of behavior that we have to pre- serve is usually very large, but that isn’t the big deal. The big deal is that we often don’t know how much of that behavior is at risk when we make our changes. If we knew, we could concentrate on that behavior and not care about the rest. Understanding is the key thing that we need to make changes safely.
 
@@ -199,7 +204,7 @@ That’s a nice view of what is supposed to happen when we make changes, but wha
 ## Risky Change
 
 <ImageWrapper
-  src="/assets/images/ink-bottle.png"
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/ink-bottle.png"
   alt="Risky Change"
 />
 
@@ -221,3 +226,8 @@ Avoiding change has other bad consequences. When people don’t make changes oft
 The last consequence of avoiding change is fear. Unfortunately, many teams live with incredible fear of change and it gets worse every day. Often they aren’t aware of how much fear they have until they learn better techniques and the fear starts to fade away.
 
 We’ve talked about how avoiding change is a bad thing, but what is our alternative? One alternative is to just try harder. Maybe we can hire more peo- ple so that there is enough time for everyone to sit and analyze, to scrutinize all of the code and make changes the “right” way. Surely more time and scrutiny will make change safer. Or will it? After all of that scrutiny, will anyone know that they’ve gotten it right?
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/book.png"
+  alt="How to Use This Book"
+/>
