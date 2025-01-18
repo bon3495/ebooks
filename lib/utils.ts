@@ -30,3 +30,13 @@ export const formatDate = (dateString: string, options = 'MMMM dd, yyyy') => {
 
   return format(date, options);
 };
+
+export function sortByChapter<T extends { chapter?: string }>(items: T[]): T[] {
+  return items.sort((a, b) => {
+    if (a.chapter && b.chapter) {
+      return a.chapter.localeCompare(b.chapter);
+    }
+
+    return 0;
+  });
+}

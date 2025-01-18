@@ -43,7 +43,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
       onWheel={(e) => e.stopPropagation()}
     >
       <HeadingMedium className="my-4">{t('title')}</HeadingMedium>
-      <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto pr-4">
+      <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto">
         <Tree tree={toc} activeItem={activeHeading} />
       </ScrollArea>
     </div>

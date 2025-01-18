@@ -22,6 +22,11 @@ For simplicity’s sake, let’s look at four primary reasons to change software
 3. Improving the design
 4. Optimizing resource usage
 
+<ImageWrapper
+  src="/assets/images/open-book2.png"
+  alt="Four Reasons to Change Software"
+/>
+
 ## Adding Features and Fixing Bugs
 
 Adding a feature seems like the most straightforward type of change to make. The software behaves one way, and users say that the system needs to do some- thing else also.
@@ -88,23 +93,101 @@ Optimization is like refactoring, but when we do it, we have a different goal. W
 
 ## Putting It All Together
 
+<ImageWrapper
+  src="/assets/images/books.png"
+  alt="Putting It All Together"
+/>
+
 It might seem strange that refactoring and optimization are kind of similar. They seem much closer to each other than adding features or fixing bugs. But is this really true? The thing that is common between refactoring and optimiza- tion is that we hold functionality invariant while we let something else change.
 
 In general, three different things can change when we do work in a system: structure, functionality, and resource usage.
 
 Let’s look at what usually changes and what stays more or less the same when we make four different kinds of changes (yes, often all three change, but let’s look at what is typical):
 
-...table...
+<TableMdx>
+  <TableHeader>
+    <TableRow>
+      <TableHeadMdx></TableHeadMdx>
+      <TableHeadMdx>Adding a Feature</TableHeadMdx>
+      <TableHeadMdx>Fixing a Bug</TableHeadMdx>
+      <TableHeadMdx>Refactoring</TableHeadMdx>
+      <TableHeadMdx>Optimizing</TableHeadMdx>
+    </TableRow>
+    </TableHeader>
+    <TableBody>
+    <TableRow>
+      <TableCellMdx>Structure</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Functionality</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Resource Usage</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+    </TableRow>
+  </TableBody>
+</TableMdx>
 
 Superficially, refactoring and optimization do look very similar. They hold functionality invariant. But what happens when we account for new functional- ity separately? When we add a feature often we are adding new functionality, but without changing existing functionality.
 
-...table...
+<TableMdx>
+  <TableHeader>
+    <TableRow>
+      <TableHeadMdx></TableHeadMdx>
+      <TableHeadMdx>Adding a Feature</TableHeadMdx>
+      <TableHeadMdx>Fixing a Bug</TableHeadMdx>
+      <TableHeadMdx>Refactoring</TableHeadMdx>
+      <TableHeadMdx>Optimizing</TableHeadMdx>
+    </TableRow>
+    </TableHeader>
+    <TableBody>
+    <TableRow>
+      <TableCellMdx>Structure</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>New Functionality</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Functionality</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Resource Usage</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Changes</TableCellMdx>
+    </TableRow>
+  </TableBody>
+</TableMdx>
 
 Adding features, refactoring, and optimizing all hold existing functionality invariant. In fact, if we scrutinize bug fixing, yes, it does change functionality, but the changes are often very small compared to the amount of existing func- tionality that is not altered.
 
 Feature addition and bug fixing are very much like refactoring and optimiza- tion. In all four cases, we want to change some functionality, some behavior, but we want to preserve much more (see Figure 1.1).
 
-...image...
+<IllustrationImage src="/assets/images/preserving-behavior.png" alt="Preserving Behavior" label="Figure 1.1">Preserving behavior.</IllustrationImage>
 
 That’s a nice view of what is supposed to happen when we make changes, but what does it mean for us practically? On the positive side, it seems to tell us what we have to concentrate on. We have to make sure that the small number of things that we change are changed correctly. On the negative side, well, that isn’t the only thing we have to concentrate on. We have to figure out how to preserve the rest of the behavior. Unfortunately, preserving it involves more than just leaving the code alone. We have to know that the behavior isn’t changing, and that can be tough. The amount of behavior that we have to pre- serve is usually very large, but that isn’t the big deal. The big deal is that we often don’t know how much of that behavior is at risk when we make our changes. If we knew, we could concentrate on that behavior and not care about the rest. Understanding is the key thing that we need to make changes safely.
 
@@ -113,6 +196,11 @@ That’s a nice view of what is supposed to happen when we make changes, but wha
 </Callout>
 
 ## Risky Change
+
+<ImageWrapper
+  src="/assets/images/ink-bottle.png"
+  alt="Risky Change"
+/>
 
 Preserving behavior is a large challenge. When we need to make changes and preserve behavior, it can involve considerable risk.
 

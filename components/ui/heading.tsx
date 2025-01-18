@@ -2,10 +2,19 @@ import React from 'react';
 
 import { cn } from '@/lib/utils';
 
-export interface HeadingMediumProps
+export interface HeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement> {}
 
-const HeadingMedium = ({ className, ...props }: HeadingMediumProps) => {
+const HeadingBase = ({ className, ...props }: HeadingProps) => {
+  return (
+    <h3
+      {...props}
+      className={cn('text-xl font-bold leading-tight', className)}
+    />
+  );
+};
+
+const HeadingMedium = ({ className, ...props }: HeadingProps) => {
   return (
     <h3
       {...props}
@@ -14,19 +23,19 @@ const HeadingMedium = ({ className, ...props }: HeadingMediumProps) => {
   );
 };
 
-const HeadingLarge = ({ className, ...props }: HeadingMediumProps) => {
+const HeadingLarge = ({ className, ...props }: HeadingProps) => {
   return (
     <h2
       {...props}
       className={cn(
-        'scroll-m-20 font-dancing text-4xl font-bold leading-tight',
+        'scroll-m-20 font-dancing text-5xl font-bold leading-tight',
         className,
       )}
     />
   );
 };
 
-const HeadingExtraLarge = ({ className, ...props }: HeadingMediumProps) => {
+const HeadingExtraLarge = ({ className, ...props }: HeadingProps) => {
   return (
     <h2
       {...props}
@@ -38,4 +47,4 @@ const HeadingExtraLarge = ({ className, ...props }: HeadingMediumProps) => {
   );
 };
 
-export { HeadingMedium, HeadingLarge, HeadingExtraLarge };
+export { HeadingBase, HeadingMedium, HeadingLarge, HeadingExtraLarge };

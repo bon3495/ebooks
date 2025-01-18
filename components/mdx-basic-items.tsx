@@ -4,9 +4,23 @@ import Link from 'next/link';
 import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
 import { Icons } from '@/components/icons';
-import { ImageWrapper } from '@/components/image-wrapper';
+import { IllustrationImage, ImageWrapper } from '@/components/mdx-image';
+import { TableCellMdx, TableHeadMdx, TableMdx } from '@/components/table-mdx';
 import { AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { HeadingExtraLarge, HeadingLarge } from '@/components/ui/heading';
+import {
+  HeadingBase,
+  HeadingExtraLarge,
+  HeadingLarge,
+  HeadingMedium,
+} from '@/components/ui/heading';
+import {
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 
 interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
@@ -22,11 +36,11 @@ const Pre = (props: PreProps) => {
   } = props;
 
   return (
-    <div className="bg-one-dark-pro-mix-bg my-4 flex rounded-xl p-2">
-      <pre className="bg-one-dark-pro-mix-bg relative flex-1" {...props}>
+    <div className="my-4 flex rounded-xl bg-one-dark-pro-mix-bg p-2">
+      <pre className="relative flex-1 bg-one-dark-pro-mix-bg" {...props}>
         {children}
       </pre>
-      <div className="bg-one-dark-pro-mix-bg flex flex-col justify-between">
+      <div className="flex flex-col justify-between bg-one-dark-pro-mix-bg">
         <CopyButton text={__rawstring__} className="" />
         {/* <p className="rounded-tl-lg bg-slate-700 p-1 text-xs font-medium text-white">
           {dataLanguage.toLowerCase()}
@@ -41,7 +55,7 @@ const Code = (props: React.HTMLAttributes<HTMLElement>) => {
   return (
     <code
       className={cn(
-        'bg-one-dark-pro-mix-bg text-pretty font-mono text-sm',
+        'text-pretty bg-one-dark-pro-mix-bg font-mono text-sm',
         className,
       )}
       {...rest}
@@ -54,10 +68,20 @@ const MdxBasicItems = {
   AlertDescription,
   Callout,
   Image,
+  HeadingBase,
+  HeadingMedium,
   HeadingLarge,
   HeadingExtraLarge,
   ImageWrapper,
+  IllustrationImage,
   Icons,
+  TableBody,
+  TableCaption,
+  TableHeader,
+  TableRow,
+  TableMdx,
+  TableHeadMdx,
+  TableCellMdx,
   code: Code,
   pre: Pre,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -133,7 +157,7 @@ const MdxBasicItems = {
     <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <li className={cn('mt-2', className)} {...props} />
+    <li className={cn('mt-2 text-lg', className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote
