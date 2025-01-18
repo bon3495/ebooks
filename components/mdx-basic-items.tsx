@@ -55,7 +55,7 @@ const Code = (props: React.HTMLAttributes<HTMLElement>) => {
   return (
     <code
       className={cn(
-        'text-pretty bg-one-dark-pro-mix-bg font-mono text-sm',
+        'text-pretty rounded bg-analogous-warm-terra-cotta/20 px-1.5 py-0.5 font-mono text-base text-analogous-dusty-brown',
         className,
       )}
       {...rest}
@@ -102,7 +102,7 @@ const MdxBasicItems = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
+        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight',
         className,
       )}
       {...props}

@@ -117,7 +117,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 'inline-block px-3 py-2 text-base no-underline',
                 item.url === `#${activeItem}`
                   ? 'font-semibold text-analogous-dusty-brown'
-                  : 'text-muted-foreground hover:text-analogous-dusty-brown/90',
+                  : 'text-neutral-deep-charcoal hover:text-analogous-dusty-brown/90',
               )}
             >
               {item.title}

@@ -125,7 +125,7 @@
 }
 
 [data-rehype-pretty-code-figure] code {
-  @apply whitespace-pre text-sm md:text-base;
+  @apply whitespace-pre bg-one-dark-pro-mix-bg text-sm md:text-base;
 }
 
 [data-rehype-pretty-code-figure] code[data-line-numbers] {
