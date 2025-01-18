@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ebooks } from '#site/content';
 import { setRequestLocale } from 'next-intl/server';
 
+import { ContentActions } from '@/components/content-actions';
 import { ContentsNav } from '@/components/contents-nav';
 import { MDXContent } from '@/components/mdx-content';
 import { DashboardTableOfContents } from '@/components/toc';
@@ -22,7 +24,7 @@ async function getEbookFromParams(params: EbookParams['params']) {
   const ebook = ebooks.find((book) => {
     return (
       book.locale === params.locale &&
-      book.slugAsParams === params.slug.join('/')
+      book.slug === `${params.slug}/${params.chapter}`
     );
   });
 
@@ -31,6 +33,7 @@ async function getEbookFromParams(params: EbookParams['params']) {
 
 export default async function EbookDetails({ params }: EbookParams) {
   const ebook = await getEbookFromParams(params);
+
   const ebooksChildren = ebooks.filter(
     (e) => e.type === 'child' && e.locale === params.locale,
   );
@@ -38,6 +41,10 @@ export default async function EbookDetails({ params }: EbookParams) {
   if (!ebook) {
     notFound();
   }
+
+  const currentChapterIndex = ebooksChildren.findIndex(
+    (i) => i.slug === ebook.slug,
+  );
 
   return (
     <div className="container relative my-32 flex gap-x-4 px-4">
@@ -47,17 +54,25 @@ export default async function EbookDetails({ params }: EbookParams) {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Home</Link>
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{ebook.title}</BreadcrumbPage>
+                <BreadcrumbLink asChild>
+                  <Link href={ebook.prevLink}>{ebook.title}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{ebook.chapter}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
           <div className="my-12">
             <h1 className="flex text-left font-dancing text-7xl font-bold leading-tight">
-              {ebook.title}
+              {ebook.section}
             </h1>
             {ebook.type === 'parent' && (
               <p className="mt-4 text-right font-dancing text-2xl italic text-muted-foreground underline underline-offset-4">
@@ -65,9 +80,21 @@ export default async function EbookDetails({ params }: EbookParams) {
               </p>
             )}
           </div>
+
+          <ContentActions
+            className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"
+            currentChapterIndex={currentChapterIndex}
+            ebooks={ebooksChildren}
+          />
           <div>
             <MDXContent code={ebook.content} suppressHydrationWarning />
           </div>
+
+          <ContentActions
+            className="mt-16 border-t-4 border-analogous-dusty-brown pt-8"
+            currentChapterIndex={currentChapterIndex}
+            ebooks={ebooksChildren}
+          />
         </div>
       </main>
       <aside className="sticky top-24 hidden h-[calc(100vh-128px)] w-[300px] overflow-hidden text-sm xl:block">
@@ -81,7 +108,8 @@ export async function generateStaticParams() {
   return ebooks.map((ebook) => {
     return {
       locale: ebook.locale,
-      slug: ebook.permalink.split('/').slice(1),
+      slug: ebook.slug,
+      chapter: ebook.chapter || '',
     };
   });
 }

@@ -12,10 +12,14 @@ const computedFields = <T extends { slug: string; locale: LocaleKey }>(
   data: T,
 ) => {
   const slugItem = data.slug.split('/').filter((i) => i !== data.locale);
+
+  const permalink = `/ebooks/${slugItem.join('/')}`;
+  const prevLink = `/ebooks/${slugItem.slice(0, -1).join('/')}`;
+
   return {
     ...data,
-    permalink: `/ebooks/${slugItem.join('/')}`,
-    slugAsParams: data.slug.split('/').join('/'),
+    permalink,
+    prevLink,
   };
 };
 
@@ -29,6 +33,7 @@ const ebooks = defineCollection({
       locale: s.enum(LOCALE_ARRAY).default('en'),
       slug: s.string(),
       title: s.string().max(99),
+      section: s.string().max(99).optional(),
       chapter: s.string().max(99).optional(),
       description: s.string().max(199).optional(),
       author: s.string().max(99),

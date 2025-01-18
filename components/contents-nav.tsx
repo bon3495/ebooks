@@ -10,7 +10,6 @@ import { EbookParams } from '@/types/ebooks.type';
 type EbookType = {
   chapter?: string;
   permalink: string;
-  slugAsParams: string;
 };
 
 interface ContentsNavProps extends EbookParams {
@@ -28,13 +27,7 @@ const ContentsNav = ({ ebooks, params }: ContentsNavProps) => {
       <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto pr-4">
         <ul className="grid grid-cols-1">
           {ebooks.map((ebook) => {
-            return (
-              <ContentsNavItem
-                key={ebook.permalink}
-                url={params.slug.join('/')}
-                ebook={ebook}
-              />
-            );
+            return <ContentsNavItem key={ebook.permalink} ebook={ebook} />;
           })}
         </ul>
       </ScrollArea>

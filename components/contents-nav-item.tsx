@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 
+import { usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
 interface NavItemProps {
-  url: string;
   ebook: {
     chapter?: string;
     permalink: string;
-    slugAsParams: string;
   };
 }
 
-const ContentsNavItem = ({ url, ebook }: NavItemProps) => {
+const ContentsNavItem = ({ ebook }: NavItemProps) => {
+  const pathname = usePathname();
+
   return (
     <li className="flex items-center">
       <Link
@@ -22,7 +23,7 @@ const ContentsNavItem = ({ url, ebook }: NavItemProps) => {
           'flex-1 rounded-md px-3 py-2 text-base transition-all duration-200 ease-in-out hover:bg-accent',
           {
             'font-semibold text-analogous-dusty-brown':
-              ebook.slugAsParams === url,
+              ebook.permalink === pathname,
           },
         )}
       >
