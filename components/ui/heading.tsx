@@ -28,7 +28,7 @@ const HeadingLarge = ({ className, ...props }: HeadingProps) => {
     <h2
       {...props}
       className={cn(
-        'scroll-m-20 font-dancing text-5xl font-bold leading-tight',
+        'scroll-m-20 text-left font-dancing text-4xl font-bold lg:text-5xl lg:leading-tight',
         className,
       )}
     />
@@ -40,7 +40,7 @@ const HeadingExtraLarge = ({ className, ...props }: HeadingProps) => {
     <h2
       {...props}
       className={cn(
-        'mt-16 scroll-m-20 text-left font-dancing text-7xl font-bold leading-tight underline underline-offset-[15px]',
+        'mt-16 scroll-m-20 text-left font-dancing text-4xl font-bold leading-tight underline underline-offset-[15px] lg:text-7xl',
         className,
       )}
     />

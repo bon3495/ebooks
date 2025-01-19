@@ -93,7 +93,7 @@ const MdxBasicItems = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'mt-12 scroll-m-20 pb-2 font-dancing text-4xl font-bold leading-tight first:mt-0',
+        'mt-12 scroll-m-20 pb-2 text-left font-dancing text-3xl font-bold leading-tight first:mt-0 lg:text-4xl lg:leading-snug',
         className,
       )}
       {...props}
@@ -102,7 +102,7 @@ const MdxBasicItems = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight',
+        'mt-8 scroll-m-20 text-lg font-semibold tracking-tight lg:text-2xl',
         className,
       )}
       {...props}
@@ -143,7 +143,10 @@ const MdxBasicItems = {
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className={cn('text-lg [&:not(:first-child)]:mt-6', className)}
+      className={cn(
+        'text-base lg:text-lg [&:not(:first-child)]:mt-6',
+        className,
+      )}
       {...props}
     />
   ),

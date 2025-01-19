@@ -2,54 +2,40 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { cn } from '@/lib/utils';
+
 const CATS = [
   {
     url: '/assets/images/cat1.png',
-    style: {
-      marginBottom: -75,
-    },
+    className: '-mb-16',
   },
   {
     url: '/assets/images/cat2.png',
-    style: {
-      marginBottom: -75,
-    },
+    className: '-mb-16',
   },
   {
     url: '/assets/images/cat3.png',
-    style: {
-      marginBottom: -75,
-    },
+    className: '-mb-16 hidden sm:block',
   },
   {
     url: '/assets/images/cat4.png',
-    style: {
-      marginBottom: -75,
-    },
+    className: '-mb-16 hidden sm:block',
   },
   {
     url: '/assets/images/cat5.png',
-    style: {
-      marginBottom: -40,
-    },
+    className: '-mb-12 hidden lg:block',
   },
   {
     url: '/assets/images/cat6.png',
-    style: {
-      marginBottom: -40,
-    },
+    className: '-mb-12 hidden lg:block',
   },
   {
     url: '/assets/images/cat7.png',
-    style: {
-      marginBottom: -55,
-    },
+    className: '-mb-12 hidden xl:block',
   },
   {
     url: '/assets/images/cat8.png',
-    style: {
-      marginBottom: -40,
-    },
+    className: '-mb-12 hidden xl:block',
   },
 ];
 
@@ -59,8 +45,7 @@ const Footer = () => {
       <div className="relative flex flex-1 items-center justify-around">
         {CATS.map((cat, index) => (
           <div
-            className="relative bottom-0 h-40 w-20"
-            style={cat.style}
+            className={cn('relative bottom-0 h-40 w-20', cat.className)}
             key={index}
           >
             <Image
@@ -74,7 +59,7 @@ const Footer = () => {
           </div>
         ))}
       </div>
-      <div className="mt-auto flex flex-1 justify-center border border-t p-6">
+      <div className="mt-auto flex flex-1 justify-center border-t p-6">
         <p className="text-sm">
           Built by{' '}
           <Link href="/" className="font-semibold underline" target="_blank">

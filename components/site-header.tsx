@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { SiteHeaderMotion } from '@/components/animations/site-header-motion';
-import { MeowIcon } from '@/components/icons/meow-icon';
+import BlackCatIcon from '@/components/icons/black-cat-icon';
 import { LocaleSwitcher } from '@/components/locale-switcher';
 import { ROUTES } from '@/constants/routes';
 import { formatPathname } from '@/lib/utils';
@@ -18,7 +17,7 @@ function SiteHeader({ locale }: SiteHeaderProps) {
         href={formatPathname(ROUTES.HOME, locale)}
         className="flex items-center gap-x-2 text-4xl font-bold"
       >
-        <MeowIcon className="h-10 w-auto" />
+        <BlackCatIcon className="h-10 w-auto" />
         <span className="hidden lg:inline-block">Bonrizon</span>
       </Link>
 

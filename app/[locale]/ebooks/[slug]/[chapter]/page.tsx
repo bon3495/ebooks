@@ -4,9 +4,8 @@ import { ebooks } from '#site/content';
 import { setRequestLocale } from 'next-intl/server';
 
 import { ContentActions } from '@/components/content-actions';
-import { ContentsNav } from '@/components/contents-nav';
+import EbookContainer from '@/components/ebook-container';
 import { MDXContent } from '@/components/mdx-content';
-import { DashboardTableOfContents } from '@/components/toc';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,7 +14,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { sortByChapter } from '@/lib/utils';
 import { EbookParams } from '@/types/ebooks.type';
 
 async function getEbookFromParams(params: EbookParams['params']) {
@@ -47,60 +45,47 @@ export default async function EbookDetails({ params }: EbookParams) {
   );
 
   return (
-    <div className="container relative my-32 flex gap-x-4 px-4">
-      <ContentsNav ebooks={sortByChapter(ebooksChildren)} params={params} />
-      <main className="flex flex-1 overflow-x-hidden">
-        <div className="mx-auto w-full min-w-0 flex-1 overflow-x-hidden px-4 text-justify">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/">Home</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={ebook.prevLink}>{ebook.title}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{ebook.chapter}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-          <div className="my-12">
-            <h1 className="flex text-left font-dancing text-7xl font-bold leading-tight">
-              {ebook.section}
-            </h1>
-            {ebook.type === 'parent' && (
-              <p className="mt-4 text-right font-dancing text-2xl italic text-muted-foreground underline underline-offset-4">
-                by <span>{ebook.author}</span>
-              </p>
-            )}
-          </div>
+    <EbookContainer
+      breadcrumb={
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href={ebook.prevLink}>{ebook.title}</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{ebook.chapter}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      }
+      params={params}
+      ebook={ebook}
+      ebooksChildren={ebooksChildren}
+    >
+      <ContentActions
+        className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"
+        currentChapterIndex={currentChapterIndex}
+        ebooks={ebooksChildren}
+      />
+      <div>
+        <MDXContent code={ebook.content} suppressHydrationWarning />
+      </div>
 
-          <ContentActions
-            className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"
-            currentChapterIndex={currentChapterIndex}
-            ebooks={ebooksChildren}
-          />
-          <div>
-            <MDXContent code={ebook.content} suppressHydrationWarning />
-          </div>
-
-          <ContentActions
-            className="mt-16 border-t-4 border-analogous-dusty-brown pt-8"
-            currentChapterIndex={currentChapterIndex}
-            ebooks={ebooksChildren}
-          />
-        </div>
-      </main>
-      <aside className="sticky top-24 hidden h-[calc(100vh-320px)] w-[300px] overflow-hidden text-sm xl:block">
-        <DashboardTableOfContents toc={ebook.toc} />
-      </aside>
-    </div>
+      <ContentActions
+        className="mt-16 border-t-4 border-analogous-dusty-brown pt-8"
+        currentChapterIndex={currentChapterIndex}
+        ebooks={ebooksChildren}
+      />
+    </EbookContainer>
   );
 }
 
