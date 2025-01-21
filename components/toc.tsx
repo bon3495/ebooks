@@ -17,9 +17,15 @@ interface TocEntry {
 
 interface TocProps {
   toc: TocEntry[];
+  className?: string;
+  onSelect?: () => void;
 }
 
-export function DashboardTableOfContents({ toc }: TocProps) {
+export function DashboardTableOfContents({
+  toc,
+  className,
+  onSelect,
+}: TocProps) {
   const t = useTranslations('DashboardTableOfContents');
 
   const itemIds = React.useMemo(
@@ -39,13 +45,13 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 
   return mounted ? (
     <div
-      className="w-inherit overflow-hidden"
+      className={cn('w-inherit overflow-hidden', className)}
       onWheel={(e) => e.stopPropagation()}
     >
       <HeadingMedium className="my-4">{t('title')}</HeadingMedium>
-      <ScrollArea className="max-h-[calc(100vh-349px)] overflow-y-auto">
-        <Tree tree={toc} activeItem={activeHeading} />
-      </ScrollArea>
+      <div className="max-h-[72vh] overflow-y-auto">
+        <Tree tree={toc} activeItem={activeHeading} onSelect={onSelect} />
+      </div>
     </div>
   ) : null;
 }
@@ -97,9 +103,10 @@ interface TreeProps {
   tree: TocEntry[];
   level?: number;
   activeItem?: string | null;
+  onSelect?: () => void;
 }
 
-function Tree({ tree, level = 1, activeItem }: TreeProps) {
+function Tree({ tree, level = 1, activeItem, onSelect }: TreeProps) {
   // const router = useRouter();
   // const pathname = usePathname();
   // React.useEffect(() => {
@@ -119,6 +126,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                   ? 'font-semibold text-analogous-dusty-brown'
                   : 'text-neutral-deep-charcoal hover:text-analogous-dusty-brown/90',
               )}
+              onClick={onSelect}
             >
               {item.title}
             </a>

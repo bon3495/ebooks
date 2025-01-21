@@ -107,4 +107,4 @@ const BlackCatIcon = (props: IconProps) => {
   );
 };
 
-export default BlackCatIcon;
+export { BlackCatIcon };

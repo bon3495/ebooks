@@ -1,6 +1,10 @@
+import { ebooks } from '#site/content';
 import { clsx, type ClassValue } from 'clsx';
 import { format, parseISO } from 'date-fns';
+import { setRequestLocale } from 'next-intl/server';
 import { twMerge } from 'tailwind-merge';
+
+import { EbookParams } from '@/types/ebooks.type';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -39,4 +43,17 @@ export function sortByChapter<T extends { chapter?: string }>(items: T[]): T[] {
 
     return 0;
   });
+}
+
+export async function getEbookFromParams(params: EbookParams['params']) {
+  setRequestLocale(params.locale);
+
+  const ebook = ebooks.find((book) => {
+    const paramSlug = params.chapter
+      ? `${params.slug}/${params.chapter}`
+      : params.slug;
+    return book.locale === params.locale && book.slug === paramSlug;
+  });
+
+  return ebook;
 }

@@ -151,7 +151,7 @@ const config: Config = {
         'deep-terracotta':
           '1px 2px 2px hsl(28 49% 55% / 0.4), 2px 4px 4px hsl(28 49% 55% / 0.3), 3px 6px 6px hsl(28 49% 55% / 0.2);',
         'pale-peach-tan':
-          '1px 2px 2px hsl(28 49% 55% / 0.4), 2px 4px 4px hsl(28 49% 55% / 0.3), 3px 6px 6px hsl(28 49% 55% / 0.2);',
+          '1px -2px 2px hsl(33 48% 75% / 0.3), 2px -4px 4px hsl(33 48% 75% / 0.2), 3px -6px 6px hsl(33 48% 75% / 0.1);',
       },
     },
   },

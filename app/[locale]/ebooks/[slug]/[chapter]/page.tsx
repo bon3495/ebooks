@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ebooks } from '#site/content';
-import { setRequestLocale } from 'next-intl/server';
 
 import { ContentActions } from '@/components/content-actions';
 import EbookContainer from '@/components/ebook-container';
@@ -14,20 +13,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { getEbookFromParams } from '@/lib/utils';
 import { EbookParams } from '@/types/ebooks.type';
-
-async function getEbookFromParams(params: EbookParams['params']) {
-  setRequestLocale(params.locale);
-
-  const ebook = ebooks.find((book) => {
-    return (
-      book.locale === params.locale &&
-      book.slug === `${params.slug}/${params.chapter}`
-    );
-  });
-
-  return ebook;
-}
 
 export default async function EbookDetails({ params }: EbookParams) {
   const ebook = await getEbookFromParams(params);
@@ -70,6 +57,7 @@ export default async function EbookDetails({ params }: EbookParams) {
       params={params}
       ebook={ebook}
       ebooksChildren={ebooksChildren}
+      currentChapterIndex={currentChapterIndex}
     >
       <ContentActions
         className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"

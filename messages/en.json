@@ -42,6 +42,16 @@
   "EbooksPage": {
     "breadcrumbHome": "Home"
   },
+  "EbookDrawer": {
+    "contentBtn": "Content",
+    "onThisPage": "On This Page",
+    "contentTitle": "Content",
+    "onThisPageTitle": "On This Page"
+  },
+  "ContentActions": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "PageLayout": {
     "links": {
       "docs": {

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { SiteHeaderMotion } from '@/components/animations/site-header-motion';
-import BlackCatIcon from '@/components/icons/black-cat-icon';
+import { BlackCatIcon } from '@/components/icons/black-cat-icon';
 import { LocaleSwitcher } from '@/components/locale-switcher';
 import { ROUTES } from '@/constants/routes';
 import { formatPathname } from '@/lib/utils';

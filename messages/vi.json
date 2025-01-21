@@ -37,6 +37,16 @@
   "EbooksPage": {
     "breadcrumbHome": "Trang Chủ"
   },
+  "EbookDrawer": {
+    "contentBtn": "Content",
+    "onThisPage": "On This Page",
+    "contentTitle": "Content",
+    "onThisPageTitle": "On This Page"
+  },
+  "ContentActions": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "NotFoundPage": {
     "description": "Bitte überprüfe die Addressleiste deines Browsers oder verwende die Navigation um zu einer bekannten Seite zu wechseln.",
     "title": "Seite nicht gefunden",
