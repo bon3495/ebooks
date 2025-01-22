@@ -6,7 +6,14 @@ import { motion, useSpring, useTransform } from 'framer-motion';
 import useBoundedScroll from '@/hooks/use-bounded-scroll';
 import { springConfig } from '@/types/globals.type';
 
-const ContentsNavMotion = ({ children }: PropsWithChildren) => {
+interface ContentsNavMotionProps {
+  title?: React.ReactNode;
+}
+
+const ContentsNavMotion = ({
+  children,
+  title,
+}: PropsWithChildren<ContentsNavMotionProps>) => {
   const { scrollYBoundedProgress } = useBoundedScroll(1);
 
   const scrollYBoundedProgressThrottled = useTransform(
@@ -27,11 +34,14 @@ const ContentsNavMotion = ({ children }: PropsWithChildren) => {
         top: translateY,
       }}
     >
-      <div
-        className="w-inherit overflow-hidden"
-        onWheel={(e) => e.stopPropagation()}
-      >
-        {children}
+      <div className="w-inherit overflow-hidden">
+        {title}
+        <div
+          className="content-nav-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto"
+          onWheel={(e) => e.stopPropagation()}
+        >
+          {children}
+        </div>
       </div>
     </motion.aside>
   );

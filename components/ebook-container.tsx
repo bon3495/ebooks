@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 
 import { Ebook } from '@/.velite';
-import { ContentsNavMotion } from '@/components/animations/contents-nav-motion';
 import { ContentsNav } from '@/components/contents-nav';
 import { EbookDrawer } from '@/components/ebook-drawer';
 import { DashboardTableOfContents } from '@/components/toc';
@@ -38,9 +37,7 @@ const EbookContainer = ({
           {children}
         </div>
       </main>
-      <ContentsNavMotion>
-        <DashboardTableOfContents toc={ebook.toc} />
-      </ContentsNavMotion>
+      <DashboardTableOfContents toc={ebook.toc} />
     </div>
   );
 };

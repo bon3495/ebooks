@@ -12,15 +12,14 @@ const ContentsNav = ({ ebooks, params }: ContentsNavProps) => {
   const t = useTranslations('ContentsNav');
 
   return (
-    <ContentsNavMotion>
-      <HeadingMedium className="my-4 px-4">{t('title')}</HeadingMedium>
-      <div className="content-nav-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto">
-        <ul className="grid grid-cols-1 gap-y-2 pr-4">
-          {ebooks.map((ebook) => {
-            return <ContentsNavItem key={ebook.permalink} ebook={ebook} />;
-          })}
-        </ul>
-      </div>
+    <ContentsNavMotion
+      title={<HeadingMedium className="my-4 px-4">{t('title')}</HeadingMedium>}
+    >
+      <ul className="grid grid-cols-1 gap-y-2 pr-4">
+        {ebooks.map((ebook) => {
+          return <ContentsNavItem key={ebook.permalink} ebook={ebook} />;
+        })}
+      </ul>
     </ContentsNavMotion>
   );
 };

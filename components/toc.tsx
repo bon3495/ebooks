@@ -4,6 +4,7 @@ import * as React from 'react';
 // import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import { ContentsNavMotion } from '@/components/animations/contents-nav-motion';
 import { HeadingMedium } from '@/components/ui/heading';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/utils';
@@ -39,12 +40,11 @@ export function DashboardTableOfContents({ toc, onSelect }: TocProps) {
   const mounted = useMounted();
 
   return mounted ? (
-    <>
-      <HeadingMedium className="my-4">{t('title')}</HeadingMedium>
-      <div className="content-nav-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto">
-        <Tree tree={toc} activeItem={activeHeading} onSelect={onSelect} />
-      </div>
-    </>
+    <ContentsNavMotion
+      title={<HeadingMedium className="my-4">{t('title')}</HeadingMedium>}
+    >
+      <Tree tree={toc} activeItem={activeHeading} onSelect={onSelect} />
+    </ContentsNavMotion>
   ) : null;
 }
 
