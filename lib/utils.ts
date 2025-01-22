@@ -35,12 +35,11 @@ export const formatDate = (dateString: string, options = 'MMMM dd, yyyy') => {
   return format(date, options);
 };
 
-export function sortByChapter<T extends { chapter?: string }>(items: T[]): T[] {
+export function sortById<T extends { id?: number }>(items: T[]): T[] {
   return items.sort((a, b) => {
-    if (a.chapter && b.chapter) {
-      return a.chapter.localeCompare(b.chapter);
+    if (a.id !== undefined && b.id !== undefined) {
+      return a.id - b.id;
     }
-
     return 0;
   });
 }

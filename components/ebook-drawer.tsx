@@ -60,7 +60,7 @@ const EbookDrawer = ({
           </SheetHeader>
           <div>
             <ScrollArea className="h-[calc(100vh-140px)]">
-              <ul className="grid grid-cols-1">
+              <ul className="grid grid-cols-1 gap-4 lg:gap-0">
                 {ebooks.map((ebook) => {
                   return (
                     <ContentsNavItem key={ebook.permalink} ebook={ebook} />

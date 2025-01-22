@@ -68,6 +68,7 @@ const ContentActions = ({
   className,
 }: ContentActionProps) => {
   const t = useTranslations('ContentActions');
+  console.log({ currentChapterIndex });
   return (
     <div className={cn('flex items-center justify-between gap-x-8', className)}>
       {currentChapterIndex > 0 && (

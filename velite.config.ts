@@ -36,13 +36,14 @@ const ebooks = defineCollection({
       section: s.string().max(99).optional(),
       chapter: s.string().max(99).optional(),
       description: s.string().max(199).optional(),
-      author: s.string().max(99),
+      author: s.string().max(99).optional(),
       date: s.isodate(),
       published: s.boolean().default(true),
       content: s.mdx(),
       toc: s.toc(),
-      cover: s.string().max(99),
+      cover: s.string().max(99).optional(),
       type: s.enum(['parent', 'child']).default('child'),
+      id: s.number(),
     })
     .transform(computedFields),
 });

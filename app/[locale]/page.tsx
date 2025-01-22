@@ -60,7 +60,7 @@ export default function IndexPage({ params: { locale } }: Props) {
               return (
                 <li
                   key={ebook.slug}
-                  className="flex flex-col rounded-2xl bg-analogous-pale-peach-tan/40 p-4 shadow-pale-peach-tan backdrop-blur-md"
+                  className="flex flex-col rounded-2xl bg-analogous-pale-peach-tan/40 p-4 shadow-deep-terracotta backdrop-blur-md"
                 >
                   <div className="flex gap-x-4">
                     <div className="relative flex h-44 w-32">

@@ -13,14 +13,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { getEbookFromParams } from '@/lib/utils';
+import { getEbookFromParams, sortById } from '@/lib/utils';
 import { EbookParams } from '@/types/ebooks.type';
 
 export default async function EbookDetails({ params }: EbookParams) {
   const ebook = await getEbookFromParams(params);
 
-  const ebooksChildren = ebooks.filter(
-    (e) => e.type === 'child' && e.locale === params.locale,
+  const ebooksChildren = sortById(
+    ebooks.filter((e) => e.type === 'child' && e.locale === params.locale),
   );
 
   if (!ebook) {
@@ -59,6 +59,11 @@ export default async function EbookDetails({ params }: EbookParams) {
       ebooksChildren={ebooksChildren}
       currentChapterIndex={currentChapterIndex}
     >
+      <div className="my-12">
+        <h1 className="flex text-left font-dancing text-5xl font-bold lg:text-7xl lg:leading-tight">
+          {ebook.section}
+        </h1>
+      </div>
       <ContentActions
         className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"
         currentChapterIndex={currentChapterIndex}
