@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, Copy } from 'lucide-react';
 
+import { CheckIcon } from '@/components/icons/check-icon';
+import { CopyIcon } from '@/components/icons/copy-icon';
 import { Button, ButtonProps } from '@/components/ui/button';
 
 interface CopyButtonProps extends ButtonProps {
@@ -27,9 +28,9 @@ export const CopyButton = ({ text, ...props }: CopyButtonProps) => {
       size="icon"
       disabled={isCopied || props.disabled}
       onClick={copy}
-      className="hover:bg-blue-gray bg-transparent"
+      className="bg-transparent hover:bg-blue-gray"
     >
-      {isCopied ? <Check size={24} /> : <Copy />}
+      {isCopied ? <CheckIcon /> : <CopyIcon />}
     </Button>
   );
 };

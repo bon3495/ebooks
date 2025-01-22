@@ -15,6 +15,7 @@ export default function Error({ error, reset }: Props) {
   const t = useTranslations('Error');
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 

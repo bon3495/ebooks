@@ -30,7 +30,7 @@ const Pre = (props: PreProps) => {
   const {
     children,
     __rawstring__ = '',
-    ['data-language']: dataLanguage = 'Shell',
+    // ['data-language']: dataLanguage = 'Shell',
   } = props;
 
   return (
@@ -171,7 +171,6 @@ const MdxBasicItems = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
     <img className={cn('rounded-md', className)} alt={alt} {...props} />
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (

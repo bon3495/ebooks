@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { LOCALE_TYPES } from '@/constants/globals';
+// import { LOCALE_TYPES } from '@/constants/globals';
 
 interface RootPageProps {
   params: { locale: string };
@@ -8,5 +8,6 @@ interface RootPageProps {
 
 // This page only renders when the app is built statically (output: 'export')
 export default function RootPage({ params: { locale } }: RootPageProps) {
-  redirect(LOCALE_TYPES.en);
+  // redirect(LOCALE_TYPES.en);
+  redirect(locale);
 }

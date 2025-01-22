@@ -2,8 +2,9 @@ import React from 'react';
 
 import { cn } from '@/lib/utils';
 
-export interface HeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  isShow?: boolean;
+}
 
 const HeadingBase = ({ className, ...props }: HeadingProps) => {
   return (

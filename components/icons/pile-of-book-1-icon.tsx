@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { IconProps } from '@/types/globals.type';
 
 const PileOfBook1Icon = (props: IconProps) => {

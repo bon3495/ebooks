@@ -1,6 +1,5 @@
 import {
   Dancing_Script as DancingScript,
-  Fredericka_the_Great as FrederickaTheGreat,
   Open_Sans as OpenSans,
 } from 'next/font/google';
 

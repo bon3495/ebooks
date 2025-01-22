@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
@@ -77,7 +76,7 @@ const ContentActions = ({
   className,
 }: ContentActionProps) => {
   const t = useTranslations('ContentActions');
-  console.log({ currentChapterIndex });
+
   return (
     <div className={cn('flex items-center justify-between', className)}>
       {currentChapterIndex > 0 && (

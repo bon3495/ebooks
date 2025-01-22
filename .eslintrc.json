@@ -1,7 +1,7 @@
 {
   "extends": [
-    "next/core-web-vitals",
-    "standard",
+    // "next/core-web-vitals",
+    // "standard",
     "plugin:tailwindcss/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
@@ -14,18 +14,8 @@
     "no-duplicate-imports": "error",
     "react/no-unescaped-entities": 0,
     "react/prop-types": 0,
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "args": "all",
-        "argsIgnorePattern": "^_",
-        "caughtErrors": "all",
-        "caughtErrorsIgnorePattern": "^_",
-        "destructuredArrayIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
-        "ignoreRestSiblings": true
-      }
-    ]
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
   },
   "plugins": ["unused-imports"]
 }

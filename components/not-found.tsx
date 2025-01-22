@@ -13,7 +13,7 @@ export default function NotFoundPage() {
   return (
     <PageLayout>
       <section className="container flex flex-1 flex-col items-center justify-center px-4">
-        <div className="bg-pink-pastel/20 shadow-pink-layer flex w-full flex-1 flex-col items-center rounded-2xl p-4 backdrop-blur-md lg:m-28 lg:flex-row lg:justify-between lg:p-16">
+        <div className="flex w-full flex-1 flex-col items-center rounded-2xl bg-pink-pastel/20 p-4 shadow-pink-layer backdrop-blur-md lg:m-28 lg:flex-row lg:justify-between lg:p-16">
           <div className="relative order-2 mt-12 flex flex-col items-center lg:mt-0 lg:items-start">
             <h1 className="mb-6 text-4xl font-bold lg:mb-0 lg:text-5xl lg:leading-tight xl:text-[88px]">
               {t('title')}

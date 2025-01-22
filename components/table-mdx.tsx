@@ -1,10 +1,10 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { Table, TableCell, TableHead } from '@/components/ui/table';
 
 const TableMdx = ({ children }: PropsWithChildren) => {
   return (
-    <div className="my-8 border-b-2 border-t-2">
+    <div className="my-8 border-y-2">
       <Table>{children}</Table>
     </div>
   );
