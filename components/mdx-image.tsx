@@ -46,7 +46,7 @@ const IllustrationImage = ({
 }: PropsWithChildren<IllustrationImageProps>) => {
   return (
     <div className="my-8 flex flex-col items-center">
-      <div className={cn('relative mx-auto h-48 w-96', className)}>
+      <div className={cn('relative mx-auto h-48 w-full max-w-96', className)}>
         <Image
           src={src}
           alt={alt}
@@ -58,7 +58,7 @@ const IllustrationImage = ({
           sizes="100vw"
         />
       </div>
-      <p className="mt-2 text-lg text-muted-foreground">
+      <p className="mt-2 text-base text-muted-foreground lg:text-lg">
         <span className="mr-2 font-semibold">{label}</span>
         <span className="italic">{children}</span>
       </p>

@@ -60,7 +60,7 @@ const ActionButton = ({
         {title && (
           <span
             className={cn(
-              'line-clamp-1 hidden text-left text-lg lg:inline-block',
+              'line-clamp-1 hidden text-left text-base lg:inline-block',
             )}
           >
             {title}

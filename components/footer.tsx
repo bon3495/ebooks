@@ -42,7 +42,7 @@ const CATS = [
 const Footer = () => {
   return (
     <footer className="relative flex flex-col">
-      <div className="relative flex flex-1 items-center justify-around">
+      <div className="relative flex flex-1 items-center justify-end px-4 sm:justify-around">
         {CATS.map((cat, index) => (
           <div
             className={cn('relative bottom-0 h-40 w-20', cat.className)}

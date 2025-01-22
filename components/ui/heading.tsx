@@ -18,7 +18,10 @@ const HeadingMedium = ({ className, ...props }: HeadingProps) => {
   return (
     <h3
       {...props}
-      className={cn('font-dancing text-4xl font-bold leading-tight', className)}
+      className={cn(
+        'font-dancing text-2xl font-bold leading-tight lg:text-4xl',
+        className,
+      )}
     />
   );
 };
@@ -28,7 +31,7 @@ const HeadingLarge = ({ className, ...props }: HeadingProps) => {
     <h2
       {...props}
       className={cn(
-        'scroll-m-20 text-left font-dancing text-4xl font-bold lg:text-5xl lg:leading-tight',
+        'scroll-m-20 text-left font-dancing text-3xl font-bold lg:text-5xl lg:leading-tight',
         className,
       )}
     />

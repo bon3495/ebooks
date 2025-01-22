@@ -20,11 +20,7 @@ interface TocProps {
   onSelect?: () => void;
 }
 
-export function DashboardTableOfContents({
-  toc,
-  className,
-  onSelect,
-}: TocProps) {
+export function DashboardTableOfContents({ toc, onSelect }: TocProps) {
   const t = useTranslations('DashboardTableOfContents');
 
   const itemIds = React.useMemo(

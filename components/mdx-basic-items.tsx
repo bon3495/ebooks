@@ -16,8 +16,6 @@ import {
 import {
   TableBody,
   TableCaption,
-  TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
@@ -93,7 +91,7 @@ const MdxBasicItems = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'mt-12 scroll-m-20 pb-2 text-left font-dancing text-3xl font-bold leading-tight first:mt-0 lg:text-4xl lg:leading-snug',
+        'mt-12 scroll-m-20 pb-2 text-left font-dancing text-2xl font-bold leading-tight first:mt-0 lg:text-4xl lg:leading-snug',
         className,
       )}
       {...props}
@@ -160,7 +158,7 @@ const MdxBasicItems = {
     <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
   ),
   li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <li className={cn('mt-2 text-lg', className)} {...props} />
+    <li className={cn('mt-2 text-base lg:text-lg', className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote
