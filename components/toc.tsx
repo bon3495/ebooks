@@ -5,7 +5,6 @@ import * as React from 'react';
 import { useTranslations } from 'next-intl';
 
 import { HeadingMedium } from '@/components/ui/heading';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/utils';
 
@@ -44,15 +43,12 @@ export function DashboardTableOfContents({
   const mounted = useMounted();
 
   return mounted ? (
-    <div
-      className={cn('w-inherit overflow-hidden', className)}
-      onWheel={(e) => e.stopPropagation()}
-    >
+    <>
       <HeadingMedium className="my-4">{t('title')}</HeadingMedium>
-      <div className="max-h-[72vh] overflow-y-auto">
+      <div className="content-nav-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto">
         <Tree tree={toc} activeItem={activeHeading} onSelect={onSelect} />
       </div>
-    </div>
+    </>
   ) : null;
 }
 

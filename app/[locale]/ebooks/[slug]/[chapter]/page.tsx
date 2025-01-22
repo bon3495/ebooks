@@ -60,7 +60,7 @@ export default async function EbookDetails({ params }: EbookParams) {
       currentChapterIndex={currentChapterIndex}
     >
       <div className="my-12">
-        <h1 className="flex text-left font-dancing text-5xl font-bold lg:text-7xl lg:leading-tight">
+        <h1 className="flex text-left font-dancing text-4xl font-bold lg:text-7xl lg:leading-tight">
           {ebook.section}
         </h1>
       </div>

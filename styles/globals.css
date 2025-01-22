@@ -173,18 +173,30 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--blue-gray));
-  border-radius: 8px;
-  border: 1[x];
+  background: hsl(var(--pale-peach-tan));
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--slate-green-gray));
+  background: hsl(var(--warm-terra-cotta));
+}
+
+.content-nav-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.content-nav-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: hsl(var(--pale-peach-tan));
+}
+
+.content-nav-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--warm-terra-cotta));
 }

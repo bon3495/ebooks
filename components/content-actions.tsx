@@ -36,7 +36,10 @@ const ActionButton = ({
       asChild
       variant="link"
       className={cn(
-        'h-auto min-w-32 items-center justify-center gap-1 p-4 hover:bg-muted/50 hover:no-underline lg:flex-col lg:items-start',
+        'h-auto min-w-32 items-center justify-center gap-1 whitespace-normal p-4 hover:bg-muted/50 hover:no-underline lg:max-w-80 lg:flex-1 lg:flex-col lg:items-end',
+        {
+          'lg:items-start': isLeft,
+        },
         className,
       )}
     >
@@ -55,7 +58,13 @@ const ActionButton = ({
           ) : null}
         </span>
         {title && (
-          <span className="hidden text-lg lg:inline-block">{title}</span>
+          <span
+            className={cn(
+              'line-clamp-1 hidden text-left text-lg lg:inline-block',
+            )}
+          >
+            {title}
+          </span>
         )}
       </Link>
     </Button>
@@ -70,7 +79,7 @@ const ContentActions = ({
   const t = useTranslations('ContentActions');
   console.log({ currentChapterIndex });
   return (
-    <div className={cn('flex items-center justify-between gap-x-8', className)}>
+    <div className={cn('flex items-center justify-between', className)}>
       {currentChapterIndex > 0 && (
         <ActionButton
           isLeft

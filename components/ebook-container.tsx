@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 
 import { Ebook } from '@/.velite';
+import { ContentsNavMotion } from '@/components/animations/contents-nav-motion';
 import { ContentsNav } from '@/components/contents-nav';
 import { EbookDrawer } from '@/components/ebook-drawer';
 import { DashboardTableOfContents } from '@/components/toc';
@@ -23,7 +24,7 @@ const EbookContainer = ({
   children,
 }: PropsWithChildren<EbookContainerProps>) => {
   return (
-    <div className="container relative my-24 flex gap-x-4 px-4 lg:my-32">
+    <div className="container relative my-28 flex gap-x-4 px-4 lg:my-20">
       <ContentsNav ebooks={ebooksChildren} params={params} />
       <EbookDrawer
         ebooks={ebooksChildren}
@@ -31,15 +32,15 @@ const EbookContainer = ({
         ebook={ebook}
         currentChapterIndex={currentChapterIndex || 0}
       />
-      <main className="flex flex-1 overflow-x-hidden">
+      <main className="my-10 flex flex-1 overflow-x-hidden">
         <div className="mx-auto w-full min-w-0 flex-1 overflow-x-hidden px-4 text-justify">
           {breadcrumb}
           {children}
         </div>
       </main>
-      <aside className="sticky top-24 hidden h-[calc(100vh-300px)] w-[300px] overflow-hidden text-sm xl:block">
+      <ContentsNavMotion>
         <DashboardTableOfContents toc={ebook.toc} />
-      </aside>
+      </ContentsNavMotion>
     </div>
   );
 };
