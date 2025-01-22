@@ -2,6 +2,8 @@
   "extends": [
     // "next/core-web-vitals",
     // "standard",
+    "eslint:recommended",
+    "plugin:@next/next/recommended",
     "plugin:tailwindcss/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",

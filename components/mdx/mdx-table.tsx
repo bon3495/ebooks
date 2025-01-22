@@ -5,7 +5,7 @@ import { Table, TableCell, TableHead } from '@/components/ui/table';
 const TableMdx = ({ children }: PropsWithChildren) => {
   return (
     <div className="my-8 border-y-2">
-      <Table>{children}</Table>
+      <Table className="text-base lg:text-lg">{children}</Table>
     </div>
   );
 };

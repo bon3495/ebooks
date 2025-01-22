@@ -4,7 +4,7 @@ import { ebooks } from '#site/content';
 
 import { ContentActions } from '@/components/content-actions';
 import EbookContainer from '@/components/ebook-container';
-import { MDXContent } from '@/components/mdx-content';
+import { MDXContent } from '@/components/mdx/mdx-content';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { HeadingExtraLarge } from '@/components/ui/heading';
 import { getEbookFromParams, sortById } from '@/lib/utils';
 import { EbookParams } from '@/types/ebooks.type';
 
@@ -50,11 +51,11 @@ export default async function EbookDetails({ params }: EbookParams) {
       ebooksChildren={ebooksChildren}
     >
       <div className="my-12">
-        <h1 className="flex text-left font-dancing text-4xl font-bold lg:text-7xl lg:leading-tight">
+        <HeadingExtraLarge className="no-underline">
           {ebook.title}
-        </h1>
+        </HeadingExtraLarge>
         {ebook.type === 'parent' && (
-          <p className="mt-4 text-right font-dancing text-lg italic text-muted-foreground underline underline-offset-4 lg:text-2xl">
+          <p className="mt-6 text-right font-dancing text-lg italic text-muted-foreground underline underline-offset-4 lg:mt-4 lg:text-2xl">
             by <span>{ebook.author}</span>
           </p>
         )}

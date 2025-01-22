@@ -4,8 +4,12 @@ import Link from 'next/link';
 import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
 import { Icons } from '@/components/icons';
-import { IllustrationImage, ImageWrapper } from '@/components/mdx-image';
-import { TableCellMdx, TableHeadMdx, TableMdx } from '@/components/table-mdx';
+import { IllustrationImage, ImageWrapper } from '@/components/mdx/mdx-image';
+import {
+  TableCellMdx,
+  TableHeadMdx,
+  TableMdx,
+} from '@/components/mdx/mdx-table';
 import { AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   HeadingBase,
@@ -91,7 +95,7 @@ const MdxBasicItems = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        'mt-12 scroll-m-20 pb-2 text-left font-dancing text-2xl font-bold leading-tight first:mt-0 lg:text-4xl lg:leading-snug',
+        'mt-12 scroll-m-20 pb-2 text-left font-dancing text-2xl font-bold leading-tight first:mt-0 md:text-3xl lg:text-4xl lg:leading-snug',
         className,
       )}
       {...props}
@@ -170,8 +174,8 @@ const MdxBasicItems = {
     className,
     alt,
     ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img className={cn('rounded-md', className)} alt={alt} {...props} />
+  }: React.ComponentPropsWithoutRef<typeof Image>) => (
+    <Image className={cn('rounded-md', className)} alt={alt} {...props} />
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className="my-4 md:my-8" {...props} />

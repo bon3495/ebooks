@@ -1,6 +1,6 @@
 import * as runtime from 'react/jsx-runtime';
 
-import { MdxBasicItems } from '@/components/mdx-basic-items';
+import { MdxBasicItems } from '@/components/mdx/mdx-basic-items';
 
 const sharedComponents = {
   ...MdxBasicItems,

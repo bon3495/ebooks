@@ -4,7 +4,7 @@ import { ebooks } from '#site/content';
 
 import { ContentActions } from '@/components/content-actions';
 import EbookContainer from '@/components/ebook-container';
-import { MDXContent } from '@/components/mdx-content';
+import { MDXContent } from '@/components/mdx/mdx-content';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { HeadingExtraLarge } from '@/components/ui/heading';
 import { getEbookFromParams, sortById } from '@/lib/utils';
 import { EbookParams } from '@/types/ebooks.type';
 
@@ -60,9 +61,9 @@ export default async function EbookDetails({ params }: EbookParams) {
       currentChapterIndex={currentChapterIndex}
     >
       <div className="my-12">
-        <h1 className="flex text-left font-dancing text-4xl font-bold lg:text-7xl lg:leading-tight">
+        <HeadingExtraLarge className="no-underline">
           {ebook.section}
-        </h1>
+        </HeadingExtraLarge>
       </div>
       <ContentActions
         className="mb-16 mt-8 border-b-4 border-analogous-dusty-brown pb-8"
