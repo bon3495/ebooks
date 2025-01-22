@@ -63,18 +63,20 @@ export default function IndexPage({ params: { locale } }: Props) {
                   className="flex flex-col rounded-2xl bg-analogous-pale-peach-tan/40 p-4 shadow-deep-terracotta backdrop-blur-md"
                 >
                   <div className="flex gap-x-4">
-                    <div className="relative flex h-44 w-32">
-                      <Image
-                        src={ebook.cover}
-                        alt={ebook.title}
-                        fill
-                        className="w-20 rounded-sm lg:w-[120px]"
-                        style={{
-                          objectFit: 'cover',
-                        }}
-                        sizes="100vw"
-                      />
-                    </div>
+                    {ebook.cover && (
+                      <div className="relative flex h-44 w-32">
+                        <Image
+                          src={ebook.cover}
+                          alt={ebook.title}
+                          fill
+                          className="w-20 rounded-sm lg:w-[120px]"
+                          style={{
+                            objectFit: 'cover',
+                          }}
+                          sizes="100vw"
+                        />
+                      </div>
+                    )}
                     <div className="flex flex-1 flex-col">
                       <h4 className="text-base font-bold md:text-xl">
                         {ebook.title}
