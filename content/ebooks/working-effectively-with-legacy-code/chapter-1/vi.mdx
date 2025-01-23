@@ -10,3 +10,224 @@ id: 1
 ---
 
 <HeadingLarge>Chapter 1: Changing Software</HeadingLarge>
+
+Thay đổi mã nguồn là điều tuyệt vời. Đó là công việc mà chúng ta làm để kiếm sống. Nhưng có những cách thay đổi mã nguồn khiến cuộc sống trở nên khó khăn, và cũng có những cách giúp mọi thứ dễ dàng hơn rất nhiều. Trong ngành, chúng ta chưa nói nhiều về vấn đề này. Gần nhất mà chúng ta đã chạm đến là tài liệu về refactoring (tái cấu trúc mã nguồn). Tôi nghĩ rằng chúng ta có thể mở rộng cuộc thảo luận một chút và nói về cách xử lý mã nguồn trong những tình huống khó khăn nhất. Để làm điều đó, chúng ta cần đào sâu hơn vào cơ chế của việc thay đổi.
+
+## Bốn lý do để thay đổi phần mềm
+
+Để đơn giản, chúng ta hãy xem xét bốn lý do chính để thay đổi phần mềm.
+
+1. Thêm tính năng
+2. Sửa lỗi
+3. Cải tiến thiết kế
+4. Tối ưu hóa việc sử dụng tài nguyên
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/open-book2.png"
+  alt="Four Reasons to Change Software"
+/>
+
+## Thêm tính năng và sửa lỗi
+
+Thêm một tính năng dường như là loại thay đổi đơn giản nhất để thực hiện. Phần mềm hoạt động theo một cách nhất định, và người dùng nói rằng hệ thống cần làm thêm một điều gì đó khác.
+
+Giả sử chúng ta đang làm việc trên một ứng dụng web, và một quản lý nói rằng cô ấy muốn di chuyển logo công ty từ phía bên trái của một trang sang phía bên phải. Chúng ta trao đổi với cô ấy về điều này và phát hiện ra rằng nó không đơn giản như vậy. Cô ấy muốn di chuyển logo, nhưng cũng muốn những thay đổi khác. Cô ấy muốn làm cho logo có hiệu ứng động trong bản phát hành tiếp theo. Vậy đây là sửa lỗi hay thêm một tính năng mới? Điều đó tùy thuộc vào quan điểm của bạn. Từ quan điểm của khách hàng, cô ấy rõ ràng đang yêu cầu chúng ta sửa một vấn đề. Có thể cô ấy đã xem trang web và tham dự một cuộc họp với những người trong bộ phận của mình, sau đó họ quyết định thay đổi vị trí logo và yêu cầu thêm một số chức năng nữa. Từ góc nhìn của nhà phát triển, sự thay đổi này có thể được coi là một tính năng hoàn toàn mới. "Nếu họ chỉ ngừng thay đổi ý kiến của mình, thì chúng ta đã xong từ lâu rồi." Nhưng trong một số tổ chức, việc di chuyển logo chỉ được xem là sửa lỗi, bất kể việc nhóm sẽ phải làm rất nhiều công việc mới.
+
+Thật hấp dẫn khi nói rằng tất cả những điều này chỉ là mang tính chủ quan. Bạn thấy đó là sửa lỗi, còn tôi thấy đó là một tính năng, và kết thúc tại đó. Nhưng thật đáng buồn, trong nhiều tổ chức, sửa lỗi và thêm tính năng phải được theo dõi và tính toán riêng biệt vì lý do hợp đồng hoặc các sáng kiến về chất lượng. Ở cấp độ con người, chúng ta có thể tranh luận mãi về việc liệu chúng ta đang thêm tính năng hay sửa lỗi, nhưng về bản chất, tất cả chỉ là thay đổi mã nguồn và các tài liệu liên quan. Thật không may, những cuộc tranh luận về sửa lỗi và thêm tính năng này đã che khuất một điều quan trọng hơn nhiều về mặt kỹ thuật: sự thay đổi hành vi. Có một sự khác biệt lớn giữa việc thêm hành vi mới và thay đổi hành vi cũ.
+
+<Callout>
+  Hành vi là điều quan trọng nhất về phần mềm. Đó là điều mà người dùng phụ thuộc vào. Người dùng thích khi chúng ta thêm hành vi (miễn là đó thực sự là điều họ muốn), nhưng nếu chúng ta thay đổi hoặc loại bỏ hành vi mà họ phụ thuộc vào (giới thiệu lỗi), họ sẽ mất niềm tin vào chúng ta.
+</Callout>
+
+Trong ví dụ về logo công ty, chúng ta có đang thêm hành vi không? Có. Sau khi thay đổi, hệ thống sẽ hiển thị logo ở bên phải trang. Chúng ta có đang loại bỏ bất kỳ hành vi nào không? Có, sẽ không còn logo ở bên trái nữa.
+
+Hãy xem xét một trường hợp khó hơn. Giả sử rằng một khách hàng muốn thêm logo vào bên phải của một trang, nhưng ban đầu không có logo ở bên trái. Đúng, chúng ta đang thêm hành vi, nhưng chúng ta có đang loại bỏ bất kỳ hành vi nào không? Liệu có thứ gì đó đã được hiển thị tại vị trí nơi logo sắp được hiển thị không?
+
+Chúng ta đang thay đổi hành vi, thêm hành vi, hay cả hai?
+
+Hóa ra, đối với chúng ta, chúng ta có thể phân biệt điều này theo cách hữu ích hơn với vai trò lập trình viên. Nếu chúng ta phải sửa đổi code (và HTML cũng được xem là code), chúng ta có thể đang thay đổi hành vi. Nếu chúng ta chỉ thêm code và gọi nó, chúng ta thường đang thêm hành vi. Hãy xem xét một ví dụ khác. Đây là một phương thức trong JavaScript:
+
+```js
+class CDPlayer {
+  constructor() {
+    this.tracks = [];
+  }
+
+  addTrackListing(track) {
+    ...
+  }
+}
+```
+
+Class này có một phương thức cho phép chúng ta thêm danh sách bản nhạc. Hãy thêm một phương thức khác cho phép chúng ta thay thế danh sách bản nhạc.
+
+```js
+class CDPlayer {
+  constructor() {
+    this.tracks = [];
+  }
+
+  addTrackListing(track) {
+    ...
+  }
+
+  replaceTrackListing(name, newTrack) {
+    ...
+  }
+}
+```
+
+Khi chúng ta thêm phương thức đó, liệu chúng ta có thêm hành vi mới vào ứng dụng hay thay đổi nó không? Câu trả lời là: không phải cả hai. Việc thêm một phương thức sẽ không thay đổi hành vi trừ khi phương thức đó được gọi bằng cách nào đó.
+
+Hãy thực hiện một thay đổi code khác. Chúng ta thêm một nút mới vào giao diện người dùng của trình phát CD. Nút này cho phép người dùng thay thế danh sách bài hát. Với thay đổi này, chúng ta đang thêm hành vi đã được chỉ định trong phương thức `replaceTrackListing`, nhưng chúng ta cũng đang thay đổi hành vi một cách tinh tế. Giao diện người dùng sẽ hiển thị khác đi với nút mới đó. Rất có thể giao diện người dùng sẽ mất thêm khoảng một micro giây để hiển thị. Có vẻ gần như không thể thêm hành vi mà không thay đổi nó ở một mức độ nào đó.
+
+## Cải thiện thiết kế
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/open-book3.png"
+  alt="How to Use This Book"
+/>
+
+Cải thiện thiết kế là một loại thay đổi phần mềm khác. Khi chúng ta muốn thay đổi cấu trúc của phần mềm để làm cho nó dễ bảo trì hơn, nói chung, chúng ta muốn giữ nguyên hành vi của nó. Khi chúng ta loại bỏ hành vi trong quá trình đó, đấy thường được gọi là một lỗi. Một trong những lý do chính khiến nhiều lập trình viên không thường xuyên cố gắng cải thiện thiết kế là vì việc làm này tương đối dễ dẫn đến mất hành vi hoặc tạo ra hành vi sai trong quá trình thực hiện.
+
+Hành động cải thiện thiết kế mà không thay đổi hành vi được gọi là *refactoring* (tái cấu trúc mã). Ý tưởng đằng sau refactoring là chúng ta có thể làm cho phần mềm dễ bảo trì hơn mà không thay đổi hành vi, nếu chúng ta viết các bài kiểm tra để đảm bảo rằng hành vi hiện tại không thay đổi và thực hiện từng bước nhỏ để xác minh trong suốt quá trình. Con người đã làm sạch code trong các hệ thống từ nhiều năm nay, nhưng chỉ trong vài năm gần đây, refactoring mới trở nên phổ biến. Refactoring khác với việc dọn dẹp code thông thường ở chỗ chúng ta không chỉ thực hiện những việc ít rủi ro như định dạng lại mã nguồn, hoặc những việc xâm lấn và rủi ro như viết lại từng phần của nó. Thay vào đó, chúng ta thực hiện một loạt các thay đổi cấu trúc nhỏ, được hỗ trợ bởi các bài kiểm tra để làm cho code dễ thay đổi hơn. Điều cốt lõi về refactoring từ góc độ thay đổi là không có thay đổi chức năng nào được phép xảy ra khi bạn refactor (mặc dù hành vi có thể thay đổi một chút vì các thay đổi cấu trúc mà bạn thực hiện có thể làm thay đổi hiệu suất, theo hướng tốt hơn hoặc tệ hơn).
+
+## Tối ưu hóa
+
+Tối ưu hóa giống như refactoring (tái cấu trúc mã), nhưng khi thực hiện, chúng ta có một mục tiêu khác. Với cả refactoring và tối ưu hóa, chúng ta đều nói, “Chúng ta sẽ giữ nguyên chức năng khi thực hiện thay đổi, nhưng chúng ta sẽ thay đổi một số điều khác.” Trong refactoring, “điều khác” là cấu trúc chương trình; chúng ta muốn làm cho nó dễ bảo trì hơn. Trong tối ưu hóa, “điều khác” là một tài nguyên nào đó mà chương trình sử dụng, thường là thời gian hoặc bộ nhớ.
+
+## Tổng hợp lại
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/books.png"
+  alt="Putting It All Together"
+/>
+
+Có thể điều này nghe có vẻ kỳ lạ rằng refactoring và tối ưu hóa lại khá giống nhau. Chúng có vẻ gần gũi hơn nhiều so với việc thêm tính năng hoặc sửa lỗi. Nhưng điều này có thật sự đúng không? Điểm chung giữa refactoring và tối ưu hóa là chúng ta giữ nguyên chức năng trong khi thay đổi một yếu tố khác.
+
+Nói chung, có ba yếu tố khác nhau có thể thay đổi khi chúng ta làm việc trong một hệ thống: cấu trúc, chức năng và việc sử dụng tài nguyên.
+
+Hãy xem xét điều gì thường thay đổi và điều gì hầu như giữ nguyên khi chúng ta thực hiện bốn loại thay đổi khác nhau (đúng là đôi khi cả ba yếu tố đều thay đổi, nhưng hãy xem điều gì là điển hình):
+
+<TableMdx>
+  <TableHeader>
+    <TableRow>
+      <TableHeadMdx></TableHeadMdx>
+      <TableHeadMdx>Thêm một tính năng</TableHeadMdx>
+      <TableHeadMdx>Sửa lỗi</TableHeadMdx>
+      <TableHeadMdx>Refactoring</TableHeadMdx>
+      <TableHeadMdx>Tối ưu hóa</TableHeadMdx>
+    </TableRow>
+    </TableHeader>
+    <TableBody>
+    <TableRow>
+      <TableCellMdx>Cấu trúc</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Chức năng</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Sử dụng tài nguyên</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+    </TableRow>
+  </TableBody>
+</TableMdx>
+
+Bề ngoài, refactoring và tối ưu hóa trông rất giống nhau. Cả hai đều giữ nguyên chức năng. Nhưng điều gì xảy ra khi chúng ta xem xét chức năng mới một cách riêng biệt? Khi chúng ta thêm một tính năng, thường là chúng ta đang thêm chức năng mới mà không thay đổi chức năng hiện có.
+
+<TableMdx>
+  <TableHeader>
+    <TableRow>
+      <TableHeadMdx></TableHeadMdx>
+      <TableHeadMdx>Thêm một tính năng</TableHeadMdx>
+      <TableHeadMdx>Sửa lỗi</TableHeadMdx>
+      <TableHeadMdx>Refactoring</TableHeadMdx>
+      <TableHeadMdx>Tối ưu hóa</TableHeadMdx>
+    </TableRow>
+    </TableHeader>
+    <TableBody>
+    <TableRow>
+      <TableCellMdx>Cấu trúc</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Chức năng mới</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Chức năng</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+    </TableRow>
+    <TableRow>
+      <TableCellMdx>Sử dụng tài nguyên</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>﹣</TableCellMdx>
+      <TableCellMdx>Thay đổi</TableCellMdx>
+    </TableRow>
+  </TableBody>
+</TableMdx>
+
+Việc thêm tính năng, refactoring, và tối ưu hóa đều giữ nguyên chức năng hiện có. Thực tế, nếu chúng ta xem xét kỹ việc sửa lỗi, đúng là nó thay đổi chức năng, nhưng những thay đổi này thường rất nhỏ so với lượng chức năng hiện có không bị thay đổi.
+
+Thêm tính năng và sửa lỗi rất giống với refactoring và tối ưu hóa. Trong cả bốn trường hợp, chúng ta muốn thay đổi một số chức năng, một số hành vi, nhưng chúng ta muốn giữ nguyên phần lớn hơn (xem Hình 1.1).
+
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/preserving-behavior.png" alt="Preserving Behavior" label="Hình 1.1">Preserving behavior.</IllustrationImage>
+
+Đó là một cách nhìn đẹp về những gì sẽ xảy ra khi chúng ta thực hiện thay đổi, nhưng điều đó có ý nghĩa gì về mặt thực tiễn? Về mặt tích cực, nó cho chúng ta biết điều mà chúng ta cần tập trung vào. Chúng ta cần đảm bảo rằng một số ít những thứ mà chúng ta thay đổi được thay đổi đúng cách. Về mặt tiêu cực, đó không phải là điều duy nhất chúng ta cần tập trung vào. Chúng ta còn phải tìm cách giữ nguyên phần còn lại của hành vi. Thật không may, việc giữ nguyên hành vi không chỉ đơn giản là để nguyên mã nguồn. Chúng ta cần biết rằng hành vi không thay đổi, và điều đó có thể rất khó khăn. Lượng hành vi mà chúng ta cần giữ nguyên thường rất lớn, nhưng đó không phải là vấn đề chính. Vấn đề lớn là chúng ta thường không biết bao nhiêu trong số những hành vi đó đang gặp rủi ro khi thực hiện thay đổi. Nếu chúng ta biết, chúng ta có thể tập trung vào hành vi đó và không bận tâm đến phần còn lại. Sự hiểu biết chính là điều cốt lõi mà chúng ta cần để thực hiện thay đổi một cách an toàn.
+
+<Callout>
+  Giữ nguyên hành vi hiện có là một trong những thách thức lớn nhất trong phát triển phần mềm. Ngay cả khi chúng ta thay đổi các tính năng chính, chúng ta thường phải giữ nguyên một lượng lớn hành vi liên quan.
+</Callout>
+
+## Thay đổi rủi ro
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/ink-bottle.png"
+  alt="Risky Change"
+/>
+
+Giữ nguyên hành vi là một thách thức lớn. Khi chúng ta cần thực hiện thay đổi và duy trì hành vi, điều đó có thể tiềm ẩn nhiều rủi ro.
+
+Để giảm thiểu rủi ro, chúng ta phải tự hỏi ba câu hỏi:
+
+1. Chúng ta cần thực hiện những thay đổi nào?
+2. Làm thế nào để biết rằng chúng ta đã thực hiện đúng những thay đổi đó?
+3. Làm thế nào để biết rằng chúng ta không làm hỏng bất cứ điều gì?
+
+Bạn có thể chấp nhận bao nhiêu thay đổi nếu những thay đổi đó tiềm ẩn rủi ro?
+
+Hầu hết các nhóm mà tôi đã làm việc cùng đều cố gắng quản lý rủi ro theo cách rất thận trọng. Họ giảm thiểu số lượng thay đổi mà họ thực hiện trên mã nguồn. Đôi khi đó là một chính sách của nhóm: “Nếu nó không hỏng, đừng sửa.” Lúc khác, điều này không được ai phát biểu rõ ràng. Các lập trình viên chỉ đơn giản là rất cẩn thận khi thực hiện thay đổi. “Gì cơ? Tạo một phương thức khác cho điều đó ư? Không, tôi sẽ chỉ đặt các dòng code ngay tại đây, trong phương thức này, nơi tôi có thể nhìn thấy chúng và phần code còn lại. Nó ít chỉnh sửa hơn và an toàn hơn.”
+
+Thật hấp dẫn khi nghĩ rằng chúng ta có thể giảm thiểu các vấn đề phần mềm bằng cách tránh chúng, nhưng, thật không may, chúng luôn bắt kịp chúng ta. Khi chúng ta tránh tạo ra các lớp và phương thức mới, những lớp và phương thức hiện có sẽ ngày càng lớn hơn và khó hiểu hơn. Khi bạn thực hiện thay đổi trong bất kỳ hệ thống lớn nào, bạn có thể mong đợi sẽ mất một chút thời gian để làm quen với khu vực mà bạn đang làm việc. Sự khác biệt giữa hệ thống tốt và hệ thống kém là, ở những hệ thống tốt, bạn cảm thấy khá yên tâm sau khi đã học xong, và bạn tự tin với thay đổi mà bạn sắp thực hiện. Trong mã nguồn được cấu trúc kém, việc chuyển từ tìm hiểu sang thực hiện thay đổi giống như nhảy xuống vực để tránh một con hổ. Bạn ngần ngại, rồi lại ngần ngại. “Mình đã sẵn sàng làm điều đó chưa? Thôi, mình phải làm thôi.”
+
+Tránh thay đổi còn dẫn đến những hậu quả xấu khác. Khi mọi người không thực hiện thay đổi thường xuyên, họ sẽ mất kỹ năng làm việc đó. Phân tách một lớp lớn thành các phần nhỏ hơn có thể là công việc khá phức tạp trừ khi bạn làm điều đó vài lần một tuần. Khi bạn làm thường xuyên, nó trở thành thói quen. Bạn sẽ giỏi hơn trong việc xác định điều gì có thể gây lỗi và điều gì không, và công việc trở nên dễ dàng hơn nhiều.
+
+Hậu quả cuối cùng của việc tránh thay đổi là nỗi sợ hãi. Thật không may, nhiều nhóm sống trong nỗi sợ hãi thay đổi đáng kinh ngạc, và điều đó ngày càng tệ hơn. Thường thì họ không nhận ra mức độ sợ hãi cho đến khi họ học được những kỹ thuật tốt hơn và nỗi sợ hãi dần biến mất.
+
+Chúng ta đã nói về việc tránh thay đổi là một điều không tốt, nhưng giải pháp thay thế của chúng ta là gì? Một giải pháp thay thế là chỉ cố gắng nhiều hơn. Có lẽ chúng ta có thể thuê thêm người để có đủ thời gian cho mọi người ngồi và phân tích, kiểm tra kỹ tất cả code và thực hiện thay đổi theo cách “đúng”. Chắc chắn thêm thời gian và sự kỹ lưỡng sẽ làm cho thay đổi an toàn hơn. Hay không? Sau tất cả sự kiểm tra đó, liệu có ai biết rằng họ đã làm đúng không?
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/book.png"
+  alt="How to Use This Book"
+/>
