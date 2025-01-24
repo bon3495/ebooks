@@ -86,7 +86,7 @@ export default function IndexPage({ params: { locale } }: Props) {
                         asChild
                         className="ml-auto mt-auto hidden w-fit items-center sm:flex"
                       >
-                        <Link href={`${locale}/${ebook.permalink}`}>
+                        <Link href={ebook.permalink}>
                           <span>{t('buttonRead')}</span>
                           <MoveRight />
                         </Link>
@@ -95,7 +95,7 @@ export default function IndexPage({ params: { locale } }: Props) {
                   </div>
                   <div className="mt-4 block w-full sm:hidden">
                     <Button asChild className="ml-auto mt-auto w-full">
-                      <Link href={`${locale}/${ebook.permalink}`}>
+                      <Link href={ebook.permalink}>
                         <span>{t('buttonRead')}</span>
                         <MoveRight />
                       </Link>

@@ -13,8 +13,8 @@ const computedFields = <T extends { slug: string; locale: LocaleKey }>(
 ) => {
   const slugItem = data.slug.split('/').filter((i) => i !== data.locale);
 
-  const permalink = `/ebooks/${slugItem.join('/')}`;
-  const prevLink = `/ebooks/${slugItem.slice(0, -1).join('/')}`;
+  const permalink = `/${data.locale}/ebooks/${slugItem.join('/')}`;
+  const prevLink = `/${data.locale}/ebooks/${slugItem.slice(0, -1).join('/')}`;
 
   return {
     ...data,
@@ -73,12 +73,14 @@ export default defineConfig({
           }
         });
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       rehypeSlug as any,
       [
         rehypePrettyCode,
         {
           theme: 'github-dark',
           keepBackground: false,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onVisitLine(node: any) {
             if (node.children.length === 0) {
               node.children = [{ type: 'text', value: ' ' }];
