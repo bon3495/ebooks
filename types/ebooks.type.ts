@@ -4,9 +4,10 @@ import { EbookParamsSchema } from '@/schema/ebooks.schema';
 
 export type EbookParams = z.infer<typeof EbookParamsSchema>;
 
-type EbookType = {
+export type EbookType = {
   chapter?: string;
   permalink: string;
+  locale: string;
 };
 
 export interface ContentsNavProps extends EbookParams {
