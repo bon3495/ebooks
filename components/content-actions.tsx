@@ -22,6 +22,7 @@ const ActionButton = ({
   isLeft,
   classNameIcon,
   className,
+  titleClassName,
 }: {
   href: string;
   title?: string;
@@ -29,6 +30,7 @@ const ActionButton = ({
   isLeft?: boolean;
   className?: string;
   classNameIcon?: string;
+  titleClassName?: string;
 }) => {
   return (
     <Button
@@ -60,6 +62,7 @@ const ActionButton = ({
           <span
             className={cn(
               'line-clamp-1 hidden text-left text-base lg:inline-block',
+              titleClassName,
             )}
           >
             {title}

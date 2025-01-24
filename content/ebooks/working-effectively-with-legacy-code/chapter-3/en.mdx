@@ -3,7 +3,7 @@ title: Working Effectively with Legacy Code
 section: Part I - The Mechanics of Change
 chapter: Chapter 3 - Sensing and Separation
 slug: working-effectively-with-legacy-code/chapter-3
-date: 2025-01-19
+date: 2025-01-24
 locale: en
 type: child
 id: 3
@@ -13,16 +13,16 @@ id: 3
 
 ## Introduction
 
-Ideally, we wouldn’t have to do anything special to a class to start working with it. In an ideal system, we’d be able to create objects of any class in a test harness and start working. We’d be able to create objects, write tests for them, and then move on to other things. If it were that easy, there wouldn’t be a need to write about any of this, but unfortunately, it is often hard. Dependencies among classes can make it very difficult to get particular clusters of objects under test. We might want to create an object of one class and ask it questions, but to cre- ate it, we need objects of another class, and those objects need objects of another class, and so on. Eventually, you end up with nearly the whole system in a harness. In some languages, this isn’t a very big deal. In others, most nota- bly C++, link time alone can make rapid turnaround nearly impossible if you don’t break dependencies.
+Ideally, we wouldn’t have to do anything special to a class to start working with it. In an ideal system, we’d be able to create objects of any class in a test harness and start working. We’d be able to create objects, write tests for them, and then move on to other things. If it were that easy, there wouldn’t be a need to write about any of this, but unfortunately, it is often hard. Dependencies among classes can make it very difficult to get particular clusters of objects under test. We might want to create an object of one class and ask it questions, but to create it, we need objects of another class, and those objects need objects of another class, and so on. Eventually, you end up with nearly the whole system in a harness. In some languages, this isn’t a very big deal. In others, most notably C++, link time alone can make rapid turnaround nearly impossible if you don’t break dependencies.
 
 In systems that weren’t developed concurrently with unit tests, we often have to break dependencies to get classes into a test harness, but that isn’t the only reason to break dependencies. Sometimes the class we want to test has effects on other classes, and our tests need to know about them. Sometimes we can sense those effects through the interface of the other class. At other times, we can’t. The only choice we have is to impersonate the other class so that we can sense the effects directly.
 
 Generally, when we want to get tests in place, there are two reasons to break dependencies: *sensing* and *separation*.
 
-1. *Sensing—* We break dependencies to *sense* when we can’t access values our code computes.
-2. *Separation—* We break dependencies to *separate* when we can’t even get a piece of code into a test harness to run.
+1. ***Sensing—*** We break dependencies to *sense* when we can’t access values our code computes.
+2. ***Separation—*** We break dependencies to *separate* when we can’t even get a piece of code into a test harness to run.
 
-Here is an example. We have a class named NetworkBridge in a network-man- agement application:
+Here is an example. We have a class named NetworkBridge in a network-management application:
 
 ```ts
 class NetworkBridge {
@@ -43,9 +43,9 @@ class NetworkBridge {
 
 `NetworkBridge` accepts an array of `EndPoints` and manages their configuration using some local hardware. Users of `NetworkBridge` can use its methods to route traffic from one endpoint to another. `NetworkBridge` does this work by changing settings on the `EndPoint` class. Each instance of the `EndPoint` class opens a socket and communicates across the network to a particular device.
 
-That was just a short description of what `NetworkBridge` does. We could go into more detail, but from a testing perspective, there are already some evident problems. If we want to write tests for `NetworkBridge`, how do we do it? The class could very well make some calls to real hardware when it is constructed. Do we need to have the hardware available to create an instance of the class? Worse than that, how in the world do we know what the bridge is doing to that hard- ware or the endpoints? From our point of view, the class is a closed box.
+That was just a short description of what `NetworkBridge` does. We could go into more detail, but from a testing perspective, there are already some evident problems. If we want to write tests for `NetworkBridge`, how do we do it? The class could very well make some calls to real hardware when it is constructed. Do we need to have the hardware available to create an instance of the class? Worse than that, how in the world do we know what the bridge is doing to that hardware or the endpoints? From our point of view, the class is a closed box.
 
-It might not be too bad. Maybe we can write some code to sniff packets across the network. Maybe we can get some hardware for `NetworkBridge` to talk to so that at the very least it doesn’t freeze when we try to make an instance of it. Maybe we can set up the wiring so that we can have a local cluster of end- points and use them under test. Those solutions could work, but they are an awful lot of work. The logic that we want to change in `NetworkBridge` might not need any of those things; it’s just that we can’t get a hold of it. We can’t run an object of that class and try it directly to see how it works.
+It might not be too bad. Maybe we can write some code to sniff packets across the network. Maybe we can get some hardware for `NetworkBridge` to talk to so that at the very least it doesn’t freeze when we try to make an instance of it. Maybe we can set up the wiring so that we can have a local cluster of endpoints and use them under test. Those solutions could work, but they are an awful lot of work. The logic that we want to change in `NetworkBridge` might not need any of those things; it’s just that we can’t get a hold of it. We can’t run an object of that class and try it directly to see how it works.
 
 This example illustrates both the sensing and separation problems. We can’t sense the effect of our calls to methods on this class, and we can’t run it separately from the rest of the application.
 
@@ -63,9 +63,9 @@ How can we test this to see if the right text shows up on the display? Well, if 
 
 Here we’ve introduced a new class, `ArtR56Display`. That class contains all of the code needed to talk to the particular display device we’re using. All we have to do is supply it with a line of text that contains what we want to display. We can move all of the display code in `Sale` over to `ArtR56Display` and have a system that does exactly the same thing that it did before. Does that get us anything? Well, once we’ve done that, we can move the a design shown in Figure 3.3.
 
-...image...
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-1.png" alt="Sale." label="Figure 3.1" sizeDialog="default">Sale.</IllustrationImage>
 
-...image...
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-2.png" alt="Sale communicating with a display class." label="Figure 3.2">Sale communicating with a display class.</IllustrationImage>
 
 The Sale class can now hold on to either an `ArtR56Display` or something else, a `FakeDisplay`. The nice thing about having a fake display is that we can write tests against it to find out what the Sale does.
 

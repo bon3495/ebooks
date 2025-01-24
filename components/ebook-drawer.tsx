@@ -40,6 +40,7 @@ const EbookDrawer = ({
           href={ebooks[currentChapterIndex - 1].permalink}
           title={ebooks[currentChapterIndex - 1].chapter}
           className="h-10 min-w-10 p-0"
+          titleClassName="lg:hidden xl:inline-block"
         />
       )}
       <Sheet>
@@ -59,7 +60,7 @@ const EbookDrawer = ({
             </SheetTitle>
           </SheetHeader>
           <div>
-            <ScrollArea className="h-[calc(100vh-140px)]">
+            <ScrollArea className="h-[calc(100dvh-140px)]">
               <ul className="grid grid-cols-1 gap-4 lg:gap-0">
                 {ebooks.map((ebook) => {
                   return (
@@ -76,6 +77,7 @@ const EbookDrawer = ({
           href={ebooks[currentChapterIndex + 1].permalink}
           title={ebooks[currentChapterIndex + 1].chapter}
           className="ml-auto h-10 min-w-10 p-0"
+          titleClassName="lg:hidden xl:inline-block"
         />
       )}
     </DrawerMobileMotion>

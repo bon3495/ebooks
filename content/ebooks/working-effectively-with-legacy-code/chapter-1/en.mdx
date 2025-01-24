@@ -192,7 +192,7 @@ Adding features, refactoring, and optimizing all hold existing functionality inv
 
 Feature addition and bug fixing are very much like refactoring and optimization. In all four cases, we want to change some functionality, some behavior, but we want to preserve much more (see Figure 1.1).
 
-<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/preserving-behavior.png" alt="Preserving Behavior" label="Figure 1.1" sizeDialog="md">Preserving behavior.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/preserving-behavior.png" alt="Preserving Behavior" label="Figure 1.1" size="sm" sizeDialog="sm">Preserving behavior.</IllustrationImage>
 
 That’s a nice view of what is supposed to happen when we make changes, but what does it mean for us practically? On the positive side, it seems to tell us what we have to concentrate on. We have to make sure that the small number of things that we change are changed correctly. On the negative side, well, that isn’t the only thing we have to concentrate on. We have to figure out how to preserve the rest of the behavior. Unfortunately, preserving it involves more than just leaving the code alone. We have to know that the behavior isn’t changing, and that can be tough. The amount of behavior that we have to preserve is usually very large, but that isn’t the big deal. The big deal is that we often don’t know how much of that behavior is at risk when we make our changes. If we knew, we could concentrate on that behavior and not care about the rest. Understanding is the key thing that we need to make changes safely.
 

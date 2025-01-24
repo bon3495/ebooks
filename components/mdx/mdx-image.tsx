@@ -79,10 +79,16 @@ const ImageDescription = ({
 const illustrationImageVariants = cva('', {
   variants: {
     size: {
+      sm: 'h-48 w-full max-w-96',
       default: 'h-48 w-full max-w-96',
       md: 'h-[320px] w-full max-w-[480px]',
-      lg: 'h-[500px] w-full max-w-full',
-      xl: 'h-[800px] w-full max-w-full',
+      lg: 'h-[300px] w-full max-w-full md:h-[520px] lg:h-[580px]',
+    },
+    sizeDialog: {
+      sm: 'h-[280px] w-full max-w-96',
+      default: 'h-48 w-full max-w-96',
+      md: 'h-[320px] w-full max-w-[480px]',
+      lg: 'h-[420px] w-full max-w-full md:h-[620px] lg:h-[740px] lg:max-w-[90%]',
     },
   },
   defaultVariants: {
@@ -94,7 +100,6 @@ interface IllustrationImageProps
   extends ImageWrapperProps,
     VariantProps<typeof illustrationImageVariants> {
   label: string;
-  sizeDialog: 'default' | 'lg' | 'xl';
 }
 
 const IllustrationImage = ({
@@ -105,7 +110,7 @@ const IllustrationImage = ({
   children,
   label,
   size,
-  sizeDialog = 'xl',
+  sizeDialog,
 }: PropsWithChildren<IllustrationImageProps>) => {
   return (
     <div className="my-8 flex flex-col items-center">
@@ -119,13 +124,13 @@ const IllustrationImage = ({
           <DialogTrigger asChild>
             <ImageContent src={src} alt={alt} className={imageClassName} />
           </DialogTrigger>
-          <DialogContent className="max-w-4xl">
+          <DialogContent className="max-w-2xl lg:max-w-4xl">
             <DialogHeader>
               <div className="flex flex-col">
                 <div
                   className={cn(
                     'relative mx-auto',
-                    illustrationImageVariants({ size: sizeDialog, className }),
+                    illustrationImageVariants({ sizeDialog, className }),
                   )}
                 >
                   <ImageContent

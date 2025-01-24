@@ -111,7 +111,7 @@ Hình 2.1 minh họa một tập hợp nhỏ các class. Chúng ta muốn thực
 
 Chúng ta cũng có một vấn đề lớn hơn. Constructor của `InvoiceUpdateResponder` cần một `InvoiceUpdateServlet` làm tham số. Liệu việc tạo một thực thể của `InvoiceUpdateServlet` có dễ dàng không? Chúng ta có thể thay đổi code để nó không cần servlet đó nữa. Nếu `InvoiceUpdateResponder` chỉ cần một ít thông tin từ `InvoiceUpdateServlet`, chúng ta có thể truyền thông tin đó thay vì truyền toàn bộ servlet vào, nhưng chẳng phải chúng ta nên có một bài kiểm thử để đảm bảo rằng mình đã thực hiện thay đổi đó đúng cách hay sao?
 
-<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-2-1.png" alt="Invoice update classes." label="Figure 2.1" size="lg">Invoice update classes.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-2-1.png" alt="Invoice update classes." label="Figure 2.1" size="lg" sizeDialog="lg">Invoice update classes.</IllustrationImage>
 
 Tất cả những vấn đề này đều là vấn đề về phụ thuộc. Khi các class phụ thuộc trực tiếp vào những thứ khó sử dụng trong bài kiểm thử, chúng sẽ trở nên khó chỉnh sửa và khó làm việc cùng.
 
@@ -123,7 +123,7 @@ Vậy làm thế nào để chúng ta làm điều đó? Làm thế nào để c
 
 Trong ví dụ về Invoice, chúng ta có thể thử kiểm thử ở mức cao hơn. Nếu khó viết bài kiểm thử mà không thay đổi một class cụ thể, đôi khi kiểm thử một class sử dụng nó sẽ dễ dàng hơn; dù thế nào đi nữa, chúng ta thường phải phá vỡ các phụ thuộc giữa các class ở một điểm nào đó. Trong trường hợp này, chúng ta có thể phá vỡ phụ thuộc vào `InvoiceUpdateServlet` bằng cách chỉ truyền điều mà `InvoiceUpdateResponder` thực sự cần. Nó cần tập hợp các ID hóa đơn mà `InvoiceUpdateServlet` đang giữ. Chúng ta cũng có thể phá vỡ phụ thuộc mà `InvoiceUpdateResponder` có với `DBConnection` bằng cách ra mắt một interface (`IDBConnection`) và thay đổi `InvoiceUpdateResponder` để nó sử dụng interface thay vì phụ thuộc trực tiếp vào `DBConnection`. Hình 2.2 minh họa trạng thái của các class này sau khi thực hiện các thay đổi.
 
-<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-2-2.png" alt="Invoice update classes." label="Figure 2.2" size="lg">Invoice update classes with dependencies broken.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-2-2.png" alt="Invoice update classes." label="Figure 2.2" size="lg" sizeDialog="lg">Invoice update classes with dependencies broken.</IllustrationImage>
 
 Liệu việc thực hiện các refactoring này mà không có bài kiểm thử có an toàn không? Có thể. Các refactoring này được gọi lần lượt là *Primitivize Parameter (385)* và *Extract Interface (362)*. Chúng được mô tả trong danh mục các kỹ thuật phá vỡ phụ thuộc ở cuối cuốn sách. Khi chúng ta phá vỡ các phụ thuộc, chúng ta thường có thể viết các bài kiểm thử giúp việc thay đổi xâm lấn trở nên an toàn hơn. Bí quyết là thực hiện các refactoring ban đầu này một cách rất thận trọng.
 

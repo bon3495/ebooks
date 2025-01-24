@@ -37,7 +37,7 @@ const ContentsNavMotion = ({
       <div className="w-inherit overflow-hidden">
         {title}
         <div
-          className="content-nav-scrollbar max-h-[calc(100vh-200px)] overflow-y-auto"
+          className="content-nav-scrollbar max-h-[calc(100dvh-200px)] overflow-y-auto"
           onWheel={(e) => e.stopPropagation()}
         >
           {children}
