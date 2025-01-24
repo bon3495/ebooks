@@ -1,6 +1,13 @@
 import type { PropsWithChildren } from 'react';
 import Image from 'next/image';
+import { cva, type VariantProps } from 'class-variance-authority';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 
 type ImageWrapperProps = {
@@ -32,8 +39,62 @@ const ImageWrapper = ({
   );
 };
 
-interface IllustrationImageProps extends ImageWrapperProps {
+const ImageContent = ({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Image>) => {
+  return (
+    <Image
+      {...props}
+      fill
+      className={cn('cursor-pointer', className)}
+      style={{
+        objectFit: 'contain',
+      }}
+      sizes="100vw"
+    />
+  );
+};
+
+const ImageDescription = ({
+  children,
+  className,
+  label,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & { label?: string }) => {
+  return (
+    <p
+      className={cn(
+        'mt-2 text-base text-muted-foreground lg:text-lg',
+        className,
+      )}
+      {...props}
+    >
+      <span className="mr-2 font-semibold">{label}</span>
+      <span className="italic">{children}</span>
+    </p>
+  );
+};
+
+const illustrationImageVariants = cva('', {
+  variants: {
+    size: {
+      default: 'h-48 w-full max-w-96',
+      md: 'h-[320px] w-full max-w-[480px]',
+      lg: 'h-[500px] w-full max-w-full',
+      xl: 'h-[800px] w-full max-w-full',
+    },
+  },
+  defaultVariants: {
+    size: 'default',
+  },
+});
+
+interface IllustrationImageProps
+  extends ImageWrapperProps,
+    VariantProps<typeof illustrationImageVariants> {
   label: string;
+  sizeDialog: 'default' | 'lg' | 'xl';
 }
 
 const IllustrationImage = ({
@@ -43,27 +104,47 @@ const IllustrationImage = ({
   imageClassName,
   children,
   label,
+  size,
+  sizeDialog = 'xl',
 }: PropsWithChildren<IllustrationImageProps>) => {
   return (
     <div className="my-8 flex flex-col items-center">
-      <div className={cn('relative mx-auto h-48 w-full max-w-96', className)}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className={cn(imageClassName)}
-          style={{
-            objectFit: 'contain',
-          }}
-          sizes="100vw"
-        />
+      <div
+        className={cn(
+          'relative mx-auto',
+          illustrationImageVariants({ size, className }),
+        )}
+      >
+        <Dialog>
+          <DialogTrigger asChild>
+            <ImageContent src={src} alt={alt} className={imageClassName} />
+          </DialogTrigger>
+          <DialogContent className="max-w-4xl">
+            <DialogHeader>
+              <div className="flex flex-col">
+                <div
+                  className={cn(
+                    'relative mx-auto',
+                    illustrationImageVariants({ size: sizeDialog, className }),
+                  )}
+                >
+                  <ImageContent
+                    src={src}
+                    alt={alt}
+                    className={imageClassName}
+                  />
+                </div>
+                <ImageDescription label={label} className="text-center">
+                  {children}
+                </ImageDescription>
+              </div>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
-      <p className="mt-2 text-base text-muted-foreground lg:text-lg">
-        <span className="mr-2 font-semibold">{label}</span>
-        <span className="italic">{children}</span>
-      </p>
+      <ImageDescription label={label}>{children}</ImageDescription>
     </div>
   );
 };
 
-export { ImageWrapper, IllustrationImage };
+export { IllustrationImage, ImageWrapper };
