@@ -65,7 +65,7 @@ const ImageDescription = ({
   return (
     <p
       className={cn(
-        'mt-2 text-base text-muted-foreground lg:text-lg',
+        'mt-2 text-center text-base text-muted-foreground lg:text-lg',
         className,
       )}
       {...props}
@@ -90,9 +90,19 @@ const illustrationImageVariants = cva('', {
       md: 'h-[320px] w-full max-w-[480px]',
       lg: 'h-[420px] w-full max-w-full md:h-[620px] lg:h-[740px] lg:max-w-[90%]',
     },
+    width: {
+      full: 'max-w-full',
+    },
+    widthDialog: {
+      full: 'max-w-full',
+    },
+    height: {
+      sm: 'h-[120px] sm:h-48',
+    },
   },
   defaultVariants: {
     size: 'default',
+    sizeDialog: 'default',
   },
 });
 
@@ -105,19 +115,21 @@ interface IllustrationImageProps
 const IllustrationImage = ({
   src,
   alt,
-  className,
   imageClassName,
   children,
   label,
   size,
   sizeDialog,
+  width,
+  widthDialog,
+  height,
 }: PropsWithChildren<IllustrationImageProps>) => {
   return (
     <div className="my-8 flex flex-col items-center">
       <div
         className={cn(
           'relative mx-auto',
-          illustrationImageVariants({ size, className }),
+          illustrationImageVariants({ size, width, height }),
         )}
       >
         <Dialog>
@@ -130,7 +142,7 @@ const IllustrationImage = ({
                 <div
                   className={cn(
                     'relative mx-auto',
-                    illustrationImageVariants({ sizeDialog, className }),
+                    illustrationImageVariants({ sizeDialog, widthDialog }),
                   )}
                 >
                   <ImageContent

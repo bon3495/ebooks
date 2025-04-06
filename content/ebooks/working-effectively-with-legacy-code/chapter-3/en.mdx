@@ -63,17 +63,17 @@ How can we test this to see if the right text shows up on the display? Well, if 
 
 Here we’ve introduced a new class, `ArtR56Display`. That class contains all of the code needed to talk to the particular display device we’re using. All we have to do is supply it with a line of text that contains what we want to display. We can move all of the display code in `Sale` over to `ArtR56Display` and have a system that does exactly the same thing that it did before. Does that get us anything? Well, once we’ve done that, we can move the a design shown in Figure 3.3.
 
-<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-1.png" alt="Sale." label="Figure 3.1" sizeDialog="default">Sale.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-1.png" alt="Sale." label="Figure 3.1" size="sm" height="sm">Sale.</IllustrationImage>
 
-<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-2.png" alt="Sale communicating with a display class." label="Figure 3.2">Sale communicating with a display class.</IllustrationImage>
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-2.png" alt="Sale communicating with a display class." label="Figure 3.2"  width="full" height="sm" widthDialog="full">Sale communicating with a display class.</IllustrationImage>
 
 The Sale class can now hold on to either an `ArtR56Display` or something else, a `FakeDisplay`. The nice thing about having a fake display is that we can write tests against it to find out what the Sale does.
 
 How does this work? Well, Sale accepts a display, and a display is an object of any class that implements the Display interface.
 
-```ts
-interface Display {
-  showLine(line: string): void;
+```java
+public interface Display {
+  void showLine(String line);
 }
 ```
 
@@ -81,36 +81,107 @@ Both `ArtR56Display` and FakeDisplay implement Display.
 
 A `Sale` object can accept a display through the constructor and hold on to it internally:
 
-```ts
-class Sale {
-  private display: Display;
+```java
+public class Sale {
+  private Display display;
 
-  constructor(display: Display) {
+  public Sale(Display display) {
     this.display = display;
   }
 
-  scan(barcode: string): void {
-    // Example logic (you can customize this part)
-    const item = this.getItemFromBarcode(barcode); // Assume this method gets an item
-    const itemLine = `${item.name()} ${item.price().asDisplayText()}`;
-    this.display.showLine(itemLine);
-  }
-
-  // A placeholder method to simulate fetching an item by barcode
-  private getItemFromBarcode(barcode: string): {
-    name: () => string;
-    price: () => { asDisplayText: () => string };
-  } {
-    return {
-      name: () => 'Sample Item',
-      price: () => ({
-        asDisplayText: () => '$9.99',
-      }),
-    };
+  public void scan(String barcode) {
+    // Method body
+    String itemLine = item.name() + " " + item.price().asDisplayText();
+    display.showLine(itemLine);
+    // Rest of method
   }
 }
 ```
 
-...image...
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-3.png" alt="Sale with the display hierarchy." label="Figure 3.3"  size="lg" width="full" sizeDialog="lg">Sale with the display hierarchy.</IllustrationImage>
 
 In the scan method, the code calls the `showLine` method on the display variable. But what happens depends upon what kind of a display we gave the Sale object when we created it. If we gave it an `ArtR56Display`, it attempts to display on the real cash register hardware. If we gave it a `FakeDisplay`, it won’t, but we will be able to see what would’ve been displayed. Here is a test we can use to see that:
+
+```java
+import junit.framework.*;
+
+public class SaleTest extends TestCase {
+  public void testDisplayAnItem() { 
+    FakeDisplay display = new FakeDisplay();
+    Sale sale = new Sale(display);
+    
+    sale.scan("1");
+    assertEquals("Milk $3.99", display.getLastLine()); 
+  }
+}
+```
+
+The FakeDisplay class is a little peculiar. Let’s look at it:
+
+```java
+public class FakeDisplay implements Display {
+  private String lastLine = "";
+
+  public void showLine(String line) { 
+    lastLine = line;
+  }
+
+  public String getLastLine() {
+    return lastLine;
+  }
+}
+```
+
+The showLine method accepts a line of text and assigns it to the lastLine variable. The getLastLine method returns that line of text whenever it is called. This is pretty slim behavior, but it helps us a lot. With the test we’ve written, we can find out whether the right text will be sent to the display when the Sale class is used.
+
+<Callout><HeadingBase>Fake Objects Support Real Tests</HeadingBase><div>Sometimes when people see the use of fake objects, they say, “That’s not really testing.” After all, this test doesn’t show us what really gets displayed on the real screen. Suppose that some part of the cash register display software isn’t working properly; this test would never show it. Well, that’s true, but that doesn’t mean that this isn’t a real test. Even if we could devise a test that really showed us exactly which pixels were set on a real cash register display, does that mean that the software would work with all hardware? No, it doesn’t—but that doesn’t mean that that isn’t a test, either. When we write tests, we have to divide and conquer. This test tells us how Sale objects affect displays, that’s all. But that isn’t trivial. If we discover a bug, running this test might help us see that the problem isn’t in Sale. If we can use information like that to help us localize errors, we can save an incredible amount of time.</div><div>When we write tests for individual units, we end up with small, well-understood pieces. This can make it easier to reason about our code.</div></Callout>
+
+### The Two Sides of a Fake Object
+
+Fake objects can be confusing when you first see them. One of the oddest things about them is that they have two “sides,” in a way. Let’s take a look at the `FakeDisplay` class again, in Figure 3.4.
+
+The `showLine` method is needed on `FakeDisplay` because `FakeDisplay` implements `Display`. It is the only method on `Display` and the only one that `Sale` will see. The other method, `getLastLine`, is for the use of the test. That is why we declare `display` as a `FakeDisplay`, not a `Display`:
+
+<IllustrationImage src="/assets/images/ebooks/working-effectively-with-legacy-code/figure-3-4.png" alt="Two sides to a fake object." label="Figure 3.4"  size="lg" width="full" sizeDialog="lg">Two sides to a fake object.</IllustrationImage>
+
+```java
+import junit.framework.*;
+
+public class SaleTest extends TestCase {
+  public void testDisplayAnItem() {
+    FakeDisplay display = new FakeDisplay();
+    Sale sale = new Sale(display);
+
+    sale.scan("1");
+    assertEquals("Milk $3.99", display.getLastLine()); 
+  }
+}
+```
+
+The `Sale` class will see the fake display as `Display`, but in the test, we need to hold on to the object as `FakeDisplay`. If we don’t, we won’t be able to call `getLastLine()` to find out what the sale displays.
+
+### Fakes Distilled
+
+The example I’ve shown in this section is very simple, but it shows the central idea behind fakes. They can be implemented in a wide variety of ways. In OO languages, they are often implemented as simple classes like the `FakeDisplay` class in the previous example. In non-OO languages, we can implement a fake by defining an alternative function, one which records values in some global data structure that we can access in tests. See Chapter 19, *My Project is Not Object-Oriented. How Do I Make Safe Changes?*, for details.
+
+### Mock Objects
+
+Fakes are easy to write and are a very valuable tool for sensing. If you have to write a lot of them, you might want to consider a more advanced type of fake called a *mock object*. Mock objects are fakes that perform assertions internally. Here is an example of a test using a mock object:
+
+```java
+import junit.framework.*;
+
+public class SaleTest extends TestCase {
+  public void testDisplayAnItem() {
+    MockDisplay display = new MockDisplay();
+    display.setExpectation("showLine", "Milk $3.99");
+    Sale sale = new Sale(display);
+    sale.scan("1");
+    display.verify();
+  }
+}
+```
+
+In this test, we create a mock display object. The nice thing about mocks is that we can tell them what calls to expect, and then we tell them to check and see if they received those calls. That is precisely what happens in this test case. We tell the display to expect its `showLine` method to be called with an argument of `"Milk $3.99”`. After the expectation has been set, we just go ahead and use the object inside the test. In this case, we call the method `scan()`. Afterward, we call the `verify()` method, which checks to see if all of the expectations have been met. If they haven’t, it makes the test fail.
+
+Mocks are a powerful tool, and a wide variety of mock object frameworks are available. However, mock object frameworks are not available in all languages, and simple fake objects suffice in most situations.

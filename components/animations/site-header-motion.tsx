@@ -7,7 +7,7 @@ import useBoundedScroll from '@/hooks/use-bounded-scroll';
 import { springConfig } from '@/types/globals.type';
 
 function SiteHeaderMotion({ children }: PropsWithChildren) {
-  const { scrollYBoundedProgress } = useBoundedScroll(1);
+  const { scrollYBoundedProgress } = useBoundedScroll(30);
 
   const scrollYBoundedProgressThrottled = useTransform(
     scrollYBoundedProgress,
