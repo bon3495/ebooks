@@ -5,6 +5,7 @@ import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
 import { Icons } from '@/components/icons';
 import {
+  HorizontalIllustrationImage,
   IllustrationImage,
   ImageWithDescription,
   ImageWrapper,
@@ -81,6 +82,7 @@ const MdxBasicItems = {
   ImageWrapper,
   ImageWithDescription,
   IllustrationImage,
+  HorizontalIllustrationImage,
   Icons,
   TableBody,
   TableCaption,

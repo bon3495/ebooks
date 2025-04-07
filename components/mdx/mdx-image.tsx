@@ -195,4 +195,77 @@ const ImageWithDescription = ({
   );
 };
 
-export { IllustrationImage, ImageWrapper, ImageWithDescription };
+const horizontalIllustrationImageVariants = cva('', {
+  variants: {
+    size: {
+      sm: 'h-48 w-full max-w-96',
+      default: 'h-[280px] w-full max-w-[580px] md:h-[360px]',
+      md: 'h-[320px] w-full max-w-[480px]',
+      lg: 'h-[300px] w-full max-w-full md:h-[520px] lg:h-[580px]',
+    },
+  },
+  defaultVariants: {
+    size: 'default',
+  },
+});
+
+interface HorizontalIllustrationImage
+  extends ImageWrapperProps,
+    VariantProps<typeof horizontalIllustrationImageVariants> {
+  label: string;
+}
+
+const HorizontalIllustrationImage = ({
+  src,
+  alt,
+  imageClassName,
+  children,
+  label,
+  size,
+}: PropsWithChildren<HorizontalIllustrationImage>) => {
+  return (
+    <div className="my-8 flex flex-col items-center">
+      <div
+        className={cn(
+          'relative mx-auto',
+          horizontalIllustrationImageVariants({ size }),
+        )}
+      >
+        <Dialog>
+          <DialogTrigger asChild>
+            <ImageContent src={src} alt={alt} className={imageClassName} />
+          </DialogTrigger>
+          <DialogContent className="max-w-2xl lg:max-w-4xl">
+            <DialogHeader>
+              <div className="flex flex-col">
+                <div
+                  className={cn(
+                    'relative mx-auto',
+                    horizontalIllustrationImageVariants({}),
+                  )}
+                >
+                  <ImageContent
+                    src={src}
+                    alt={alt}
+                    className={imageClassName}
+                  />
+                </div>
+                <ImageDescription label={label} className="text-center">
+                  {children}
+                </ImageDescription>
+              </div>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
+      <ImageDescription label={label}>{children}</ImageDescription>
+    </div>
+  );
+};
+
+export {
+  IllustrationImage,
+  HorizontalIllustrationImage,
+  ImageWrapper,
+  ImageWithDescription,
+};
