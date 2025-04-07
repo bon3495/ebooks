@@ -576,12 +576,17 @@
   "javascript.updateImportsOnPaste.enabled": false,
   "typescript.updateImportsOnPaste.enabled": false,
   "cSpell.words": [
+    "dont",
+    "famoulsy",
+    "futurereaching",
     "isodate",
     "Ooops",
     "pfadnamen",
     "Podkova",
     "rawstring",
     "rehype",
+    "shanehudson",
+    "tipsuggestions",
     "velite"
   ],
   "[markdown]": {

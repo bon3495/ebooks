@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
 import { Icons } from '@/components/icons';
-import { IllustrationImage, ImageWrapper } from '@/components/mdx/mdx-image';
+import {
+  IllustrationImage,
+  ImageWithDescription,
+  ImageWrapper,
+} from '@/components/mdx/mdx-image';
 import {
   TableCellMdx,
   TableHeadMdx,
@@ -75,6 +79,7 @@ const MdxBasicItems = {
   HeadingLarge,
   HeadingExtraLarge,
   ImageWrapper,
+  ImageWithDescription,
   IllustrationImage,
   Icons,
   TableBody,

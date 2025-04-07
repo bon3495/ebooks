@@ -1,0 +1,120 @@
+---
+title: "You Don't Know JS: Scope & Closures"
+slug: you-dont-know-js-scope-closures
+date: 2025-04-06
+locale: vi
+cover: /assets/images/ebooks/you-dont-know-js-scope-closures/cover.jpg
+author: Kyle Simpson
+type: parent
+id: 0
+description: Like other books in the "You Don’t Know JS" series, Scope and Closures dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge, you can achieve true JavaScript mastery.
+---
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/paper.png"
+  alt="Foreword"
+/>
+
+## Lời Nói Đầu
+
+Khi tôi còn nhỏ, tôi rất thích tháo rời mọi thứ ra rồi lắp lại — từ những chiếc điện thoại di động cũ, dàn âm thanh hi-fi, cho đến bất cứ thứ gì tôi có thể chạm tay vào. Lúc đó tôi còn quá nhỏ để thực sự sử dụng những thiết bị này, nhưng mỗi khi có món nào bị hỏng, tôi lập tức xin được mày mò để hiểu xem nó hoạt động như thế nào.
+
+Tôi nhớ có lần nhìn vào bảng mạch của một chiếc radio cũ. Trên đó có một ống dài kỳ lạ quấn quanh bằng dây đồng. Tôi không hiểu nó để làm gì, nhưng ngay lập tức bật chế độ “nghiên cứu”. Nó dùng để làm gì? Tại sao lại có trong radio? Nó trông không giống các linh kiện khác trên bảng mạch, tại sao vậy? Tại sao lại phải quấn dây đồng quanh nó? Nếu tôi tháo dây đồng ra thì sẽ sao?! Bây giờ tôi biết đó là một loại ăng-ten vòng, được tạo ra bằng cách quấn dây đồng quanh một thanh ferrite, thường dùng trong các loại radio transistor.
+
+Bạn đã bao giờ bị cuốn hút bởi việc phải tìm ra câu trả lời cho mọi câu hỏi *“tại sao”* chưa? Hầu hết trẻ em đều như vậy. Thực ra, đó có lẽ là điều tôi yêu thích nhất ở trẻ em — khát khao được học hỏi.
+
+Thật không may, bây giờ tôi đã bị xem là *“người chuyên nghiệp”* và dành cả ngày để tạo ra mọi thứ. Khi còn nhỏ, tôi rất thích ý tưởng rằng một ngày nào đó mình sẽ chế tạo được những thứ mà mình từng tháo ra. Tất nhiên, giờ đây những thứ tôi tạo ra chủ yếu là với JavaScript chứ không phải thanh ferrite... nhưng cũng gần giống rồi! Tuy nhiên, dù từng rất yêu việc tạo ra mọi thứ, giờ đây tôi lại thấy mình khao khát có lại cái đam mê khám phá như ngày xưa. Đúng là tôi vẫn thường tìm cách tốt nhất để giải quyết vấn đề hay sửa lỗi, nhưng tôi hiếm khi dành thời gian để đặt câu hỏi về các công cụ mình đang dùng.
+
+Và đó chính là lý do tôi rất phấn khích với loạt sách “You Don’t Know JS”. Bởi vì điều đó đúng. Tôi không thật sự hiểu rõ JS. Tôi dùng JavaScript mỗi ngày, đã nhiều năm rồi, nhưng liệu tôi có thực sự hiểu nó không? Không. Đúng là tôi hiểu khá nhiều, tôi cũng thường đọc các đặc tả và danh sách thư tín, nhưng không, tôi không hiểu được nhiều như đứa trẻ sáu tuổi bên trong tôi mong muốn.
+
+*Scope and Closures* là một khởi đầu tuyệt vời cho loạt sách này. Nó nhắm đúng vào những người như tôi (và hy vọng là cả bạn nữa). Nó không dạy JavaScript như thể bạn chưa từng dùng nó, nhưng nó khiến bạn nhận ra rằng bạn có thể biết rất ít về cách vận hành bên trong của ngôn ngữ. Nó cũng ra đời vào thời điểm rất phù hợp: ES6 cuối cùng cũng đã ổn định và được triển khai khá tốt trên các trình duyệt. Nếu bạn chưa có thời gian để tìm hiểu các tính năng mới (như `let` và `const`), thì cuốn sách này sẽ là một phần mở đầu tuyệt vời.
+
+Tôi hy vọng bạn sẽ thích cuốn sách này, và hơn thế nữa, rằng cách Kyle phân tích tỉ mỉ từng ngóc ngách của ngôn ngữ sẽ dần ngấm vào cách tư duy và quy trình làm việc của bạn. Thay vì chỉ đơn giản sử dụng cái ăng-ten, hãy tìm hiểu cách nó hoạt động và lý do tại sao nó hoạt động như vậy.
+
+***—Shane Hudson***<br />
+***[www.shanehudson.net](https://shanehudson.net/)***
+
+## Preface
+
+<ImageWrapper
+  src="/assets/images/ebooks/working-effectively-with-legacy-code/brush.png"
+  alt="Preface"
+/>
+
+Tôi chắc là bạn cũng để ý rồi, nhưng “JS” trong tiêu đề loạt sách này không phải là viết tắt của những từ chửi thề về JavaScript — mặc dù việc chửi rủa ngôn ngữ này vì những điều “kỳ cục” của nó thì chắc ai cũng từng trải qua!
+
+Từ những ngày đầu của Web, JavaScript đã là một công nghệ nền tảng, mang đến sự tương tác cho trải nghiệm người dùng với nội dung trên mạng. Mặc dù ban đầu JavaScript gắn liền với những hiệu ứng chuột nhấp nháy hay các hộp thoại pop-up khó chịu, thì gần hai thập kỷ sau, công nghệ và khả năng của JavaScript đã phát triển vượt bậc. Ngày nay, ít ai nghi ngờ về tầm quan trọng của JavaScript — trung tâm của nền tảng phần mềm phổ biến nhất thế giới: the Web.
+
+Tuy nhiên, với tư cách là một ngôn ngữ lập trình, JavaScript lại thường xuyên là đối tượng bị chỉ trích, một phần vì nguồn gốc của nó, nhưng phần lớn là vì triết lý thiết kế. Ngay cả cái tên “JavaScript” cũng gợi lên cảm giác bị xem như “đứa em dại khờ” bên cạnh người anh trưởng thành hơn là Java — như Brendan Eich từng nói. Nhưng cái tên đó thực ra chỉ là kết quả của những toan tính chính trị và chiến lược tiếp thị. Trên thực tế, hai ngôn ngữ này hoàn toàn khác nhau ở nhiều khía cạnh quan trọng. “JavaScript” liên quan đến “Java” cũng như “Carnival” (lễ hội) liên quan đến “Car” (xe hơi) vậy!
+
+Vì JavaScript vay mượn các khái niệm và cú pháp từ nhiều ngôn ngữ — bao gồm phong cách thủ tục của C và các yếu tố hàm ẩn, ít rõ ràng hơn của Scheme/Lisp — nên nó cực kỳ dễ tiếp cận với đa dạng lập trình viên, kể cả những người chưa có nhiều kinh nghiệm. Đoạn “Hello World” trong JavaScript đơn giản đến mức ngôn ngữ này trở nên thân thiện và dễ làm quen ngay từ lần đầu tiên tiếp xúc.
+
+Tuy JavaScript có thể là một trong những ngôn ngữ dễ bắt đầu nhất, nhưng chính sự kỳ quặc của nó lại khiến việc làm chủ ngôn ngữ này trở nên hiếm hoi hơn nhiều so với các ngôn ngữ khác. Trong khi để viết một chương trình hoàn chỉnh bằng C hay C++ đòi hỏi phải hiểu rất sâu về ngôn ngữ, thì với JavaScript, nhiều sản phẩm chạy thực tế ngoài kia lại chỉ mới chạm đến bề nổi của những gì ngôn ngữ này có thể làm được.
+
+Những khái niệm phức tạp và mang tính nền tảng của ngôn ngữ lại thường xuất hiện một cách rất đơn giản, như việc truyền hàm làm callback — điều này khiến lập trình viên JavaScript thường có xu hướng “cứ dùng thôi” mà không mấy quan tâm đến chuyện gì đang diễn ra bên trong.
+
+JavaScript vừa là một ngôn ngữ đơn giản, dễ sử dụng, hấp dẫn với đông đảo người dùng, vừa là một hệ thống đầy phức tạp và tinh vi mà nếu không nghiên cứu kỹ lưỡng, thì ngay cả những lập trình viên kỳ cựu cũng khó mà thật sự hiểu rõ.
+
+Và chính ở đó là nghịch lý của JavaScript — gót chân Achilles của ngôn ngữ này — cũng là thách thức mà chúng ta đang cùng nhau đối mặt. Vì JavaScript có thể được sử dụng mà không cần phải hiểu rõ nó, nên phần lớn thời gian, người dùng lại chẳng bao giờ thật sự hiểu ngôn ngữ này.
+
+### Mission
+
+Nếu mỗi lần bạn gặp điều gì đó bất ngờ hoặc gây khó chịu trong JavaScript, phản ứng của bạn là đưa nó vào “danh sách đen” — như thói quen của một số người — thì chẳng mấy chốc bạn sẽ chỉ còn lại một vỏ bọc rỗng tuếch so với sự phong phú thực sự của JavaScript.
+
+Mặc dù tập con của ngôn ngữ này từng được đặt tên một cách nổi tiếng là “The Good Parts” (Những phần tốt đẹp), tôi xin mời bạn — độc giả thân mến — hãy cân nhắc gọi nó bằng những cái tên khác: “The Easy Parts” (Những phần dễ), “The Safe Parts” (Những phần an toàn), hoặc thậm chí là “The Incomplete Parts” (Những phần chưa đầy đủ).
+
+Loạt sách “You Don’t Know JavaScript” này mang đến một thách thức ngược lại: hãy học và thực sự hiểu sâu toàn bộ JavaScript — bao gồm và đặc biệt là những phần “khó nhằn nhất”.
+
+Chúng ta sẽ đối mặt trực tiếp với xu hướng phổ biến của lập trình viên JS: học “vừa đủ để làm được việc”, mà không bao giờ bắt buộc bản thân phải hiểu tường tận tại sao và bằng cách nào ngôn ngữ này lại hoạt động như thế. Hơn thế nữa, chúng ta sẽ gạt bỏ lời khuyên quen thuộc: “nếu thấy khó, thì tránh xa”.
+
+Tôi không cảm thấy thỏa mãn — và bạn cũng không nên — khi dừng lại ở chỗ “nó chạy được rồi”, mà chẳng thật sự hiểu tại sao nó chạy. Tôi muốn nhẹ nhàng thách thức bạn bước đi trên con đường gập ghềnh, ít người dám chọn ấy — để khám phá trọn vẹn những gì JavaScript thực sự là và có thể làm được. Khi bạn có được sự hiểu biết đó, thì chẳng có kỹ thuật nào, framework nào, hay những từ viết tắt thời thượng nào có thể nằm ngoài tầm hiểu biết của bạn.
+
+Mỗi cuốn sách trong loạt này sẽ tập trung vào một phần cốt lõi của JavaScript — những phần thường bị hiểu sai hoặc bị xem nhẹ — và đi sâu đến tận gốc rễ. Bạn sẽ rời khỏi từng chương sách với sự tự tin vững chắc trong kiến thức của mình, không chỉ về mặt lý thuyết mà còn là những điều thực tế “bạn thật sự cần biết”.
+
+JavaScript mà bạn biết hiện tại rất có thể là những mảnh ghép được truyền lại từ những người từng bị “bỏng tay” vì sự hiểu biết chưa đầy đủ. JavaScript đó chỉ là cái bóng của ngôn ngữ thực sự. Bạn chưa thật sự hiểu JavaScript — chưa đâu — nhưng nếu bạn dấn thân vào loạt sách này, bạn sẽ hiểu. Hãy tiếp tục đọc, những người bạn của tôi. JavaScript đang chờ đón bạn.
+
+### Review
+
+JavaScript thật tuyệt vời. Nó dễ học ở mức độ cơ bản, nhưng để học một cách toàn diện (hoặc thậm chí đủ sâu) thì lại khó hơn rất nhiều. Khi lập trình viên gặp phải sự mơ hồ, họ thường có xu hướng đổ lỗi cho ngôn ngữ thay vì nhìn nhận sự thiếu hiểu biết của bản thân. Những cuốn sách này được viết ra để thay đổi điều đó — nhằm truyền cảm hứng để bạn thật sự trân trọng ngôn ngữ này, một ngôn ngữ mà giờ đây bạn có thể và nên hiểu một cách sâu sắc.
+
+<Callout>
+  Nhiều ví dụ trong cuốn sách này được viết với giả định rằng bạn đang sử dụng môi trường JavaScript hiện đại (hoặc hướng tới tương lai), chẳng hạn như ECMAScript phiên bản 6 (ES6). Một số đoạn mã có thể sẽ không hoạt động đúng như mô tả nếu bạn chạy chúng trong các môi trường cũ hơn (trước ES6).
+</Callout>
+
+Cuốn sách này sử dụng các quy ước định dạng văn bản như sau:
+
+*Chữ nghiêng*: Dùng để chỉ các thuật ngữ mới, URL, địa chỉ email, tên tệp và phần mở rộng của tệp.
+
+Chữ đều: Được sử dụng cho đoạn mã chương trình, cũng như trong các đoạn văn để tham chiếu đến các phần tử của chương trình như tên biến hoặc hàm, cơ sở dữ liệu, kiểu dữ liệu, biến môi trường, câu lệnh và từ khóa.
+
+`Chữ đều`: Được sử dụng cho đoạn mã chương trình, cũng như trong các đoạn văn để tham chiếu đến các phần tử của chương trình như tên biến hoặc hàm, cơ sở dữ liệu, kiểu dữ liệu, biến môi trường, câu lệnh và từ khóa.
+
+**`Chữ đều đậm`**: Dùng để hiển thị các lệnh hoặc đoạn văn bản mà người dùng cần nhập chính xác như hiển thị.
+
+*`Chữ đều nghiêng`*: Chỉ văn bản cần được thay thế bằng giá trị do người dùng cung cấp hoặc giá trị được xác định theo ngữ cảnh.
+
+<ImageWithDescription
+  src="/assets/images/ebooks/you-dont-know-js-scope-closures/tipsuggestions.png"
+  alt="Phần tử này biểu thị một mẹo hoặc gợi ý."
+  content="Phần tử này biểu thị một mẹo hoặc gợi ý."
+/>
+
+<ImageWithDescription
+  src="/assets/images/ebooks/you-dont-know-js-scope-closures/note.png"
+  alt="Phần tử này biểu thị một ghi chú chung."
+  content="Phần tử này biểu thị một ghi chú chung."
+/>
+
+<ImageWithDescription
+  src="/assets/images/ebooks/you-dont-know-js-scope-closures/warning.png"
+  alt="Phần tử này biểu thị một cảnh báo hoặc lưu ý quan trọng."
+  content="Phần tử này biểu thị một cảnh báo hoặc lưu ý quan trọng."
+/>
+
+### Tài Liệu Bổ Sung
+
+Tài liệu bổ sung (ví dụ mã, bài tập, v.v.) có thể được tải xuống tại [http://bit.ly/1c8HEWF](http://bit.ly/1c8HEWF).
+
+Cuốn sách này được viết để giúp bạn hoàn thành công việc của mình. Nói chung, nếu mã ví dụ được cung cấp trong cuốn sách này, bạn có thể sử dụng chúng trong các chương trình và tài liệu của mình. Bạn không cần liên hệ để xin phép trừ khi bạn tái sử dụng một phần lớn mã. Ví dụ, viết một chương trình sử dụng một số đoạn mã từ cuốn sách này không yêu cầu sự cho phép. Tuy nhiên, việc bán hoặc phân phối một CD-ROM chứa các ví dụ từ sách của O’Reilly thì cần có sự cho phép. Trả lời một câu hỏi bằng cách trích dẫn cuốn sách này và sử dụng mã ví dụ không yêu cầu sự cho phép. Tuy nhiên, việc tích hợp một lượng lớn mã ví dụ từ cuốn sách này vào tài liệu sản phẩm của bạn thì cần có sự cho phép.
+
+Chúng tôi đánh giá cao, nhưng không yêu cầu, việc ghi nguồn. Một ghi nguồn thường bao gồm tiêu đề, tác giả, nhà xuất bản và ISBN. Ví dụ: “Scope and Closures của Kyle Simpson (O’Reilly). Bản quyền 2014 Kyle Simpson, 978-1-449-33558-8.”

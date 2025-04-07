@@ -21,7 +21,12 @@ export default async function EbookDetails({ params }: EbookParams) {
   const ebook = await getEbookFromParams(params);
 
   const ebooksChildren = sortById(
-    ebooks.filter((e) => e.type === 'child' && e.locale === params.locale),
+    ebooks.filter(
+      (e) =>
+        e.type === 'child' &&
+        e.locale === params.locale &&
+        e.slug.includes(params.slug),
+    ),
   );
 
   if (!ebook) {

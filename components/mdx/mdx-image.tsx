@@ -33,7 +33,7 @@ const ImageWrapper = ({
         style={{
           objectFit: 'contain',
         }}
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     </div>
   );
@@ -164,4 +164,35 @@ const IllustrationImage = ({
   );
 };
 
-export { IllustrationImage, ImageWrapper };
+type ImageWithDescriptionProps = ImageWrapperProps & {
+  content?: string;
+};
+
+const ImageWithDescription = ({
+  src,
+  alt,
+  className,
+  imageClassName,
+  content,
+  children,
+}: PropsWithChildren<ImageWithDescriptionProps>) => {
+  return (
+    <div className={cn('my-6 flex items-center', className)}>
+      <div className="relative h-40 w-36 shrink-0">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className={cn(imageClassName)}
+          style={{
+            objectFit: 'contain',
+          }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      {children || <p className="text-base lg:text-lg">{content}</p>}
+    </div>
+  );
+};
+
+export { IllustrationImage, ImageWrapper, ImageWithDescription };
