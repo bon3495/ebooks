@@ -17,7 +17,7 @@ Phạm vi động được đề cập trong `Phụ lục A`. Tôi nhắc đến
 
 ## Lex-time
 
-As we discussed in [Chapter 1](/en/ebooks/you-dont-know-js-scope-closures/chapter-1), the first traditional phase of a standard language compiler is called lexing (a.k.a., tokenizing). If you recall, the lexing process examines a string of source code characters and assigns semantic meaning to the tokens as a result of some stateful parsing.
+As we discussed in [Chapter 1](/vi/ebooks/you-dont-know-js-scope-closures/chapter-1), the first traditional phase of a standard language compiler is called lexing (a.k.a., tokenizing). If you recall, the lexing process examines a string of source code characters and assigns semantic meaning to the tokens as a result of some stateful parsing.
 
 It is this concept that provides the foundation to understand what lexical scope is and where the name comes from.
 
@@ -225,7 +225,7 @@ console.log(o2.a); // undefined
 console.log( a ); // 2—Oops, leaked global!
 ```
 
-Trong ví dụ này, hai đối tượng `o1` và `o2` được tạo ra. Một đối tượng có thuộc tính `a`, và đối tượng còn lại thì không. Hàm `foo(..)` nhận một tham chiếu đối tượng obj làm tham số, và gọi `with (obj) { .. }` trên tham chiếu đó. Bên trong khối `with`, chúng ta thực hiện một tham chiếu có vẻ như là tham chiếu từ vựng thông thường đến biến `a`, thực chất là một tham chiếu LHS (xem [Chương 1](/en/ebooks/you-dont-know-js-scope-closures/chapter-1)), để gán giá trị `2` cho nó.
+Trong ví dụ này, hai đối tượng `o1` và `o2` được tạo ra. Một đối tượng có thuộc tính `a`, và đối tượng còn lại thì không. Hàm `foo(..)` nhận một tham chiếu đối tượng obj làm tham số, và gọi `with (obj) { .. }` trên tham chiếu đó. Bên trong khối `with`, chúng ta thực hiện một tham chiếu có vẻ như là tham chiếu từ vựng thông thường đến biến `a`, thực chất là một tham chiếu LHS (xem [Chương 1](/vi/ebooks/you-dont-know-js-scope-closures/chapter-1)), để gán giá trị `2` cho nó.
 
 Khi chúng ta truyền vào `o1`, phép gán `a = 2` tìm thấy thuộc tính `o1.a` và gán giá trị `2` cho nó, như được phản ánh trong câu lệnh `console.log(o1.a)` tiếp theo. Tuy nhiên, khi chúng ta truyền vào `o2`, vì nó không có thuộc tính `a`, nên không có thuộc tính nào được tạo ra, và `o2.a` vẫn giữ giá trị `undefined`.
 
